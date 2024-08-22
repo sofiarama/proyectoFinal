@@ -14,21 +14,16 @@
     />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
-    <style>
-      body {
-        background-color: rgb(248, 249, 250);
-      }
-    </style>
   </head>
 
-  <body>
+  <body class="background-image">
   <div class="login-box">
       <h2>Bienvenido de vuelta</h2>
       <p>¿No tienes acceso? <a href="#">Crear una cuenta</a></p>
       <form id="loginForm">
         <div class="input-group">
           <input
-            type="text"
+            type="email"
             id="username"
             name="username"
             placeholder="Usuario"
@@ -54,8 +49,11 @@
         <p class="float-end">
           <a href="#">Volver arriba</a>
         </p>
+        <br>
         <p>
-          Este sitio forma parte de
+          <span style="color: white">
+          Este sitio forma parte de: </span>
+          <br>
           <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
             >Jovenes a Programar</a
           >

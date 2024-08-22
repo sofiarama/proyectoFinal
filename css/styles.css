@@ -1,8 +1,93 @@
+. {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
 .jumbotron,
 .card-body,
 .container,
 .site-header {
   font-family: 'Verdana', serif !important;
+}
+
+body,html{
+  height: 100%;
+  overflow: hidden;
+}
+
+.background-image {
+  background-image: url('../img/imagenfondo.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;  
+  height: 100vh;
+}
+
+.login-box {
+  width: 370px;
+  height: 450px;
+  padding: 35px;
+  background-color: white;
+  box-shadow: 0 0 10px black;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: 0px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h2{
+  margin-bottom: 15px;
+  color: black;
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  font-family: Arial;
+}
+
+p{
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+a{
+  color: #007bff;
+}
+
+.input-group input {
+  margin: 10px 0;
+  width: 100%;
+  margin: 15px auto;
+  padding: 10px;
+  background-color: rgb(146, 145, 145);
+  color: rgb(255, 255, 255);
+  border-radius: 30px;
+  border: none;
+  
+}
+
+button {
+  width: 100%;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: rgba(34, 88, 236, 0.897);
+  color: white;
+  border-radius: 30px;
+  border: none;
+}
+
+.input-group input::placeholder {
+  color: rgb(236, 231, 231);
+}
+
+a:hover{
+  text-decoration: underline;
 }
 
 .jumbotron .display-4 {
@@ -68,12 +153,23 @@ nav a {
 }
 
 footer {
-  padding-top: 3rem;
+  position: relative
+  margin-top: auto;
+  padding-top: 35rem;
   padding-bottom: 3rem;
+  bottom: 0;
+  height: 100px
+}
+
+footer .cointainer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0rem;
+  font-size: 12px;
 }
 
 .site-header a {
