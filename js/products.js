@@ -1,4 +1,4 @@
-function openTab(event, tabName){
+/* function openTab(event, tabName){
     const tabcontent = document.querySelectorAll(".tabcontent");
     tabcontent.forEach(tabcontent => tabcontent.computedStyleMap.display = "none");
   
@@ -9,8 +9,8 @@ function openTab(event, tabName){
     event.currentTarget.className += "active";
     }
   
-  document.querySelector(".tablink").click();
-  
+  document.querySelector(".tablink").click(); */
+
 document.addEventListener("DOMContentLoaded", function () {
     const url = PRODUCTS_URL + 101 + EXT_TYPE;
         /* "https://japceibal.github.io/emercado-api/cats_products/101.json"; */
@@ -40,9 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         })
         .catch((error) => {
-        console.error("Error al cargar los productos:", error);
-        const productContainer =
-            document.getElementById("product-container");
+            console.error("Error al cargar los productos:", error);
+            const productContainer = document.getElementById("product-container");
         productContainer.innerHTML = `<p>Error al cargar los productos. Intenta nuevamente más tarde.</p>`;
         });
     });
