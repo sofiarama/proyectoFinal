@@ -16,6 +16,13 @@
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/products.css" rel="stylesheet"/>
     <script src="js/products.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        if (!sessionStorage.getItem("loggedIn")) {
+            window.location.href = "login.html";
+        }
+    });
+    </script>
   </head>
 
   <body>

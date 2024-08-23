@@ -68,6 +68,7 @@
 
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
+        sessionStorage.setItem("loggedIn", "true");
 
         if (username && password) {
           alert("Inicio de sesión exitoso!");
