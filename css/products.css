@@ -1,3 +1,20 @@
+.contenedor img{
+    max-width: 100%;
+    height: auto;
+  }
+
+.pb-5_container {
+        padding: 0%;
+        margin: 0%;
+}
+
+#product-container {
+    padding: auto;
+    margin-top: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
 .contenedor{
     background-image: url(../img/auto\ rojo.jpg);
     background-size: cover;
