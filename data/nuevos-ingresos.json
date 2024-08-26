@@ -1,0 +1,35 @@
+{
+    "catID": 101,
+    "catName": "Autos",
+    "products": [
+        {
+            "id": 50925,
+            "name": "Bugatti Chiron",
+            "description": "El mejor hiperdeportivo de mundo. Producción limitada a 500 unidades.",
+            "cost": 3500000,
+            "currency": "USD",
+            "soldCount": 0,
+            "image": "img/prod50925_1.jpg"
+        },
+
+        {
+            "id": 50926,
+            "name": "Próximo Arribo: Ferrari SF90 Stradale",
+            "description": "El nuevo supercoche de producción en serie, PRÓXIMAMENTE",
+            "cost": 0.00000,
+            "currency": "USD",
+            "soldCount": 0,
+            "image": "img/ferrari-stradale.jpg"
+        },
+
+        {
+            "id": 50927,
+            "name": " Próximo Arribo        ",
+            "description": "Description                                                           ",
+            "cost": 0.0000,
+            "currency": "USD",
+            "soldCount": 0,
+            "image": "img/proximamente.jpg"
+        }        
+    ]
+}
