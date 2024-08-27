@@ -11,12 +11,6 @@
   
   document.querySelector(".tablink").click(); */
  
-      document.addEventListener("DOMContentLoaded", function() {
-        if (!sessionStorage.getItem("loggedIn")) {
-            window.location.href = "login.html";
-        }
-    });
-  
 
 document.addEventListener("DOMContentLoaded", function () {
     const url = PRODUCTS_URL + 101 + EXT_TYPE;

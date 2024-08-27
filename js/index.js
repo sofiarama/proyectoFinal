@@ -12,10 +12,3 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
- document.addEventListener("DOMContentLoaded", function () {
-        const userDisplay = document.getElementById("userDisplay");
-        const username = sessionStorage.getItem("username");
-        if (username) {
-          userDisplay.textContent = `Hola, ${username}`;
-        }
-      });
