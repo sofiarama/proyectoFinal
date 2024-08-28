@@ -29,3 +29,12 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "index.html";
     });
 });
+/* funcionalidad de ver o tapar password*/
+document.getElementById('togglePassword').addEventListener('click', function () {
+  const passwordField = document.getElementById('password');
+  const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordField.setAttribute('type', type);
+
+  // Cambiar el ícono del ojo
+  this.classList.toggle('fa-eye-slash');
+}); 

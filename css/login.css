@@ -1,105 +1,166 @@
-/* . {
+/* General Styles */
+body {
+  font-family: "Raleway", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
-} */
-
-body,
-html {
-  height: 100%;
-  overflow: hidden;
 }
-
+.img-ecommerce-jap {
+  width: 200px;
+  height: 100px;
+}
 .background-image {
-  background-image: url("../img/imagenfondo.jpg");
+  background: url("../img/vecteezy_online-shopping-concept_1903669.jpg")
+    no-repeat center center fixed;
   background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  height: 100vh;
+}
+.div-logo-jap {
+  margin: 20px;
 }
 
 .login-box {
-  width: 370px;
-  height: 450px;
-  padding: 35px;
-  background-color: white;
-  box-shadow: 0 0 10px black;
+  background-color: #fff;
+  width: 90%;
+  padding: 20px;
   border-radius: 10px;
-  margin-left: auto;
-  margin-right: 0px;
-  justify-content: center;
-  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 150px;
+  margin-right: 600px;
+}
+
+/* estilos del login-box */
+.login-box h2 {
   margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
-h2 {
-  margin-bottom: 15px;
-  color: black;
-  font-size: 24px;
-  text-align: center;
-  font-weight: bold;
-  font-family: Arial;
+.login-box p {
+  margin-bottom: 30px;
+  font-size: 12px;
 }
 
-p {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-a {
+.login-box a {
   color: #007bff;
+  text-decoration: none;
 }
 
-.input-group input {
-  margin: 10px 0;
-  width: 100%;
-  margin: 15px auto;
-  padding: 10px;
-  background-color: rgb(146, 145, 145);
-  color: rgb(255, 255, 255);
-  border-radius: 30px;
-  border: none;
-}
-
-button {
-  width: 100%;
-  margin: 10px auto;
-  padding: 10px;
-  background-color: rgba(34, 88, 236, 0.897);
-  color: white;
-  border-radius: 30px;
-  border: none;
-}
-
-.input-group input::placeholder {
-  color: rgb(236, 231, 231);
-}
-
-a:hover {
+.login-box a:hover {
   text-decoration: underline;
 }
 
-footer {
+/* Input group container */
+.input-group {
   position: relative;
-  margin-top: auto;
-  margin-right: 3rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  /* bottom: 0;
-  height: 100px */
+  margin-bottom: 15px;
 }
 
-/* footer .cointainer {
+/* Left icon styles */
+.input-icon-left {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-} */
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #999;
+  pointer-events: none;
+}
 
-footer p {
-  margin-bottom: 0rem;
-  font-size: 12px;
+/* Right icon styles */
+.input-icon-right {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #999;
+  cursor: pointer;
+}
+
+/* Input field styles */
+.input-group input {
+  width: 100%;
+  padding: 10px 40px; /* Adjust padding for the icons */
+  border: 1px solid #ccc;
+
+  font-size: 16px;
+}
+
+/* Submit button styles */
+#btnIngreso {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+/* Submit Button */
+#btnIngreso {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+#btnIngreso:hover {
+  background-color: #0056b3;
+}
+
+/* Footer */
+footer.footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background-color: #f8f9fa;
+}
+
+footer.footer-container p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+  text-align: left;
+}
+
+footer.footer-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+footer.footer-container a:hover {
+  text-decoration: underline;
+}
+/* Estilo para versión móvil */
+@media (max-width: 767px) {
+  .logo {
+    display: inline-block;
+  }
+  .ecommerce-jap {
+    width: 150px;
+  }
+}
+@media (max-width: 320px) {
+  .logo {
+    display: inline-block;
+  }
+  .img-ecommerce-jap {
+    width: 60px;
+  }
+  .login-box {
+    width: 100%;
+  }
+  .img-ecommerce-jap {
+    width: 50px;
+    height: 50px;
+    margin-left: 0;
+  }
 }
