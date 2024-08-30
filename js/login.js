@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-/* Funcionalidad para mostrar icno del ojito dependiendo si se esta mostrando u ocultando la password*/ 
+/* Funcionalidad para mostrar icno del ojito dependiendo si se estan mostrando u ocultando la password*/ 
 document.getElementById('togglePassword').addEventListener('click', function (event) {
       const passwordField = document.getElementById('password');
       const icon = event.target;
