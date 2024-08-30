@@ -36,8 +36,8 @@ h3 {
   font-family: Arial Impact;
 }
 
-.welcome-bar {
-  display: flex;
+.btn-ofertas {
+  justify-content: space-around;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.852);
   padding-top: 8px;
@@ -65,7 +65,9 @@ h3 {
 .tabcontent.active {
   display: block;
 }
-
+#navbarNav {
+  padding: 30px;
+}
 .tablink {
   background-color: rgba(255, 255, 255, 0.93);
   border: 2px solid red;
@@ -96,8 +98,9 @@ h3 {
   margin-top: 20px;
   margin-left: 150px;
   margin-right: 150px;
-} 
+}
 
+/* para medidas moviles */
 @media only screen and (max-width: 568px) {
   .contenedor {
     height: 200px;
@@ -108,11 +111,6 @@ h3 {
     padding-top: 10px;
   }
 
-  .button{
-    padding: 5px;
-    background-color: rgb(240, 229, 229);
-    margin-left: 0px;
-  }
   h1 {
     text-align: left;
   }
@@ -120,7 +118,7 @@ h3 {
     margin-left: 0px;
     text-align: center;
   }
-  
+
   h3 {
     margin: 0px;
     text-align: center;
@@ -134,9 +132,25 @@ h3 {
 .tabs {
   margin-left: 100px;
 }
-
-/* .text-muted {
-    padding: 50px;
-    background-color: rgba(0, 0, 0, 0.852);
+.user-info {
+  position: absolute;
+  top: 15px; /* Ajusta según la altura de tu barra de navegación */
+  right: 20px; /* Mantiene el nombre de usuario a 5px de la derecha */
 }
- */
+@media (max-width: 768px) {
+  .btn-ofertas-nuevosIngresos {
+    width: 100%;
+  }
+  .texto-bienvenida {
+    display: none;
+  }
+}
+
+/* En pantallas más grandes, restaura el estilo */
+@media (min-width: 992px) {
+  .user-info {
+    position: static;
+    margin-left: auto; /*Deja espacio a la derecha del menú */
+    margin-right: 0;
+  }
+}

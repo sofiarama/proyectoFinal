@@ -45,4 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const productContainer = document.getElementById("product-container");
         productContainer.innerHTML = `<p>Error al cargar los productos. Intenta nuevamente más tarde.</p>`;
         });
-    });
+});
+/*esto es la funcion para que al dar clic sobre los btn ofertas y nuevos ingresos te lleve a las paginas correspondientes*/ 
+    document.getElementById('ofertasBtn').addEventListener('click', function() {
+  window.location.href = 'ofertas.html';
+});
+
+document.getElementById('nuevosIngresosBtn').addEventListener('click', function() {
+  window.location.href = 'nuevos-ingresos.html';
+});
