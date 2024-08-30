@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
         products.forEach((product) => {
             const productItem = `
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="card mb-4 shadow-sm">
                             <img src="${product.image}" alt="${product.name}" class="card-img-top">
                             <div class="card-body">

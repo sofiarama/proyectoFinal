@@ -10,7 +10,7 @@
     <style>
         .button{
         display: inline-block;
-        color: rgb(204, 198, 198);
+        color: rgb(240, 229, 229);
         text-decoration: overline;
         padding: 15px 30px;
         gap: 30px;
@@ -18,7 +18,7 @@
         font-weight: bold;
         text-align: center;
         text-decoration: none;
-        background-color: rgb(204, 198, 198);
+        background-color: rgb(240, 229, 229);
         border-radius:  5px;
         border: solid red; 
         }
@@ -81,7 +81,7 @@
           <h2>BIENVENIDOS A</h2>
           <h3>AUTOMÓVILES JAP</h3>
         </div>
-          <div id="product-container" class="row"> 
+          <div id="product-container" class="row justify-content-center"> 
             <!-- Aquí se insertarán los productos obtenidos del JSON -->
           </div>
         </div>
@@ -117,7 +117,7 @@ fetch(url)
 
 products.forEach((product) => {
         const productItem = `           
-        <div class="col-md-4">             
+        <div class="col-lg-4 col-md-6 col-12">             
             <div class="card mb-4 shadow-sm">               
                 <img src="${product.image}" alt="${product.name}" class="card-img-top">               
                 <div class="card-body">                 

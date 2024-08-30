@@ -3,18 +3,6 @@
   height: auto;
 }
 
-.pb-5_container {
-  padding: 0%;
-  margin: 0%;
-}
-
-#product-container {
-  padding: auto;
-  margin-top: 20px;
-  margin-left: 150px;
-  margin-right: 150px;
-}
-
 .contenedor {
   background-image: url(../img/auto\ rojo.jpg);
   background-size: cover;
@@ -42,7 +30,7 @@ h2 {
 h3 {
   margin-top: 20px;
   margin-left: 2px;
-  margin-right: 100px;
+  margin-right: 60px;
   color: red;
   font-weight: bold;
   font-family: Arial Impact;
@@ -103,16 +91,44 @@ h3 {
   height: auto;
 }
 
-.pb-5_container {
-  padding: 0%;
-  margin: 0%;
-}
-
 #product-container {
   padding: auto;
   margin-top: 20px;
   margin-left: 150px;
   margin-right: 150px;
+} 
+
+@media only screen and (max-width: 568px) {
+  .contenedor {
+    height: 200px;
+  }
+
+  .welcome-bar {
+    display: grid;
+    padding-top: 10px;
+  }
+
+  .button{
+    padding: 5px;
+    background-color: rgb(240, 229, 229);
+    margin-left: 0px;
+  }
+  h1 {
+    text-align: left;
+  }
+  h2 {
+    margin-left: 0px;
+    text-align: center;
+  }
+  
+  h3 {
+    margin: 0px;
+    text-align: center;
+  }
+
+  #product-container {
+    margin: 20px;
+  }
 }
 
 .tabs {
