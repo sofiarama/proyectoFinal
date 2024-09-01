@@ -1,5 +1,5 @@
-URL sitio web trabajado: https://sofiarama.github.io/ProyectoFinal/login.html
-URL sitio web trabajado: https://sofiarama.github.io/ProyectoFinal/products.html
+URL sitio web trabajado: https://sofiarama.github.io/proyectoFinal/login.html
+URL sitio web trabajado: https://sofiarama.github.io/proyectoFinal/products.html
 
 
 ## Documentación
