@@ -7,22 +7,6 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>Nuevos Ingresos</title>
-    <style>
-        .button{
-        display: inline-block;
-        color: rgb(240, 229, 229);
-        text-decoration: overline;
-        padding: 15px 30px;
-        gap: 30px;
-        font-size: 20px; 
-        font-weight: bold;
-        text-align: center;
-        text-decoration: none;
-        background-color: rgb(240, 229, 229);
-        border-radius:  5px;
-        border: solid red; 
-        }
-        </style>
     <link
       href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
       rel="stylesheet"
@@ -47,6 +31,9 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <div  class="user-info order-lg-1 order-0">
+          <span id="userDisplay" class="text-white"></span>
+        </div>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav w-100 justify-content-between">
             <li class="nav-item">
@@ -69,17 +56,13 @@
           <br>
           INGRESOS</h1>
         </div>
-        <div class="welcome-bar">
-          <ul class="button">
-            <li class="nav-item">
-              <a href="products.html" target="_self">Todos</a>
-            </li>
-          </ul>
-          <ul class="button">
-            <li>
-              <a href="ofertas.html" target="_self">Ofertas!</a>
-            </li>
-          </ul> 
+        
+        <div class="d-flex btn-ofertas">
+          <div>
+<button id="ofertasBtn" class="btn btn-primary me-2">Ofertas!</button>
+<button id="productsBtn" class="btn btn-secondary">Todos</button>
+</div>
+
           <h2>BIENVENIDOS A</h2>
           <h3>AUTOMÓVILES JAP</h3>
         </div>
@@ -105,40 +88,11 @@
       <div class="lds-ring"></div>
     </div>
 
+    <script src="js/nuevos-ingresos.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-  const url = "./data/nuevos-ingresos.json";
+    <script src="js/authHandler.js"></script>
 
-  fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        const products = data.products;
-        const productContainer = document.getElementById("product-container");
-
-      products.forEach((product) => {
-              const productItem = `           
-              <div class="col-lg-4 col-md-6 col-12">             
-                  <div class="card mb-4 shadow-sm">               
-                      <img src="${product.image}" alt="${product.name}" class="card-img-top">               
-                      <div class="card-body">                 
-                          <h5 class="card-title">${product.name}</h5>                 
-                          <p class="card-text">${product.description}</p>                 
-                          <p class="card-text"><strong>Precio:</strong> ${product.cost} ${product.currency}</p>                 
-                          <p class="card-text"><strong>Vendidos:</strong> ${product.soldCount}</p>               
-                          </div>             </div>           </div>`;
-              productContainer.innerHTML += productItem;
-            });
-          })
-
-    .catch((error) => {
-      console.error("Error al cargar los productos:", error);
-      const productContainer = document.getElementById("product-container");
-      productContainer.innerHTML = `<p>Error al cargar los productos. Intenta nuevamente más tarde.</p>`;
-    });
-});
-    </script>
   </body>
 </html>
 

@@ -1,3 +1,22 @@
+.btn-ofertas {
+  justify-content: space-around;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.852);
+  padding-top: 5px;
+  padding-bottom: 2px;
+}
+
+.user-info {
+  position: absolute;
+  top: 10px;
+  right: 120px;
+  color: white;
+}
+
+#navbarNav {
+  padding: 10px;
+}
+
 .contenedor img {
   max-width: 100%;
   height: auto;
@@ -22,32 +41,38 @@ h1 {
 }
 
 h2 {
-  margin-left: auto;
+  margin-top: 5px;
+  margin-left: 400px;
+  font-size: 30px;
   color: white;
   font-family: Arial Impact;
+  word-spacing: 20px;
 }
 
 h3 {
-  margin-top: 20px;
-  margin-left: 2px;
-  margin-right: 60px;
+  margin-top: 25px;
+  font-size: 30px;
   color: red;
-  font-weight: bold;
   font-family: Arial Impact;
+  word-spacing: 20px;
+  letter-spacing: 1px;
 }
 
-.btn-ofertas {
-  justify-content: space-around;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.852);
-  padding-top: 8px;
-  padding-bottom: 2px;
-}
-.user-info {
-  position: absolute;
-  top: 10px;
-  right: 120px;
+#ofertasBtn, #productsBtn, #nuevosIngresosBtn {
+  margin: 20px;
+  background-color: gray;
   color: white;
+  border-radius: 10px;
+  border-color: red;
+}
+
+#ofertasBtn:hover, #productsBtn:hover, #nuevosIngresosBtn:hover {
+  background-color: yellow;
+  color: red;
+}
+
+.tabs {
+  margin-left: 100px;
 }
 
 .tablink.active {
@@ -65,9 +90,7 @@ h3 {
 .tabcontent.active {
   display: block;
 }
-#navbarNav {
-  padding: 30px;
-}
+
 .tablink {
   background-color: rgba(255, 255, 255, 0.93);
   border: 2px solid red;
@@ -88,11 +111,6 @@ h3 {
   background-color: rgb(255, 0, 0);
 }
 
-.contenedor img {
-  max-width: 100%;
-  height: auto;
-}
-
 #product-container {
   padding: auto;
   margin-top: 20px;
@@ -100,49 +118,70 @@ h3 {
   margin-right: 150px;
 }
 
+/* para medidas Tablets */
+@media only screen and (max-width: 1024px) {
+  #navbarNav {
+    padding: 20px;
+  }
+
+  .user-info {
+    top: 10px;
+    position: right;
+    right: 50px;
+  }
+
+  .btn-ofertas {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  
+h2 {
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 18px;
+  word-spacing: 5px;
+}
+
+h3 {
+  margin-top: 30px;
+  font-size: 25px;
+  font-size: 20px;
+  word-spacing: 5px;
+}
+
+
 /* para medidas moviles */
 @media only screen and (max-width: 568px) {
   .contenedor {
     height: 200px;
   }
 
-  .welcome-bar {
-    display: grid;
-    padding-top: 10px;
+  .btn-ofertas {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .user-info {
+    position: right;
+    right: 10px;
   }
 
   h1 {
     text-align: left;
   }
+
+
   h2 {
-    margin-left: 0px;
-    text-align: center;
+    display: none;
   }
 
   h3 {
-    margin: 0px;
-    text-align: center;
+    display: none;
   }
 
   #product-container {
     margin: 20px;
-  }
-}
-
-.tabs {
-  margin-left: 100px;
-}
-.user-info {
-  position: absolute;
-  top: 15px; /* Ajusta según la altura de tu barra de navegación */
-  right: 20px; /* Mantiene el nombre de usuario a 5px de la derecha */
-}
-@media (max-width: 768px) {
-  .btn-ofertas-nuevosIngresos {
-    width: 100%;
-  }
-  .texto-bienvenida {
-    display: none;
   }
 }
 
