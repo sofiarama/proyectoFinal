@@ -1,5 +1,5 @@
-URL sitio web trabajado: https://sofiarama.github.io/proyectoFinal/login.html
-URL sitio web trabajado: https://sofiarama.github.io/proyectoFinal/products.html
+URL sitio web trabajado: https://suleidis9510.github.io/Proyecto-JAP-/login.html
+URL sitio web trabajado: https://suleidis9510.github.io/Proyecto-JAP-/products.html
 
 
 ## Documentación
