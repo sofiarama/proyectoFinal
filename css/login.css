@@ -5,10 +5,7 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-.img-ecommerce-jap {
-  width: 200px;
-  height: 100px;
-}
+
 .background-image {
   background: url("../img/vecteezy_online-shopping-concept_1903669.jpg")
     no-repeat center center fixed;
@@ -19,16 +16,18 @@ body {
 }
 
 .login-box {
-  background-color: #fff;
-  width: 90%;
+  background-color: white;
+  width: 30rem;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   margin-top: 150px;
-  margin-right: 600px;
 }
 
 /* estilos del login-box */
+.login-box h1 {
+  font-size: 2rem;
+}
 .login-box h2 {
   margin-bottom: 20px;
   font-weight: 700;
@@ -139,7 +138,17 @@ footer.footer-container a {
 footer.footer-container a:hover {
   text-decoration: underline;
 }
-/* Estilo para versión móvil */
+
+/* Estilo para versión móvil y tablets */
+@media (max-width: 1024px) {
+  .row-content-loginBox {
+    margin-right: 8rem;
+  }
+  .div-logo-jap {
+    margin-top: 1rem;
+    text-align: center;
+  }
+}
 @media (max-width: 767px) {
   .logo {
     display: inline-block;

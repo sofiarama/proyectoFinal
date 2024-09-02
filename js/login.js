@@ -29,12 +29,20 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "index.html";
     });
 });
-/* funcionalidad de ver o tapar password*/
-document.getElementById('togglePassword').addEventListener('click', function () {
-  const passwordField = document.getElementById('password');
-  const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-  passwordField.setAttribute('type', type);
 
-  // Cambiar el ícono del ojo
-  this.classList.toggle('fa-eye-slash');
-}); 
+/* Funcionalidad para mostrar icno del ojito dependiendo si se estan mostrando u ocultando la password*/ 
+document.getElementById('togglePassword').addEventListener('click', function (event) {
+      const passwordField = document.getElementById('password');
+      const icon = event.target;
+
+      // Alternar el tipo de input entre password y text
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye'); // Cambiar a ojo tachado
+      } else {
+        passwordField.type = 'password';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash'); // Cambiar a ojo abierto
+      }
+    });

@@ -7,23 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>Automóviles JAP</title>
-    <style>
-      .button{
-      margin-left: 10px;
-      display: inline-block;
-      color:  rgb(240, 229, 229);
-      text-decoration: overline;
-      padding: 10px 20px;
-      gap: 30px;
-      font-size: 20px; 
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      background-color: rgb(240, 229, 229);
-      border-radius:  5px;
-      border: solid red;
-    }
-      </style>
+   
     <link
       href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
       rel="stylesheet"
@@ -48,6 +32,10 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+          <div  class="user-info order-lg-1 order-0">
+             <!-- Aqui se mostrara el user una vez echo el login -->
+      <span id="userDisplay" class="text-white"></span>
+    </div>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav w-100 justify-content-between">
             <li class="nav-item">
@@ -59,11 +47,7 @@
             <li class="nav-item">
               <a class="nav-link" href="sell.html">Vender</a>
             </li>
-            <li class="nav-item">
-               <!-- Contenedor para mostrar el nombre de usuario -->
-              <div class="user-info">
-                <span id="userDisplay"></span>
-              </div></li>
+  
           </ul>
         </div>
       </div>
@@ -74,28 +58,18 @@
           <br>
           DE TUS SUEÑOS</h1>
         </div>
-        <div class="welcome-bar">
-          <ul class="button">
-            <li class="nav-item">
-              <a href="ofertas.html" target="_self">Ofertas!</a>
-            </li>
-          </ul>
-          <ul class="button">
-            <li>
-              <a href="nuevos-ingresos.html" target="_self">Nuevos Ingresos</a>
-            </li>
-          </ul> 
-          <h2>BIENVENIDOS A</h2>
+      
+          <div class="d-flex btn-ofertas">
+            <div>
+  <button id="ofertasBtn" class="btn btn-primary me-2">Ofertas!</button>
+  <button id="nuevosIngresosBtn" class="btn btn-secondary">Nuevos Ingresos</button>
+</div>
+       <h2>BIENVENIDOS A</h2>
           <h3>AUTOMÓVILES JAP</h3>
-        </div>
+        </span>
+      </div>
           <div id="product-container" class="row justify-content-center">
-            <!-- <div id="Tab1" class="tabcontent">
-              <h4>Nuevos Ingresos</h4>
-            </div>
-            <div id="Tab2" class="tabcontent">
-              <h4>Ofertas!</h4>
-            </div> -->
-            <!-- Aquí se insertarán los productos obtenidos del JSON -->
+          <!-- Aquí se insertarán los productos obtenidos del JSON -->
           </div>
         </div>
     </main>
@@ -112,14 +86,7 @@
         </p>
       </div>
     </footer>
-    <div id="spinner-wrapper">
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
+ 
      <script src="js/products.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>

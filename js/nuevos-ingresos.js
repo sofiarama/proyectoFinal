@@ -1,21 +1,6 @@
-/* function openTab(event, tabName){
-    const tabcontent = document.querySelectorAll(".tabcontent");
-    tabcontent.forEach(tabcontent => tabcontent.computedStyleMap.display = "none");
-  
-    const tablink = document.querySelectorAll(".tablink");
-    tablink.forEach(tablink => tablink.className = tablink.className.replace(" active", "")); 
-  
-    document.getElementById(tabName).style.display = "block";
-    event.currentTarget.className += "active";
-    }
-  
-  document.querySelector(".tablink").click(); */
- 
-
 document.addEventListener("DOMContentLoaded", function () {
-    const url = PRODUCTS_URL + 101 + EXT_TYPE;
-        /* "https://japceibal.github.io/emercado-api/cats_products/101.json"; */
-    
+    const url = "./data/nuevos-ingresos.json"
+
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
@@ -47,10 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 });
 /*esto es la funcion para que al dar clic sobre los btn ofertas y nuevos ingresos te lleve a las paginas correspondientes*/ 
-    document.getElementById('ofertasBtn').addEventListener('click', function() {
-  window.location.href = 'ofertas.html';
+    document.getElementById('productsBtn').addEventListener('click', function() {
+  window.location.href = 'products.html';
 });
 
-document.getElementById('nuevosIngresosBtn').addEventListener('click', function() {
-  window.location.href = 'nuevos-ingresos.html';
+document.getElementById('ofertasBtn').addEventListener('click', function() {
+  window.location.href = 'ofertas.html';
 });
