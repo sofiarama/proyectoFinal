@@ -90,3 +90,85 @@
   font-size: 1rem;
   color: black;
 }
+
+@media only screen and (max-width: 568px) {
+    .car {
+        display: grid;
+        flex-direction: row;
+        margin: 1rem;
+        padding: 0;
+     }
+
+    .contenedor {
+        /* display: grid;
+        flex-direction: column; */
+        padding: 1rem;
+        align-items: center;
+     }
+     .descripcion{
+        margin: 0;
+    }
+    .description{
+         margin-left: 0.5rem;
+        /* align-items:start; */
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+     }
+     .title {
+        align-items: center;
+        margin-top: 3rem;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+     }
+     .soldCount {
+        align-items: center;
+        margin-left: 1.5rem;
+     }
+     .category {
+        margin-left: 1.5rem;
+        margin-top: 1rem;
+        padding: 0;
+     }
+     .image-gallery {
+        align-items: center;
+        justify-content: center;
+        display: grid;
+        padding: 0;
+        margin-right: 0.4rem;
+     }
+     .main-image img {
+       /*  align-items:start; */
+        width: 90%;
+        height: auto;
+        margin-left: 0.8rem;
+
+    }
+    .main-image {
+        /* justify-content: center;
+        align-items: center; */
+        padding: 1rem;
+        border: 0.5rem silver solid;
+        border-radius: 1rem;
+        /* margin-left: 1.5rem; */
+        width: 90%;
+     }
+
+     .thumbnail-images {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        margin: 0rem;
+     }
+     .thumbnail{
+        align-items: center;
+        justify-content: center;
+        margin-left: 0.3rem;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        width: 6rem;
+    
+     }
+}
