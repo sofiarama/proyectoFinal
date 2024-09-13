@@ -1,0 +1,74 @@
+/* #contenedor {
+    align-items: center;
+} */
+.car {
+    margin: 5rem;
+    align-items: center;
+    display: flex;
+}
+
+.image-gallery {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.thumbnail-images {
+    display: flex;
+    flex-direction:column;
+}
+
+.thumbnail {
+    margin: 1rem;
+    width: 10rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+}
+
+.main-image {
+    margin-left: 1rem;
+}
+
+.main-image img {
+    width: 700px;
+    height: auto;
+}
+
+.descripcion {
+    margin-top: 5rem;
+    margin-left: 4rem;
+}
+
+.title {
+    margin-top: 1rem;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.description {
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color:rgb(98, 98, 98);
+}
+
+.soldCount {
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 1rem;
+    color:rgb(167, 167, 167);
+}
+
+.category { 
+    margin-top: 6rem;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 1rem;
+    color: black;
+}

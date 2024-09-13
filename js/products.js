@@ -11,6 +11,11 @@
   
   document.querySelector(".tablink").click(); */
  
+function savePRoductId(productId) {
+    localStorage.setItem('productId', productId);
+    console.log('productId guardado:', localStorage.getItem('productId'));
+    window.location.href = 'product-info.html';
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const url = PRODUCTS_URL + 101 + EXT_TYPE;
@@ -26,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         products.forEach((product) => {
             const productItem = `
                     <div class="col-lg-4 col-md-6 col-12">
-                        <div class="card mb-4 shadow-sm">
+                        <div class="card mb-4 shadow-sm" onclick="savePRoductId(${product.id})">
                             <img src="${product.image}" alt="${product.name}" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title">${product.name}</h5>
