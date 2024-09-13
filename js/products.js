@@ -1,8 +1,8 @@
- //guardar el id del elemento en el localStorage 
-function savePRoductId(productId) {
-    localStorage.setItem('productId', productId);
-    console.log('productId guardado:', localStorage.getItem('productId'));
-    window.location.href = 'product-info.html';
+//guardar el id del elemento en el localStorage 
+function saveProductId(productId) {
+  localStorage.setItem('productId', productId);
+  //console.log('productId guardado:', localStorage.getItem('productId'));
+  window.location.href = 'product-info.html';
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -45,21 +45,21 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Función para mostrar productos en la lista
- function mostrarProductos(listaProductos) {
-  productContainer.innerHTML = ''; // Limpiar la lista de productos
-  
-  if (listaProductos.length === 0) {
-    productContainer.innerHTML = `
+  function mostrarProductos(listaProductos) {
+    productContainer.innerHTML = ''; // Limpiar la lista de productos
+
+    if (listaProductos.length === 0) {
+      productContainer.innerHTML = `
       <div class="no-products-message text-center">
         <p>No hay productos en este rango de precios.</p>
         <i class="bi bi-emoji-frown" style="font-size: 2rem; color: gray;"></i> <!-- Ícono de Bootstrap Icons -->
       </div>`;
-    return;
-  }
+      return;
+    }
     listaProductos.forEach((producto) => {
       const productItem = `
         <div class="col-lg-4 col-md-6 col-12">
-          <div class="card mb-4 shadow-sm" onclick="saveProductId(${producto.id})">
+          <div class="card mb-4 shadow-sm" onclick="saveProductId(${producto.id})"> <!-- agrego el click en cada producto -->
             <img src="${producto.image}" alt="${producto.name}" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">${producto.name}</h5>

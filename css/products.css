@@ -1,9 +1,9 @@
 .btn-ofertas {
-  justify-content: space-around;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.852);
-  padding-top: 5px;
-  padding-bottom: 2px;
 }
 
 .user-info {
@@ -41,20 +41,22 @@ h1 {
 }
 
 h2 {
-  margin-top: 5px;
+  /* margin-top: 5px; */
   margin-left: 400px;
   font-size: 30px;
   color: white;
   font-family: Arial Impact;
-  word-spacing: 20px;
+  word-spacing: 10px;
 }
 
 h3 {
   margin-top: 25px;
+  margin-right: 100px;
+  margin-left: 20px;
   font-size: 30px;
   color: red;
   font-family: Arial Impact;
-  word-spacing: 20px;
+  word-spacing: 10px;
   letter-spacing: 1px;
 }
 

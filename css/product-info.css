@@ -8,6 +8,8 @@
 }
 
 .image-gallery {
+    padding: 1rem;
+    /* border: 2px silver solid; */
     margin-top: 3rem;
     display: flex;
     align-items: center;
@@ -19,6 +21,8 @@
 }
 
 .thumbnail {
+    padding: 0.5rem;
+    border: 0.2rem rgb(116, 113, 113) solid;
     margin: 1rem;
     width: 10rem;
     cursor: pointer;
@@ -30,11 +34,13 @@
 }
 
 .main-image {
+    padding: 1rem;
+    border: 0.2rem rgb(116, 113, 113) solid;
     margin-left: 1rem;
 }
 
 .main-image img {
-    width: 700px;
+    width: 40rem;
     height: auto;
 }
 
