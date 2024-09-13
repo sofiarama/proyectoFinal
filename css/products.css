@@ -16,7 +16,17 @@
 #navbarNav {
   padding: 10px;
 }
+#backArrow {
+  position: absolute;
+  left: 10px; /* Ajusta la distancia desde la izquierda */
+  top: 10px; /* Ajusta la distancia desde la parte superior */
+  font-size: 1.5rem; /* Tamaño del ícono */
+  text-decoration: none;
+}
 
+#backArrow:hover {
+  color: #ccc; /* Cambiar color al hacer hover sobre la flecha */
+}
 .contenedor img {
   max-width: 100%;
   height: auto;
