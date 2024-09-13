@@ -2,81 +2,91 @@
     align-items: center;
 } */
 .car {
-    margin: 5rem;
-    align-items: center;
-    display: flex;
+  margin: 5rem;
+  align-items: center;
+  display: flex;
 }
 
 .image-gallery {
-    padding: 1rem;
-    /* border: 2px silver solid; */
-    margin-top: 3rem;
-    display: flex;
-    align-items: center;
+  padding: 1rem;
+  /* border: 2px silver solid; */
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
 }
 
 .thumbnail-images {
-    display: flex;
-    flex-direction:column;
+  display: flex;
+  flex-direction: column;
 }
 
 .thumbnail {
-    padding: 0.5rem;
-    border: 0.2rem rgb(176, 176, 176) solid;
-    border-radius: 1rem;
-    margin: 1rem;
-    width: 10rem;
-    cursor: pointer;
-    transition: transform 0.3s;
+  padding: 0.5rem;
+  border: 0.2rem rgb(176, 176, 176) solid;
+  border-radius: 1rem;
+  margin: 1rem;
+  width: 10rem;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .thumbnail:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+}
+#backArrow {
+  position: absolute;
+  left: 10px; /* Ajusta la distancia desde la izquierda */
+  top: 10px; /* Ajusta la distancia desde la parte superior */
+  font-size: 1.5rem; /* Tamaño del ícono */
+  text-decoration: none;
 }
 
+#backArrow:hover {
+  color: #ccc; /* Cambiar color al hacer hover sobre la flecha */
+}
 .main-image {
-    padding: 1rem;
-    border: 0.2rem rgb(176, 176, 176) solid;
-    border-radius: 1rem;
-    margin-left: 1rem;
+  padding: 1rem;
+  border: 0.2rem rgb(176, 176, 176) solid;
+  border-radius: 1rem;
+  margin-left: 1rem;
 }
 
 .main-image img {
-    width: 40rem;
-    height: auto;
+  width: 40rem;
+  height: auto;
 }
 
 .descripcion {
-    margin-top: 5rem;
-    margin-left: 4rem;
+  margin-top: 5rem;
+  margin-left: 4rem;
 }
 
 .title {
-    margin-top: 1rem;
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    font-family: Arial;
-    font-weight: bold;
+  margin-top: 1rem;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  font-family: Arial;
+  font-weight: bold;
 }
 
 .description {
-    font-family: Arial;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color:rgb(98, 98, 98);
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: rgb(98, 98, 98);
 }
 
 .soldCount {
-    font-family: Arial;
-    font-weight: bold;
-    font-size: 1rem;
-    color:rgb(167, 167, 167);
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 1rem;
+  color: rgb(167, 167, 167);
 }
 
-.category { 
-    margin-top: 6rem;
-    font-family: Arial;
-    font-weight: bold;
-    font-size: 1rem;
-    color: black;
+.category {
+  margin-top: 6rem;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 1rem;
+  color: black;
 }
