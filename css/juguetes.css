@@ -1,0 +1,90 @@
+.btn-ofertas {
+    background-color: rgba(0, 0, 0, 0.852);
+    padding: auto;
+}
+  
+.user-info {
+    position: static;
+    margin-left: 5rem; /*Deja espacio a la derecha del menú */
+    color: white;
+    margin-right: 0;
+}
+  
+.contenedor img {
+    max-height: 100%;
+}
+  
+.contenedor {
+    background-image: url(../img/cat102_1.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    max-width: 200%;
+    height: 20rem;
+    display: flex;
+}
+  
+h1 {
+    text-align: CE;
+    font-weight: bold;
+    margin: 2% 2% 2% 2%;
+    color: white;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+      1px 1px 0 black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+  
+h2 {
+    padding: 0.5rem;
+    display: inline-block;
+    margin-left: 20%;
+    font-size: 2rem;
+    color: white;
+    font-family: Arial Impact;
+    margin-bottom: 0%;
+}
+  
+h3 {
+    display: inline-block;
+    margin-left: 40%;
+    font-size: 2rem;
+    color: red;
+    font-family: Arial Impact;
+}
+  
+#product-container {
+    padding: auto;
+    margin-top: 2cap;
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+  
+
+  
+/* para medidas Tablets */
+@media only screen and (max-width: 1024px) {
+    .contenedor {
+      height: 15rem;
+    }
+}
+  
+/*para medidas móviles*/
+@media only screen and (max-width: 568px) {
+
+    .btn-ofertas {
+        height: 2rem;
+    }
+      
+    .contenedor {
+        height: 8rem;
+    }
+    
+    h2 {
+        display: none;
+    }
+
+    h3 {
+        display: none;
+    }
+}
+
