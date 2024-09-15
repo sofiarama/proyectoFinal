@@ -7,8 +7,8 @@
 }
 
 .user-info {
-  position: absolute;
-  top: 10px;
+  position: relative;
+  top: 0;
   right: 120px;
   color: white;
 }
@@ -16,10 +16,12 @@
 #navbarNav {
   padding: 10px;
 }
+
 #backArrow {
-  position: absolute;
-  left: 10px; /* Ajusta la distancia desde la izquierda */
-  top: 10px; /* Ajusta la distancia desde la parte superior */
+  margin-right: 20px;
+  position: relative;
+  left: 5px; /* Ajusta la distancia desde la izquierda */
+  top: 0; /* Ajusta la distancia desde la parte superior */
   font-size: 1.5rem; /* Tamaño del ícono */
   text-decoration: none;
 }
@@ -227,7 +229,10 @@ h3 {
   }
 
   #product-container {
-    margin: 20px;
+    padding: 0;
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }
 

@@ -8,7 +8,7 @@
 }
 
 .image-gallery {
-  padding: 1rem;
+  /* padding: 1rem; */
   /* border: 2px silver solid; */
   margin-top: 3rem;
   display: flex;
@@ -36,7 +36,7 @@
 #backArrow {
   position: absolute;
   left: 10px; /* Ajusta la distancia desde la izquierda */
-  top: 10px; /* Ajusta la distancia desde la parte superior */
+  /* top: 10px; */ /* Ajusta la distancia desde la parte superior */
   font-size: 1.5rem; /* Tamaño del ícono */
   text-decoration: none;
 }
@@ -93,6 +93,7 @@
 
 @media only screen and (max-width: 568px) {
     .car {
+        /* align-items: center; */
         display: grid;
         flex-direction: row;
         margin: 1rem;
@@ -103,7 +104,7 @@
         /* display: grid;
         flex-direction: column; */
         padding: 1rem;
-        align-items: center;
+        /* align-items: center; */
      }
      .descripcion{
         margin: 0;
@@ -112,17 +113,16 @@
          margin-left: 0.5rem;
         /* align-items:start; */
         padding: 1rem;
-        justify-content: center;
-        align-items: center;
+        /* justify-content: center;
+        align-items: center; */
      }
      .title {
-        align-items: center;
         margin-top: 3rem;
         margin-left: 1rem;
         margin-bottom: 1rem;
      }
      .soldCount {
-        align-items: center;
+        /* align-items: center; */
         margin-left: 1.5rem;
      }
      .category {
@@ -131,44 +131,45 @@
         padding: 0;
      }
      .image-gallery {
-        align-items: center;
-        justify-content: center;
         display: grid;
         padding: 0;
-        margin-right: 0.4rem;
+        margin-right: 0;
      }
      .main-image img {
-       /*  align-items:start; */
+        align-items: center;
         width: 90%;
-        height: auto;
-        margin-left: 0.8rem;
+        /* height: auto; */
+        margin-left: 1.5rem;
 
     }
     .main-image {
-        /* justify-content: center;
-        align-items: center; */
-        padding: 1rem;
-        border: 0.5rem silver solid;
-        border-radius: 1rem;
-        /* margin-left: 1.5rem; */
-        width: 90%;
+        display: contents;
+        /* padding: 1rem; */
+        border: 0;
+        width: 80%;
+        margin: 0;
      }
 
      .thumbnail-images {
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         display: flex;
         flex-direction: row;
         margin: 0rem;
      }
      .thumbnail{
-        align-items: center;
-        justify-content: center;
+        /* align-items: center;
+        justify-content: center; */
         margin-left: 0.3rem;
         padding: 0;
         border: 0;
         border-radius: 0;
         width: 6rem;
     
+     }
+     #backArrow {
+        position: relative;
+        /* justify-content: center;
+        align-self: center; */
      }
 }

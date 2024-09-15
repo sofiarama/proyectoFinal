@@ -9,17 +9,38 @@ document.addEventListener("DOMContentLoaded", function () {
   // Obtener los parámetros de la URL
   const params = new URLSearchParams(window.location.search);
   const categoria = params.get('categoria') || 'autos'; // Por defecto, "autos"
+  //selecciono los elementos q se cambian dependiendo la categoria
+  const mainFoto = document.getElementsByClassName('contenedor')[0];
+  const titulo = document.querySelector('h1');
+  const boton1 = document.getElementById('ofertasBtn');
+  const boton2 = document.getElementById('nuevosIngresosBtn');
+  const titulo3 = document.querySelector('h3');
+  const barra = document.getElementsByClassName('btn-ofertas')[0];
 
   // Definir la URL correcta para cada categoría
   let apiUrl;
   if (categoria === 'autos') {
     apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
   } else if (categoria === 'juguetes') {
-    apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/102.json';
+      apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/102.json';
+      mainFoto.style.backgroundImage = "url('img/toys_index.jpg')";
+      titulo.innerHTML = "ENCONTRÁ LOS JUGUETES<br> DE TUS SUEÑOS";
+      boton1.style.display = "none";
+      boton2.style.display = "none";
+      titulo3.textContent = "JUGUETES JAP";
+      barra.style.justifyContent = "center";
   } else if (categoria === 'muebles') {
-    apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
+      apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
+      mainFoto.style.backgroundImage = "url('img/furniture_index.jpg')";
+      titulo.innerHTML = "ENCONTRÁ LOS MUEBLES<br> DE TUS SUEÑOS";
+      boton1.style.display = "none";
+      boton2.style.display = "none";
+      titulo3.textContent = "MUEBLES JAP";
+      barra.style.justifyContent = "center";
   }
 
+
+  const searchBox = document.getElementById('searchBox'); 
   const productContainer = document.getElementById("product-container");
   const minPriceInput = document.getElementById("minPrice");
   const maxPriceInput = document.getElementById("maxPrice");
@@ -28,7 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const sortOptions = document.getElementById("sortOptions");
   const currencySelect = document.getElementById("currencySelect");
 
+
   let productos = []; // Array global para almacenar los productos cargados
+
+  // Filtrar
+  searchBox.addEventListener('input', filtrarProductos);
 
   // Cargar productos de la API según la categoría seleccionada
   function cargarProductos() {
@@ -42,6 +67,21 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Error al cargar los productos:", error);
         productContainer.innerHTML = `<p>Error al cargar los productos. Intenta nuevamente más tarde.</p>`;
       });
+  }
+
+  // Funciones para el buscador
+  // Función para filtrar productos en base al texto
+  function filtrarProductos() {
+    const searchTerm = searchBox.value.toLowerCase();
+
+    // Función para filtrar productos en base al término de búsqueda
+    const productosFiltrados = productos.filter(producto => {
+      return producto.name.toLowerCase().includes(searchTerm) ||
+             producto.description.toLowerCase().includes(searchTerm);
+    });
+
+    // Función mostrar productos filtrados
+    mostrarProductos(productosFiltrados);
   }
 
   // Función para mostrar productos en la lista
@@ -58,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     listaProductos.forEach((producto) => {
       const productItem = `
-        <div class="col-lg-4 col-md-6 col-12">
+        <div class="colum col-lg-4 col-md-6 col-12">
           <div class="card mb-4 shadow-sm" onclick="saveProductId(${producto.id})"> <!-- agrego el click en cada producto -->
             <img src="${producto.image}" alt="${producto.name}" class="card-img-top">
             <div class="card-body">
