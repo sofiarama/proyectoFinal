@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
   }
 
+  const searchBox = document.getElementById('searchBox');
   const productContainer = document.getElementById("product-container");
   const minPriceInput = document.getElementById("minPrice");
   const maxPriceInput = document.getElementById("maxPrice");
@@ -29,6 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const currencySelect = document.getElementById("currencySelect");
 
   let productos = []; // Array global para almacenar los productos cargados
+
+  // Filtrar
+  searchBox.addEventListener('input', filtrarProductos);
+
 
   // Cargar productos de la API según la categoría seleccionada
   function cargarProductos() {
@@ -43,6 +48,23 @@ document.addEventListener("DOMContentLoaded", function () {
         productContainer.innerHTML = `<p>Error al cargar los productos. Intenta nuevamente más tarde.</p>`;
       });
   }
+
+  // Funciones para el buscador
+  // Función para filtrar productos en base al texto
+  function filtrarProductos() {
+    const searchTerm = searchBox.value.toLowerCase();
+
+    // Función para filtrar productos en base al término de búsqueda
+    const productosFiltrados = productos.filter(producto => {
+      return producto.name.toLowerCase().includes(searchTerm) ||
+             producto.description.toLowerCase().includes(searchTerm);
+    });
+
+  // Función mostrar productos filtrados
+  mostrarProductos(productosFiltrados);
+}
+
+
 
   // Función para mostrar productos en la lista
   function mostrarProductos(listaProductos) {
