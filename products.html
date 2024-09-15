@@ -24,6 +24,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/products.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/user.css" />
   </head>
 
   <body>
@@ -50,12 +51,9 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="user-info order-lg-1 order-0">
-          <!-- Aqui se mostrara el user una vez hecho el login -->
-          <span id="userDisplay" class="text-white"></span>
-        </div>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
+          <ul class="navbar-nav w-90 justify-content-between">
             <li class="nav-item">
               <a class="nav-link" href="index.html">Inicio</a>
             </li>
@@ -66,6 +64,12 @@
               <a class="nav-link" href="sell.html">Vender</a>
             </li>
           </ul>
+        </div>
+      </div>
+      <div class="user-info d-flex align-items-center">
+        <!-- Contenedor donde se mostrará el avatar -->
+        <div class="avatar" id="userAvatar">
+          <!-- Aquí se mostrará la imagen del usuario o sus iniciales -->
         </div>
       </div>
     </nav>

@@ -12,4 +12,5 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = 'products.html?categoria=muebles'; // Redirige a 'products.html' con la categoría 'muebles'
   });
 });
+    
 

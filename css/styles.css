@@ -9,6 +9,9 @@ body {
 .site-header {
   font-family: "Verdana", serif !important;
 }
+/* .container {
+  height: 4rem;
+} */
 
 .jumbotron .display-4 {
   font-weight: bold;
@@ -24,13 +27,6 @@ nav a {
   color: white;
 }
 
-.border-left-custom {
-  display: inline-block;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-right: 1px solid #565151; /* Define el grosor y color del borde */
-  margin-left: 10px; /* Espacio antes de la raya */
-}
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;

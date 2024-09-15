@@ -16,11 +16,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/product-info.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/user.css" />
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
+      <div class="container col-12">
         <!-- Flecha hacia el oeste (izquierda) para ir a la página anterior -->
         <a
           href="#"
@@ -29,7 +30,6 @@
           onclick="history.back();"
         >
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
-          <!-- Ícono de Font Awesome -->
         </a>
         <button
           class="navbar-toggler"
@@ -42,22 +42,33 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
+          <ul class="navbar-nav w-90 justify-content-between">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
+              <a class="nav-link border-left-custom" href="index.html"
+                >Inicio</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="categories.html">Categorías</a>
+              <a class="nav-link border-left-custom" href="categories.html"
+                >Categorías</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="sell.html">Vender</a>
+              <a class="nav-link border-left-custom" href="sell.html">Vender</a>
             </li>
-            <li class="nav-item"></li>
           </ul>
         </div>
+        <div class="user-info d-flex align-items-center"></div>
+        <!-- Contenedor donde se mostrará el avatar -->
+        <div class="avatar" id="userAvatar">
+          <!-- Aquí se mostrará la imagen del usuario o sus iniciales -->
+        </div>
+      </div>
       </div>
     </nav>
+
     <main>
       <div id="contenedor"></div>
     </main>
@@ -82,6 +93,7 @@
         <div></div>
       </div>
     </div>
+    <script src="js/authHandler.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/product-info.js"></script>

@@ -45,4 +45,18 @@ document.getElementById('togglePassword').addEventListener('click', function (ev
         icon.classList.remove('fa-eye');
         icon.classList.add('fa-eye-slash'); // Cambiar a ojo abierto
       }
-    });
+});
+ document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const userName = document.getElementById("username").value.trim();
+
+        // Guardar el nombre del usuario en sessionStorage (para la sesión actual)
+        sessionStorage.setItem("loggedIn", true);
+        sessionStorage.setItem("username", userName);
+
+        // Guardar el nombre del usuario en localStorage (para iniciales)
+        localStorage.setItem("userName", userName);
+
+        // Redirigir a products.html después del login
+        window.location.href = "products.html";
+      });

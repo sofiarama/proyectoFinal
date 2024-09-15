@@ -14,6 +14,8 @@
     />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/user.css">
+       
   </head>
 
   <body>
@@ -48,9 +50,11 @@
             </li>
           </ul>
         </div>
-        <div class="user-info col-3 col-md-1 order-0">
-          <!-- Aqui se mostrara el user una vez echo el login -->
-          <span id="userDisplay" class="text-white"></span>
+       <div class="user-info d-flex align-items-center"></div>
+          <!-- Contenedor donde se mostrará el avatar -->
+          <div class="avatar" id="userAvatar">
+            <!-- Aquí se mostrará la imagen del usuario o sus iniciales -->
+          </div>
         </div>
       </div>
     </nav>
@@ -143,6 +147,7 @@
         </p>
       </div>
     </footer>
+    
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/init.js"></script>
