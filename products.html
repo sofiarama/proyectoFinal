@@ -24,6 +24,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/products.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styleUser.css">
   </head>
 
   <body>
@@ -81,15 +82,14 @@
       <div class="d-flex btn-ofertas">
         <div>
           <button id="ofertasBtn" class="btn btn-primary me-2">Ofertas!</button>
-          <button id="nuevosIngresosBtn" class="btn btn-secondary">
-            Nuevos Ingresos
-          </button>
+          <button id="nuevosIngresosBtn" class="btn btn-secondary">Nuevos Ingresos</button>
         </div>
         <h2>BIENVENIDOS A</h2>
         <h3>AUTOMÓVILES JAP</h3>
       </div>
             <!--Buscador-->
       <div>
+        
         <input type="search" id="searchBox" class="form-control me-2" placeholder="Buscar productos" oninput="filtrarProductos()">
       </div>
       <!-- Contenedor fijo para el botón y la tarjeta de filtros -->
@@ -169,7 +169,7 @@
       <ul id="product-container" class="row justify-content-center">
         <!-- Aquí se insertarán los productos obtenidos del JSON -->
       </ul>
-      <div></div>
+     
     </main>
     <footer class="text-muted">
       <div class="container">
