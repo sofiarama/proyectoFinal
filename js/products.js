@@ -87,32 +87,59 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Cargar productos de Ofertas (archivo JSON local)
-  function cargarOfertas() {
-    fetch('../data/ofertas.json') // Archivo local para ofertas de autos
-      .then((response) => response.json())
-      .then((data) => {
-        const productosOfertas = data.products;
-        mostrarProductos(productosOfertas); // Mostrar solo productos de ofertas
-      })
-      .catch((error) => {
-        console.error("Error al cargar las ofertas:", error);
-        productContainer.innerHTML = `<p>Error al cargar las ofertas. Intenta nuevamente más tarde.</p>`;
+function cargarOfertas() {
+  fetch('../data/ofertas.json') // Archivo local para ofertas de autos
+    .then((response) => response.json())
+    .then((data) => {
+      const productosOfertas = data.products;
+      mostrarProductos(productosOfertas); // Mostrar solo productos de ofertas
+      // Cambiar el título
+      titulo.innerHTML = "Ofertas!!!";
+      // Cambiar el texto del botón de ofertas a "Todos"
+      boton1.textContent = "Todos";
+      boton1.removeEventListener('click', cargarOfertas);
+      boton1.addEventListener('click', function restaurarAutos() {
+        cargarProductos(); // Volver a mostrar todos los productos
+        titulo.innerHTML = `ENCUENTRA EL AUTO<br> DE TUS SUEÑOS`;
+        boton1.textContent = "Ofertas";
+        boton1.removeEventListener('click', restaurarAutos); // Restaurar función
+        boton1.addEventListener('click', cargarOfertas);
       });
-  }
+    })
+    .catch((error) => {
+      console.error("Error al cargar las ofertas:", error);
+      productContainer.innerHTML = `<p>Error al cargar las ofertas. Intenta nuevamente más tarde.</p>`;
+    });
+}
 
+
+  
   // Cargar productos de Nuevos Ingresos (archivo JSON local)
-  function cargarNuevosIngresos() {
-    fetch('../data/nuevos-ingresos.json') // Archivo local para nuevos ingresos de autos
-      .then((response) => response.json())
-      .then((data) => {
-        const productosNuevos = data.products;
-        mostrarProductos(productosNuevos); // Mostrar solo productos de nuevos ingresos
-      })
-      .catch((error) => {
-        console.error("Error al cargar los nuevos ingresos:", error);
-        productContainer.innerHTML = `<p>Error al cargar los nuevos ingresos. Intenta nuevamente más tarde.</p>`;
+function cargarNuevosIngresos() {
+  fetch('../data/nuevos-ingresos.json') // Archivo local para nuevos ingresos de autos
+    .then((response) => response.json())
+    .then((data) => {
+      const productosNuevos = data.products;
+      mostrarProductos(productosNuevos); // Mostrar solo productos de nuevos ingresos
+      // Cambiar el título
+      titulo.innerHTML = "Últimos Ingresos!!!";
+      // Cambiar el texto del botón de nuevos ingresos a "Todos"
+      boton2.textContent = "Todos";
+      boton2.removeEventListener('click', cargarNuevosIngresos);
+      boton2.addEventListener('click', function restaurarAutos() {
+        cargarProductos(); // Volver a mostrar todos los productos
+        titulo.innerHTML = `ENCUENTRA EL AUTO<br> DE TUS SUEÑOS`;
+        boton2.textContent = "Nuevos Ingresos";
+        boton2.removeEventListener('click', restaurarAutos); // Restaurar función
+        boton2.addEventListener('click', cargarNuevosIngresos);
       });
-  }
+    })
+    .catch((error) => {
+      console.error("Error al cargar los nuevos ingresos:", error);
+      productContainer.innerHTML = `<p>Error al cargar los nuevos ingresos. Intenta nuevamente más tarde.</p>`;
+    });
+}
+
 
   // Eventos para los botones de ofertas y nuevos ingresos (solo para autos)
   if (categoria === 'autos') {
