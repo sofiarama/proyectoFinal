@@ -1,7 +1,6 @@
-//guardar el id del elemento en el localStorage 
+// Guardar el id del elemento en el localStorage
 function saveProductId(productId) {
   localStorage.setItem('productId', productId);
-  //console.log('productId guardado:', localStorage.getItem('productId'));
   window.location.href = 'product-info.html';
 }
 
@@ -9,39 +8,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // Obtener los parámetros de la URL
   const params = new URLSearchParams(window.location.search);
   const categoria = params.get('categoria') || 'autos'; // Por defecto, "autos"
-  //selecciono los elementos q se cambian dependiendo la categoria
+
+  // Seleccionar los elementos que se cambian dependiendo de la categoría
   const mainFoto = document.getElementsByClassName('contenedor')[0];
   const titulo = document.querySelector('h1');
   const boton1 = document.getElementById('ofertasBtn');
   const boton2 = document.getElementById('nuevosIngresosBtn');
   const titulo3 = document.querySelector('h3');
   const barra = document.getElementsByClassName('btn-ofertas')[0];
-
-  // Definir la URL correcta para cada categoría
-  let apiUrl;
-  if (categoria === 'autos') {
-    apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-  } else if (categoria === 'juguetes') {
-      apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/102.json';
-      mainFoto.style.backgroundImage = "url('img/toys_index.jpg')";
-      titulo.innerHTML = "ENCONTRÁ LOS JUGUETES<br> DE TUS SUEÑOS";
-      boton1.style.display = "none";
-      boton2.style.display = "none";
-      titulo3.textContent = "JUGUETES JAP";
-      barra.style.justifyContent = "center";
-  } else if (categoria === 'muebles') {
-      apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
-      mainFoto.style.backgroundImage = "url('img/furniture_index.jpg')";
-      titulo.innerHTML = "ENCONTRÁ LOS MUEBLES<br> DE TUS SUEÑOS";
-      boton1.style.display = "none";
-      boton2.style.display = "none";
-      titulo3.textContent = "MUEBLES JAP";
-      barra.style.justifyContent = "center";
-  }
-
-
-  const searchBox = document.getElementById('searchBox'); 
   const productContainer = document.getElementById("product-container");
+  const searchBox = document.getElementById('searchBox');
   const minPriceInput = document.getElementById("minPrice");
   const maxPriceInput = document.getElementById("maxPrice");
   const filterPriceBtn = document.getElementById("filterPriceBtn");
@@ -49,57 +25,40 @@ document.addEventListener("DOMContentLoaded", function () {
   const sortOptions = document.getElementById("sortOptions");
   const currencySelect = document.getElementById("currencySelect");
 
-
   let productos = []; // Array global para almacenar los productos cargados
 
-  // Filtrar
-  searchBox.addEventListener('input', filtrarProductos);
-
-  // Cargar productos de la API según la categoría seleccionada
-  function cargarProductos() {
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        productos = data.products; // Guardar los productos en el array global
-        mostrarProductos(productos); // Mostrar todos los productos al inicio
-      })
-      .catch((error) => {
-        console.error("Error al cargar los productos:", error);
-        productContainer.innerHTML = `<p>Error al cargar los productos. Intenta nuevamente más tarde.</p>`;
-      });
+  // Definir la URL correcta para cada categoría
+  let apiUrl;
+  if (categoria === 'autos') {
+    apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+    // Mostrar los botones "Ofertas" y "Nuevos Ingresos" solo para la categoría autos
+    boton1.style.display = "inline-block";
+    boton2.style.display = "inline-block";
+  } else if (categoria === 'juguetes') {
+    apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/102.json';
+    mainFoto.style.backgroundImage = "url('img/toys_index.jpg')";
+    titulo.innerHTML = "ENCONTRÁ LOS JUGUETES<br> DE TUS SUEÑOS";
+    boton1.style.display = "none";
+    boton2.style.display = "none";
+    titulo3.textContent = "JUGUETES JAP";
+    barra.style.justifyContent = "center";
+  } else if (categoria === 'muebles') {
+    apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
+    mainFoto.style.backgroundImage = "url('img/furniture_index.jpg')";
+    titulo.innerHTML = "ENCONTRÁ LOS MUEBLES<br> DE TUS SUEÑOS";
+    boton1.style.display = "none";
+    boton2.style.display = "none";
+    titulo3.textContent = "MUEBLES JAP";
+    barra.style.justifyContent = "center";
   }
 
-  // Funciones para el buscador
-  // Función para filtrar productos en base al texto
-  function filtrarProductos() {
-    const searchTerm = searchBox.value.toLowerCase();
-
-    // Función para filtrar productos en base al término de búsqueda
-    const productosFiltrados = productos.filter(producto => {
-      return producto.name.toLowerCase().includes(searchTerm) ||
-             producto.description.toLowerCase().includes(searchTerm);
-    });
-
-    // Función mostrar productos filtrados
-    mostrarProductos(productosFiltrados);
-  }
-
-  // Función para mostrar productos en la lista
+  // Función para mostrar productos
   function mostrarProductos(listaProductos) {
-    productContainer.innerHTML = ''; // Limpiar la lista de productos
-
-    if (listaProductos.length === 0) {
-      productContainer.innerHTML = `
-      <div class="no-products-message text-center">
-        <p>No hay productos en este rango de precios.</p>
-        <i class="bi bi-emoji-frown" style="font-size: 2rem; color: gray;"></i> <!-- Ícono de Bootstrap Icons -->
-      </div>`;
-      return;
-    }
+    productContainer.innerHTML = ''; // Limpiar el contenedor
     listaProductos.forEach((producto) => {
       const productItem = `
         <div class="colum col-lg-4 col-md-6 col-12">
-          <div class="card mb-4 shadow-sm" onclick="saveProductId(${producto.id})"> <!-- agrego el click en cada producto -->
+          <div class="card mb-4 shadow-sm" onclick="saveProductId(${producto.id})">
             <img src="${producto.image}" alt="${producto.name}" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">${producto.name}</h5>
@@ -108,11 +67,70 @@ document.addEventListener("DOMContentLoaded", function () {
               <p class="card-text"><strong>Vendidos:</strong> ${producto.soldCount}</p>
             </div>
           </div>
-        </div>
-      `;
+        </div>`;
       productContainer.innerHTML += productItem;
     });
   }
+
+  // Cargar productos desde la API (para todas las categorías)
+  function cargarProductos() {
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        productos = data.products; // Guardar los productos en el array global
+        mostrarProductos(productos); // Mostrar productos
+      })
+      .catch((error) => {
+        console.error("Error al cargar los productos:", error);
+        productContainer.innerHTML = `<p>Error al cargar los productos. Intenta nuevamente más tarde.</p>`;
+      });
+  }
+
+  // Cargar productos de Ofertas (archivo JSON local)
+  function cargarOfertas() {
+    fetch('../data/ofertas.json') // Archivo local para ofertas de autos
+      .then((response) => response.json())
+      .then((data) => {
+        const productosOfertas = data.products;
+        mostrarProductos(productosOfertas); // Mostrar solo productos de ofertas
+      })
+      .catch((error) => {
+        console.error("Error al cargar las ofertas:", error);
+        productContainer.innerHTML = `<p>Error al cargar las ofertas. Intenta nuevamente más tarde.</p>`;
+      });
+  }
+
+  // Cargar productos de Nuevos Ingresos (archivo JSON local)
+  function cargarNuevosIngresos() {
+    fetch('../data/nuevos-ingresos.json') // Archivo local para nuevos ingresos de autos
+      .then((response) => response.json())
+      .then((data) => {
+        const productosNuevos = data.products;
+        mostrarProductos(productosNuevos); // Mostrar solo productos de nuevos ingresos
+      })
+      .catch((error) => {
+        console.error("Error al cargar los nuevos ingresos:", error);
+        productContainer.innerHTML = `<p>Error al cargar los nuevos ingresos. Intenta nuevamente más tarde.</p>`;
+      });
+  }
+
+  // Eventos para los botones de ofertas y nuevos ingresos (solo para autos)
+  if (categoria === 'autos') {
+    boton1.addEventListener('click', cargarOfertas);
+    boton2.addEventListener('click', cargarNuevosIngresos);
+  }
+
+  // Funciones de filtrado de productos (ya existentes)
+  function filtrarProductos() {
+    const searchTerm = searchBox.value.toLowerCase();
+    const productosFiltrados = productos.filter(producto => {
+      return producto.name.toLowerCase().includes(searchTerm) ||
+             producto.description.toLowerCase().includes(searchTerm);
+    });
+    mostrarProductos(productosFiltrados);
+  }
+
+  searchBox.addEventListener('input', filtrarProductos);
 
   // Función para convertir precios a UYU (si es necesario)
   function convertirAPesos(cost, currency) {
@@ -128,11 +146,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para filtrar productos por precio según la moneda seleccionada
   function filtrarPorPrecio() {
-    const minPrice = parseFloat(minPriceInput.value) || 0; // Si no hay valor, usar 0
-    const maxPrice = parseFloat(maxPriceInput.value) || Infinity; // Si no hay valor, usar infinito
-    const selectedCurrency = currencySelect.value; // Obtener la moneda seleccionada
+    const minPrice = parseFloat(minPriceInput.value) || 0;
+    const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
+    const selectedCurrency = currencySelect.value;
 
-    // Verificar si el rango es adecuado
     if (minPrice > maxPrice) {
       alert("El precio mínimo no puede ser mayor que el precio máximo");
       return;
@@ -140,17 +157,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const productosFiltrados = productos.filter(producto => {
       let precioConvertido;
-
       if (selectedCurrency === 'UYU') {
-        precioConvertido = convertirAPesos(producto.cost, producto.currency); // Convertir todos a UYU
+        precioConvertido = convertirAPesos(producto.cost, producto.currency);
       } else {
-        precioConvertido = convertirADolares(producto.cost, producto.currency); // Convertir todos a USD
+        precioConvertido = convertirADolares(producto.cost, producto.currency);
       }
-
       return precioConvertido >= minPrice && precioConvertido <= maxPrice;
     });
 
-    mostrarProductos(productosFiltrados); // Mostrar los productos filtrados
+    mostrarProductos(productosFiltrados);
   }
 
   // Función para ordenar los productos
@@ -158,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const opcionSeleccionada = sortOptions.value;
     const selectedCurrency = currencySelect.value;
 
-    let productosOrdenados = [...productos]; // Crear una copia del array original
+    let productosOrdenados = [...productos];
 
     if (opcionSeleccionada === 'precioAsc') {
       productosOrdenados.sort((a, b) => {
@@ -185,8 +200,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para limpiar los filtros
   function limpiarFiltro() {
-    minPriceInput.value = ''; // Limpiar campo de precio mínimo
-    maxPriceInput.value = ''; // Limpiar campo de precio máximo
+    minPriceInput.value = '';
+    maxPriceInput.value = '';
     mostrarProductos(productos); // Mostrar todos los productos sin filtrar
   }
 
@@ -198,9 +213,3 @@ document.addEventListener("DOMContentLoaded", function () {
   // Cargar los productos al inicio
   cargarProductos();
 });
-
-
-
-
-
-

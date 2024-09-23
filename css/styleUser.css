@@ -1,0 +1,15 @@
+.user-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #4caf50; /* Color del círculo */
+  color: white; /* Color del texto */
+  font-size: 16px; /* Tamaño del texto */
+  font-weight: bold; /* Negrita para el texto */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
