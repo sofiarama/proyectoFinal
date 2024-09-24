@@ -34,12 +34,6 @@ nav a {
   user-select: none;
 }
 
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
-}
-
 .jumbotron {
   height: 50vh;
   padding: 5em inherit;
@@ -51,6 +45,14 @@ nav a {
   background-repeat: no-repeat;
   color: black;
   font-weight: bold;
+}
+footer {
+  background-color: #121212;
+}
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
 }
 
 @media (max-width: 1024px) {

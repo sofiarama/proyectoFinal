@@ -7,10 +7,10 @@
 }
 
 .user-info {
-  position: relative;
-  top: 0;
-  right: 120px;
-  color: white;
+  position: fixed; /* Fija el elemento en la pantalla */
+  top: 1px; /* Ajusta la distancia desde la parte superior */
+  right: 10px; /* Ajusta la distancia desde la parte derecha */
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
 
 #navbarNav {
@@ -18,11 +18,11 @@
 }
 
 #backArrow {
-  margin-right: 20px;
-  position: relative;
-  left: 5px; /* Ajusta la distancia desde la izquierda */
-  top: 0; /* Ajusta la distancia desde la parte superior */
+  position: fixed; /* Fija la flecha en la pantalla */
+  top: 10px; /* Ajusta la distancia desde la parte superior */
+  left: 10px; /* Ajusta la distancia desde la parte izquierda */
   font-size: 1.5rem; /* Tamaño del ícono */
+  z-index: 1000; /* Asegura que la flecha esté por encima de otros elementos */
   text-decoration: none;
 }
 
@@ -70,6 +70,42 @@ h3 {
   font-family: Arial Impact;
   word-spacing: 10px;
   letter-spacing: 1px;
+}
+/* estilos del buscador */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.search-box {
+  position: relative;
+  width: 60%;
+  max-width: 500px;
+}
+
+#searchBox {
+  width: 100%;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 15px 10px 40px;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-box i {
+  position: absolute;
+  left: 15px; /* Posicionar el ícono de la lupa a la izquierda */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px; /* Tamaño del ícono */
+  color: #999; /* Color del ícono */
 }
 
 #ofertasBtn,
@@ -199,7 +235,20 @@ h3 {
     transform: scale(1);
   }
 }
-
+/* Ocultar la flecha en pantallas de 768px y menores */
+@media (max-width: 768px) {
+  #backArrow {
+    display: none;
+  }
+}
+/* En pantallas más grandes, restaura el estilo */
+@media (min-width: 992px) {
+  .user-info {
+    position: static;
+    margin-left: auto; /*Deja espacio a la derecha del menú */
+    margin-right: 0;
+  }
+}
 /* para medidas moviles */
 @media only screen and (max-width: 568px) {
   .contenedor {
@@ -233,14 +282,5 @@ h3 {
     margin-top: 20px;
     margin-left: 15px;
     margin-right: 15px;
-  }
-}
-
-/* En pantallas más grandes, restaura el estilo */
-@media (min-width: 992px) {
-  .user-info {
-    position: static;
-    margin-left: auto; /*Deja espacio a la derecha del menú */
-    margin-right: 0;
   }
 }
