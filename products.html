@@ -88,10 +88,12 @@
         <h3>AUTOMÓVILES JAP</h3>
       </div>
             <!--Buscador-->
-      <div>
-        
-        <input type="search" id="searchBox" class="form-control me-2" placeholder="Buscar productos" oninput="filtrarProductos()">
-      </div>
+     <div class="search-container">
+  <div class="search-box">
+    <i class="fa fa-search"></i> <!-- Icono de lupa (FontAwesome) -->
+    <input type="search" id="searchBox" class="form-control" placeholder="Buscar productos" oninput="filtrarProductos()">
+  </div>
+</div>
       <!-- Contenedor fijo para el botón y la tarjeta de filtros -->
       <div class="filtro-fijo">
         <!-- Botón para desplegar los filtros -->
