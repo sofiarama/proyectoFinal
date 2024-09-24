@@ -116,7 +116,7 @@ function cargarOfertas() {
   
   // Cargar productos de Nuevos Ingresos (archivo JSON local)
 function cargarNuevosIngresos() {
-  fetch('../data/nuevos-ingresos.json') // Archivo local para nuevos ingresos de autos
+  fetch('https://sofiarama.github.io/proyectoFinal/data/nuevos-ingresos.json') // Archivo local para nuevos ingresos de autos
     .then((response) => response.json())
     .then((data) => {
       const productosNuevos = data.products;
