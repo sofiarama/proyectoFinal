@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Cargar productos de Ofertas (archivo JSON local)
 function cargarOfertas() {
-  fetch('../data/ofertas.json') // Archivo local para ofertas de autos
+  fetch('https://sofiarama.github.io/proyectoFinal/data/ofertas.json') // Archivo local para ofertas de autos
     .then((response) => response.json())
     .then((data) => {
       const productosOfertas = data.products;
