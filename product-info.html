@@ -64,30 +64,39 @@
         </div>
       </div>
     </nav>
-    <main>
-      <div id="contenedor"></div>
-    </main>
-    <footer class="text-muted">
+   <main>
+  <!-- Contenedor del producto principal -->
+  <div id="contenedor" class="container mb-4">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Aquí se mostrarán los detalles del producto principal -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de los productos relacionados -->
+  <div id="productosRelacionados" class="productos-relacionados container">
+    <h3>Productos Relacionados</h3>
+    <div id="listaProductosRelacionados" class="row">
+      <!-- Aquí se mostrarán los productos relacionados en una cuadrícula -->
+    </div>
+  </div>
+</main>
+
+    <footer>
       <div class="container">
         <p class="float-end">
           <a href="#">Volver arriba</a>
         </p>
         <p>
-          Este sitio forma parte de
+          <span style="color: azure;">Este sitio forma parte de</span>
           <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
             >Jovenes a Programar</a
           >
         </p>
       </div>
     </footer>
-    <div id="spinner-wrapper">
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
+   
     <script src="js/authHandler.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
