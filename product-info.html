@@ -73,6 +73,48 @@
       </div>
     </div>
   </div>
+  
+  <!--Sección comentarios-->
+  <div class="container mt-5"></div>
+  <h2 class="mb-5">Sección Comentarios</h2>
+  <!-- Contenedor de los comentarios -->
+  <section id="comentarios">
+    <h2>Comentarios</h2>
+    <div id="comentarios-container"></div> <!-- Aquí se mostrarán los comentarios -->
+  <div class="mb-3">
+      <label for="sortOrder" class="form-label">Ordenar por fecha:</label>
+      <select id="sortOrder" class="form-select">
+          <option value="desc">Más reciente primero</option>
+          <option value="asc">Más antiguo primero</option>
+      </select>
+  </div>
+  
+  <div class="mb-3">
+      <label for="userFilter" class="form-label">Filtrar por usuario:</label>
+      <input type="text" id="userFilter" class="form-control" placeholder="Escribe el nombre de usuario">
+  </div>
+  
+  <div id="posts-container"></div>
+</div><br>
+
+<!--Crear una calificación para cada producto-->
+<h2>Deja tu calificación</h2><br>
+
+  <form id="calificacion-form">
+    <label for="comentario">Comentario:</label><br>
+    <textarea id="comentario" name="comentario" rows="4" cols="50" required></textarea><br><br>
+
+    <label for="puntuacion">Puntuación:</label>
+    <select id="puntuacion" name="puntuacion" required>
+      <option value="5">5 - Excelente</option>
+      <option value="4">4 - Muy bueno</option>
+      <option value="3">3 - Bueno</option>
+      <option value="2">2 - Regular</option>
+      <option value="1">1 - Malo</option>
+    </select><br><br>
+
+    <button type="submit">Enviar Calificación</button>
+  </form>
 
   <!-- Contenedor de los productos relacionados -->
   <div id="productosRelacionados" class="productos-relacionados container">
