@@ -283,18 +283,4 @@ h3 {
     margin-left: 15px;
     margin-right: 15px;
   }
-
-  /*Estilo sección comentarios*/
-  .post-image {
-    max-width: 100%;
-    height: auto;
-}
-.like-button {
-    cursor: pointer;
-}
-.comment {
-    border-left: 3px solid #007bff;
-    padding-left: 10px;
-    margin-bottom: 10px;
-}
 }

@@ -239,31 +239,4 @@ function cargarNuevosIngresos() {
 
   // Cargar los productos al inicio
   cargarProductos();
-
-  //Sección Comentarios
-  document.addEventListener("DOMContentLoaded", function () {
-    const productId = localStorage.getItem('productId'); // ID del producto seleccionado
-    const comentariosContainer = document.getElementById('comentarios-container');
-    
-    // Cargar comentarios previos desde el localStorage
-    function cargarComentarios() {
-      const comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || [];
-      const comentariosProducto = comentariosGuardados.filter(c => c.productoId === productId);
-  
-      comentariosContainer.innerHTML = ''; // Limpiar el contenedor
-  
-      if (comentariosProducto.length === 0) {
-        comentariosContainer.innerHTML = '<p>No hay comentarios para este producto.</p>';
-      } else {
-        comentariosProducto.forEach(comentario => {
-          const comentarioHTML = `
-            <div class="comentario">
-              <strong>${comentario.usuario}</strong> (${comentario.fecha} ${comentario.hora}):
-              <p>${comentario.comentario}</p>
-              <p><strong>Puntuación:</strong> ${comentario.puntuacion}/5</p>
-            </div>
-          `;
-          comentariosContainer.innerHTML += comentarioHTML;
-        });
-      }
-    }
+});
