@@ -28,17 +28,23 @@
 .thumbnail:hover {
   transform: scale(1.1);
 }
+
 #backArrow {
   position: absolute;
-  left: 10px; /* Ajusta la distancia desde la izquierda */
-  /* top: 10px; */ /* Ajusta la distancia desde la parte superior */
-  font-size: 1.5rem; /* Tamaño del ícono */
+  left: 10px;
+  /* Ajusta la distancia desde la izquierda */
+  /* top: 10px; */
+  /* Ajusta la distancia desde la parte superior */
+  font-size: 1.5rem;
+  /* Tamaño del ícono */
   text-decoration: none;
 }
 
 #backArrow:hover {
-  color: #ccc; /* Cambiar color al hacer hover sobre la flecha */
+  color: #ccc;
+  /* Cambiar color al hacer hover sobre la flecha */
 }
+
 .main-image {
   padding: 1rem;
   border: 0.2rem rgb(176, 176, 176) solid;
@@ -54,6 +60,7 @@
 .descripcion {
   margin-top: 5rem;
   margin-left: 4rem;
+  border: 1px solid #ccc;
 }
 
 .title {
@@ -79,31 +86,37 @@
 }
 
 .category {
-  margin-top: 6rem;
+  margin-top: 4rem;
   font-family: Arial;
   font-weight: bold;
   font-size: 1rem;
   color: black;
 }
+
 /* Estilos para pantallas entre 768px y 1024px */
 @media (min-width: 768px) and (max-width: 1024px) {
   .thumbnail-images {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Para asegurar que haya espacio entre las imágenes */
-    margin-right: 20px; /* Espacio entre las imágenes pequeñas y la principal */
+    justify-content: space-between;
+    /* Para asegurar que haya espacio entre las imágenes */
+    margin-right: 20px;
+    /* Espacio entre las imágenes pequeñas y la principal */
   }
 
   .main-image {
-    margin-left: 20px; /* Asegura espacio entre la imagen principal y las miniaturas */
+    margin-left: 20px;
+    /* Asegura espacio entre la imagen principal y las miniaturas */
   }
 }
+
 /* Ocultar la flecha en pantallas de 768px y menores */
 @media (max-width: 768px) {
   #backArrow {
     display: none;
   }
 }
+
 @media only screen and (max-width: 568px) {
   .car {
     display: grid;
@@ -115,9 +128,11 @@
   .contenedor {
     padding: 1rem;
   }
+
   .descripcion {
     margin: 0;
   }
+
   .description {
     margin-left: 0.5rem;
     /* align-items:start; */
@@ -125,31 +140,37 @@
     /* justify-content: center;
         align-items: center; */
   }
+
   .title {
     margin-top: 3rem;
     margin-left: 1rem;
     margin-bottom: 1rem;
   }
+
   .soldCount {
     /* align-items: center; */
     margin-left: 1.5rem;
   }
+
   .category {
     margin-left: 1.5rem;
     margin-top: 1rem;
     padding: 0;
   }
+
   .image-gallery {
     display: grid;
     padding: 0;
     margin-right: 0;
   }
+
   .main-image img {
     align-items: center;
     width: 90%;
     /* height: auto; */
     margin-left: 1.5rem;
   }
+
   .main-image {
     display: contents;
     /* padding: 1rem; */
@@ -165,6 +186,7 @@
     flex-direction: row;
     margin: 0rem;
   }
+
   .thumbnail {
     /* align-items: center;
         justify-content: center; */
@@ -174,14 +196,20 @@
     border-radius: 0;
     width: 6rem;
   }
+
   #backArrow {
     position: relative;
     /* justify-content: center;
         align-self: center; */
   }
 }
+
 .productos-relacionados {
   margin-top: 20px;
+}
+
+#listaProductosRelacionados {
+  margin-top: 30px;
 }
 
 .lista-productos {
@@ -196,4 +224,77 @@
   border: 1px solid #ccc;
   width: calc(25% - 20px);
   text-align: center;
+}
+
+.coment {
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 40px;
+}
+
+#calificacion-form {
+  font-family: Arial;
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+
+}
+
+#calificacion-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+#calificacion-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+#calificacion-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+#calificacion-form button:hover {
+  background-color: #5597de;
+}
+
+#calificacion-form textarea {
+  resize: vertical;
+}
+
+#puntuacion {
+  background-color: #5597de;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#btnCalif {
+  background-color: #5597de;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.comentario {
+  font-family: Arial;
+  background-color: #dee9f4;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  text-align: left;
 }
