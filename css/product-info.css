@@ -131,10 +131,12 @@
 
   .descripcion {
     margin: 0;
+    margin-top: 1rem;
+    text-align: center;
   }
 
   .description {
-    margin-left: 0.5rem;
+    margin-left: 0;
     /* align-items:start; */
     padding: 1rem;
     /* justify-content: center;
@@ -149,11 +151,11 @@
 
   .soldCount {
     /* align-items: center; */
-    margin-left: 1.5rem;
+    margin-left: 0;
   }
 
   .category {
-    margin-left: 1.5rem;
+    margin-left: 0;
     margin-top: 1rem;
     padding: 0;
   }
@@ -168,7 +170,7 @@
     align-items: center;
     width: 90%;
     /* height: auto; */
-    margin-left: 1.5rem;
+    margin-left: 1rem;
   }
 
   .main-image {
@@ -201,6 +203,15 @@
     position: relative;
     /* justify-content: center;
         align-self: center; */
+  }
+
+  .container {
+    align-items: center;
+    text-align: center;
+  }
+
+  #comentarios-container {
+    align-items: center;
   }
 }
 
