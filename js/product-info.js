@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                             <div class="descripcion col-md-6 col-sm-12">
                                 <h4 class="title">${product.name}</h4>
+                                <hr class="linea2">
                                 <p class="description">${product.description}</p>
                                 <p class="soldCount">Vendidos: ${product.soldCount}</p>
                                 <h6 class="category">${product.category}</h6>
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="comentario">
                         <strong>${nombre.slice(0, nombre.length - 10)}</strong>  (${fecha} ${time}):
                         <p>${comentario.value}</p>
-                        <p><strong>Puntuación:</strong> ${puntuacion.value}/5</p>
+                        <p><strong>Puntuación:</strong> ${estrellas(puntuacion.value)}</p>
                     </div>
                     `;
             comentariosContainer.innerHTML += comentarioHTML;
@@ -88,7 +89,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 });
-    
+    function estrellas(puntos) {
+        let estrellasHtml = '';
+        for (let i = 0; i < 5; i++) {
+            if (i < puntos) {
+                estrellasHtml += '<span class="fa fa-star checked"></span>';
+            } else {
+                estrellasHtml += '<span class="fa fa-star"></span>';
+            }
+        }
+        return estrellasHtml;
+    }
+
     function mostrarComentarios(comentarios) {
         const comentariosContainer = document.getElementById('comentarios-container');
         if (comentarios.length === 0) {
@@ -98,9 +110,9 @@ document.addEventListener("DOMContentLoaded", function () {
             comentarios.forEach(comentario => {
                 const comentarioHTML = `
                 <div class="comentario">
-                    <strong>${comentario.user}</strong>  (${comentario.dateTime}):
+                    <span class="comentUser">${comentario.user}</span>  (${comentario.dateTime}):
                     <p>${comentario.description}</p>
-                    <p><strong>Puntuación:</strong> ${comentario.score}/5</p>
+                    <p><strong>Puntuación:</strong> ${estrellas(comentario.score)}</p>
                 </div>
                 `;
                 comentariosContainer.innerHTML += comentarioHTML;

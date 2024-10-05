@@ -60,13 +60,13 @@
 .descripcion {
   margin-top: 5rem;
   margin-left: 4rem;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
 }
 
 .title {
   margin-top: 1rem;
   font-size: 2rem;
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
   font-family: Arial;
   font-weight: bold;
 }
@@ -231,6 +231,7 @@
   font-weight: bold;
   font-size: 1.5rem;
   margin-top: 40px;
+  color:rgba(0, 0, 0, 0.612);
 }
 
 #calificacion-form {
@@ -290,11 +291,32 @@
 }
 .comentario {
   font-family: Arial;
-  background-color: #dee9f4;
+  background-color: #93c4f6;
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 80%;
   text-align: left;
+}
+.comentUser {
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #000000;
+}
+.checked {
+  color: orange;
+}
+
+.linea {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 3px solid #000000;
+}
+
+.linea2 {
+  margin-bottom: 2rem;
+  border: 3px solid #000000;
 }
