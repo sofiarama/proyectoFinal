@@ -161,16 +161,49 @@ function mostrarProductosRelacionados(productos) {
 }
 
 function obtenerCategoryId(category) {
-    // Aquí puedes definir un mapeo si es necesario, o directamente usar el ID de la categoría que obtienes del producto
+  
     const categoryMap = {
         "Autos": 101,
         "Juguetes": 102,
         "Muebles": 103,
 
-        // Agrega más categorías según tu necesidad
+       
     };
     return categoryMap[category] || 101; // Devuelve 102 (Juguetes) por defecto si no se encuentra la categoría
 }
 
+// Seleccionar los elementos principales
+const body = document.body;
+const themeIcon = document.getElementById('theme-icon');
+const themeToggle = document.getElementById('theme-toggle');
+
+// Comprobar el modo almacenado en localStorage
+const storedTheme = localStorage.getItem('theme');
+
+// Aplicar el tema almacenado al cargar la página
+if (storedTheme === 'dark') {
+  body.classList.add('bg-dark', 'text-light', 'text-light-mode');
+  themeIcon.classList.replace('fa-sun', 'fa-moon');
+} else {
+  body.classList.add('bg-light', 'text-dark');
+  themeIcon.classList.replace('fa-moon', 'fa-sun');
+}
+
+// Alternar entre modo día y noche al hacer clic en el ícono
+themeToggle.addEventListener('click', () => {
+  if (themeIcon.classList.contains('fa-sun')) {
+    // Cambiar a modo noche
+    body.classList.remove('bg-light', 'text-dark');
+    body.classList.add('bg-dark', 'text-light', 'text-light-mode');
+    themeIcon.classList.replace('fa-sun', 'fa-moon');
+    localStorage.setItem('theme', 'dark'); // Guardar el tema en localStorage
+  } else {
+    // Cambiar a modo día
+    body.classList.remove('bg-dark', 'text-light', 'text-light-mode');
+    body.classList.add('bg-light', 'text-dark');
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+    localStorage.setItem('theme', 'light'); // Guardar el tema en localStorage
+  }
+});
 
 
