@@ -172,38 +172,67 @@ function obtenerCategoryId(category) {
     return categoryMap[category] || 101; // Devuelve 102 (Juguetes) por defecto si no se encuentra la categoría
 }
 
-// Seleccionar los elementos principales
-const body = document.body;
-const themeIcon = document.getElementById('theme-icon');
-const themeToggle = document.getElementById('theme-toggle');
+// // Seleccionar el interruptor de modo oscuro
+// const darkModeSwitch = document.getElementById('darkModeSwitch');
 
-// Comprobar el modo almacenado en localStorage
+// // Comprobar el tema almacenado en localStorage al cargar la página
+// const storedTheme = localStorage.getItem('theme');
+// if (storedTheme === 'dark') {
+//   document.body.classList.add('bg-dark', 'text-light');
+//   darkModeSwitch.checked = true; // Marca el interruptor como activado
+// } else {
+//   document.body.classList.add('bg-light', 'text-dark');
+
+
+// // Alternar entre modo claro y oscuro cuando se cambia el interruptor
+// darkModeSwitch.addEventListener('change', () => {
+//   if (darkModeSwitch.checked) {
+//     // Cambiar a modo oscuro
+//     document.body.classList.remove('bg-light', 'text-dark');
+//     document.body.classList.add('bg-dark', 'text-light');
+//     localStorage.setItem('theme', 'dark'); // Guardar preferencia en localStorage
+//   } else {
+//     // Cambiar a modo claro
+//     document.body.classList.remove('bg-dark', 'text-light');
+//     document.body.classList.add('bg-light', 'text-dark');
+//     localStorage.setItem('theme', 'light'); // Guardar preferencia en localStorage
+//   }
+// });
+
+
+// Seleccionar el interruptor de modo oscuro
+const darkModeSwitch = document.getElementById('darkModeSwitch');
+
+// Comprobar el tema almacenado en localStorage al cargar la página
 const storedTheme = localStorage.getItem('theme');
-
-// Aplicar el tema almacenado al cargar la página
 if (storedTheme === 'dark') {
-  body.classList.add('bg-dark', 'text-light', 'text-light-mode');
-  themeIcon.classList.replace('fa-sun', 'fa-moon');
+  document.body.classList.add('bg-dark', 'text-light');
+  darkModeSwitch.checked = true; // Marca el interruptor como activado
 } else {
-  body.classList.add('bg-light', 'text-dark');
-  themeIcon.classList.replace('fa-moon', 'fa-sun');
+  document.body.classList.add('bg-light', 'text-dark');
 }
 
-// Alternar entre modo día y noche al hacer clic en el ícono
-themeToggle.addEventListener('click', () => {
-  if (themeIcon.classList.contains('fa-sun')) {
-    // Cambiar a modo noche
-    body.classList.remove('bg-light', 'text-dark');
-    body.classList.add('bg-dark', 'text-light', 'text-light-mode');
-    themeIcon.classList.replace('fa-sun', 'fa-moon');
-    localStorage.setItem('theme', 'dark'); // Guardar el tema en localStorage
+// Alternar entre modo claro y oscuro cuando se cambia el interruptor
+darkModeSwitch.addEventListener('change', () => {
+  if (darkModeSwitch.checked) {
+    // Cambiar a modo oscuro
+    document.body.classList.remove('bg-light', 'text-dark');
+    document.body.classList.add('bg-dark', 'text-light');
+    localStorage.setItem('theme', 'dark'); // Guardar preferencia en localStorage
   } else {
-    // Cambiar a modo día
-    body.classList.remove('bg-dark', 'text-light', 'text-light-mode');
-    body.classList.add('bg-light', 'text-dark');
-    themeIcon.classList.replace('fa-moon', 'fa-sun');
-    localStorage.setItem('theme', 'light'); // Guardar el tema en localStorage
+    // Cambiar a modo claro
+    document.body.classList.remove('bg-dark', 'text-light');
+    document.body.classList.add('bg-light', 'text-dark');
+    localStorage.setItem('theme', 'light'); // Guardar preferencia en localStorage
   }
 });
+// Simulación de login para obtener el correo del usuario
+const userEmail = sessionStorage.getItem('userEmail') || 'ejemplo@correo.com'; // Usar sessionStorage o un correo por defecto
 
+// Mostrar las iniciales en el ícono del usuario
+const userDisplay = document.getElementById('userDisplay');
+userDisplay.textContent = userEmail[0] + userEmail[1]; // Mostrar las dos primeras letras del correo
 
+// Mostrar el correo completo dentro del dropdown
+const userEmailElement = document.getElementById('userEmail');
+userEmailElement.textContent = userEmail;
