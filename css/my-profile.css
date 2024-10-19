@@ -7,17 +7,23 @@
     user-select: none;
   }
 
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
   }
+}
 
-  .profile-pic {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    /* border-radius: 50%; */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  /* border-radius: 50%; */
 }
 
 body.dark-mode {
@@ -34,17 +40,25 @@ body.dark-mode {
 }
 
 .card-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: bolder;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bolder;
+}
+
+.datos {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  font-family: Arial;
+  font-weight: bold;
 }
 
 .form-label {
     font-weight: bold;
 }
-
 
 /* Estilos para hacer el dropdown más personalizado */
 .dropdown-menu {

@@ -1,0 +1,44 @@
+/* Personaliza el estilo del interruptor */
+.form-check-input {
+    width: 40px;
+    height: 20px;
+    background-color: #ddd;
+  }
+  
+  /* Estilos para hacer el dropdown más personalizado */
+  .dropdown-menu {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdown-menu img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  
+  .dropdown-menu .form-check {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .form-check-input {
+    cursor: pointer;
+  }
+  
+  /* Reducir el tamaño de la fuente en el dropdown */
+  .dropdown-menu p,
+  .dropdown-menu h6 {
+    font-size: 12px; /* Ajusta el tamaño de la fuente */
+    margin-bottom: 0; /* Eliminar márgenes inferiores para más espacio */
+  }
+  
+  .dropdown {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  #userDropdown {
+    margin-bottom: 10px;
+    margin-top: 0;
+  }

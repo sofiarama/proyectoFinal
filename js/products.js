@@ -239,4 +239,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Cargar los productos al inicio
   cargarProductos();
+
+  const pictureId = localStorage.getItem('profilePic');
+
+  if (pictureId) {
+      document.getElementById("pictureID").src = pictureId;
+  }
+
+  const logoutButton = document.getElementById('logout');
+    logoutButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        localStorage.removeItem('userEmail');
+        window.location.href = 'login.html';
+    });
+
+  // Simulación de login para obtener el correo del usuario
+  const userEmail = localStorage.getItem('userEmail') || 'ejemplo@correo.com'; // Usar sessionStorage o un correo por defecto
+
+  // Mostrar las iniciales en el ícono del usuario
+  const userDisplay = document.getElementById('userDisplay');
+  userDisplay.textContent = userEmail[0] + userEmail[1]; // Mostrar las dos primeras letras del correo
+
+  // Mostrar el correo completo dentro del dropdown
+  const userEmailElement = document.getElementById('userEmail');
+  userEmailElement.textContent = userEmail;
+
 });

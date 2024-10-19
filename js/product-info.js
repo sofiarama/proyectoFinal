@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const comentariosContainer = document.getElementById('comentarios-container');
             const comentarioHTML = `
                     <div class="comentario">
-                        <strong>${nombre.slice(0, nombre.length - 10)}</strong>  (${fecha} ${time}):
+                        <p class="nombreUser">${nombre.slice(0, nombre.length - 10)}</p>  (${fecha} ${time}):
                         <p>${comentario.value}</p>
                         <p><strong>Puntuación:</strong> ${estrellas(puntuacion.value)}</p>
                     </div>
@@ -92,12 +92,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         });
 
-        const logoutButton = document.getElementById('logout');
-        logoutButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            localStorage.removeItem('userEmail');
-            window.location.href = 'login.html';
-        });
+    const logoutButton = document.getElementById('logout');
+    logoutButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        localStorage.removeItem('userEmail');
+        window.location.href = 'login.html';
+    });
         
     const darkModeSwitch = document.getElementById('darkModeSwitch');
     darkModeSwitch.checked = localStorage.getItem('darkMode') === 'true';
@@ -108,7 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.toggle('dark-mode');
         localStorage.setItem('darkMode', darkModeSwitch.checked);
     });
+
 });
+
     function estrellas(puntos) {
         let estrellasHtml = '';
         for (let i = 0; i < 5; i++) {
