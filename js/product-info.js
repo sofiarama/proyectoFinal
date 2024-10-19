@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const productID = localStorage.getItem('productId'); //recuperamos el valor asociado al productId, desde el almacenamiento del navegador
+    const pictureId = localStorage.getItem('profilePic');
+
+    if (pictureId) {
+        document.getElementById("pictureID").src = pictureId;
+    }
 
     if (productID) { //si productId tiene un valor se ejecuta el fetch
         const url = PRODUCT_INFO_URL + productID + EXT_TYPE; //creamos una url con la dire de info mas el id del producto elegido.
@@ -87,7 +92,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         });
 
-
+        const logoutButton = document.getElementById('logout');
+        logoutButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            localStorage.removeItem('userEmail');
+            window.location.href = 'login.html';
+        });
+        
+    const darkModeSwitch = document.getElementById('darkModeSwitch');
+    darkModeSwitch.checked = localStorage.getItem('darkMode') === 'true';
+    document.body.classList.toggle('dark-mode', darkModeSwitch.checked);
+        
+        
+    darkModeSwitch.addEventListener('change', function() {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', darkModeSwitch.checked);
+    });
 });
     function estrellas(puntos) {
         let estrellasHtml = '';
@@ -200,34 +220,11 @@ function obtenerCategoryId(category) {
 // });
 
 
-// Seleccionar el interruptor de modo oscuro
-const darkModeSwitch = document.getElementById('darkModeSwitch');
 
-// Comprobar el tema almacenado en localStorage al cargar la página
-const storedTheme = localStorage.getItem('theme');
-if (storedTheme === 'dark') {
-  document.body.classList.add('bg-dark', 'text-light');
-  darkModeSwitch.checked = true; // Marca el interruptor como activado
-} else {
-  document.body.classList.add('bg-light', 'text-dark');
-}
 
-// Alternar entre modo claro y oscuro cuando se cambia el interruptor
-darkModeSwitch.addEventListener('change', () => {
-  if (darkModeSwitch.checked) {
-    // Cambiar a modo oscuro
-    document.body.classList.remove('bg-light', 'text-dark');
-    document.body.classList.add('bg-dark', 'text-light');
-    localStorage.setItem('theme', 'dark'); // Guardar preferencia en localStorage
-  } else {
-    // Cambiar a modo claro
-    document.body.classList.remove('bg-dark', 'text-light');
-    document.body.classList.add('bg-light', 'text-dark');
-    localStorage.setItem('theme', 'light'); // Guardar preferencia en localStorage
-  }
-});
+
 // Simulación de login para obtener el correo del usuario
-const userEmail = sessionStorage.getItem('userEmail') || 'ejemplo@correo.com'; // Usar sessionStorage o un correo por defecto
+const userEmail = localStorage.getItem('userEmail') || 'ejemplo@correo.com'; // Usar sessionStorage o un correo por defecto
 
 // Mostrar las iniciales en el ícono del usuario
 const userDisplay = document.getElementById('userDisplay');

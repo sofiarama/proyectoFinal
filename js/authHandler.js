@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Si el usuario ha iniciado sesión, mostramos las iniciales en el círculo
     const userDisplay = document.getElementById('userDisplay');
-    const userEmail = sessionStorage.getItem('userEmail');
+    const userEmail = localStorage.getItem('userEmail');
 
     if (userEmail && userDisplay) {
         // Obtener las dos primeras iniciales del email en mayúsculas

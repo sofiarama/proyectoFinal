@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Simulación de autenticación exitosa (autenticación ficticia)
             sessionStorage.setItem("loggedIn", "true");
-            sessionStorage.setItem("userEmail", username); // Guardar el email como userEmail
+            localStorage.setItem("userEmail", username); // Guardar el email como userEmail
 
             // Redirigir a la página principal (index.html)
             window.location.href = "index.html";

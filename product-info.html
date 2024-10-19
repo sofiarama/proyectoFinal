@@ -1,175 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>eMercado - Todo lo que busques está aquí</title>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-      rel="stylesheet"
-    />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="css/product-info.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/styleUser.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>eMercado - Todo lo que busques está aquí</title>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
-        <!-- Flecha hacia el oeste (izquierda) para ir a la página anterior -->
-        <a
-          href="#"
-          class="nav-link text-white"
-          id="backArrow"
-          onclick="history.back();"
-        >
-          <i class="fa fa-arrow-left" aria-hidden="true"></i>
-          <!-- Ícono de Font Awesome -->
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/product-info.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styleUser.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="categories.html">Categorías</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sell.html">Vender</a>
-            </li>
-            <li class="nav-item"></li>
-          </ul>
-        </div>
-    
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <!-- Flecha hacia el oeste (izquierda) para ir a la página anterior -->
+      <a href="#" class="nav-link text-white" id="backArrow" onclick="history.back();">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        <!-- Ícono de Font Awesome -->
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item"></li>
+        </ul>
+      </div>
+
       <!-- Ícono de usuario que abre el dropdown -->
-<div class="dropdown">
-  <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <span id="userDisplay" class="text-white">EE</span> <!-- Aquí se mostrarán las iniciales del usuario -->
-  </a>
+      <div class="dropdown">
+        <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <span id="userDisplay" class="text-white">EE</span> <!-- Aquí se mostrarán las iniciales del usuario -->
+        </a>
 
-  <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="userDropdown" style="width: 250px;">
-    <li>
-      <div class="d-flex align-items-center">
-        <div class="me-3">
-          <img src="https://via.placeholder.com/50" class="rounded-circle" alt="User Image">
+        <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="userDropdown" style="width: 250px;">
+          <li>
+            <div class="d-flex align-items-center">
+              <div class="me-3">
+                <img src="https://via.placeholder.com/50" class="rounded-circle" id="pictureID" alt="User Image">
+              </div>
+              <div>
+                <p id="userEmail" class="m-0 text-muted"></p> <!-- Aquí se mostrará el correo real -->
+              </div>
+            </div>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+          <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <!-- Interruptor para Modo Claro / Modo Oscuro -->
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+              <label class="form-check-label" for="darkModeSwitch">Modo Oscuro</label>
+            </div>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" id="logout" href="#">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+
+  </nav>
+
+  <main>
+    <!-- Contenedor del producto principal -->
+    <div id="contenedor" class="container mb-4">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Aquí se mostrarán los detalles del producto principal -->
         </div>
-        <div>
-         
-          <p id="userEmail" class="m-0 text-muted"></p> <!-- Aquí se mostrará el correo real -->
-        </div>
       </div>
-    </li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Mi perfil</a></li>
-    <li><a class="dropdown-item" href="#">Mi carrito</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li>
-      <!-- Interruptor para Modo Claro / Modo Oscuro -->
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="darkModeSwitch">
-        <label class="form-check-label" for="darkModeSwitch">Modo Oscuro</label>
-      </div>
-    </li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
-  </ul>
-</div>
+    </div>
+    <!--Sección comentarios-->
+    <div class="container mt-5">
+      <h2 class="coment">Comentarios</h2>
+      <hr class="linea" />
+      <div id="comentarios-container"></div>
+      <!-- Aquí se mostrarán los comentarios -->
 
-    </nav>
-
-    <main>
-      <!-- Contenedor del producto principal -->
-      <div id="contenedor" class="container mb-4">
-        <div class="row">
-          <div class="col-md-12">
-            <!-- Aquí se mostrarán los detalles del producto principal -->
-          </div>
-        </div>
-      </div>
-      <!--Sección comentarios-->
-      <div class="container mt-5">
-        <h2 class="coment">Comentarios</h2>
-        <hr class="linea" />
-        <div id="comentarios-container"></div>
-        <!-- Aquí se mostrarán los comentarios -->
-
-        <h2 class="coment">Deja tu calificación</h2>
-        <hr class="linea" />
-        <form id="calificacion-form">
-          <label for="comentario">Comentario:</label>
-          <textarea
-            id="comentario"
-            type="text"
-            name="comentario"
-            rows="4"
-            cols="50"
-            required
-          ></textarea
-          ><br />
-          <label for="puntuacion">Puntuación:</label>
-          <select id="puntuacion" name="puntuacion" required>
-            <option value="5">5 - Excelente</option>
-            <option value="4">4 - Muy bueno</option>
-            <option value="3">3 - Bueno</option>
-            <option value="2">2 - Regular</option>
-            <option value="1">1 - Malo</option></select
-          ><br /><br />
-          <button id="btnCalif" type="submit">Enviar Calificación</button>
-        </form>
-      </div>
-      <!-- <div id="posts-container"></div>
+      <h2 class="coment">Deja tu calificación</h2>
+      <hr class="linea" />
+      <form id="calificacion-form">
+        <label for="comentario">Comentario:</label>
+        <textarea id="comentario" type="text" name="comentario" rows="4" cols="50" required></textarea><br />
+        <label for="puntuacion">Puntuación:</label>
+        <select id="puntuacion" name="puntuacion" required>
+          <option value="5">5 - Excelente</option>
+          <option value="4">4 - Muy bueno</option>
+          <option value="3">3 - Bueno</option>
+          <option value="2">2 - Regular</option>
+          <option value="1">1 - Malo</option>
+        </select><br /><br />
+        <button id="btnCalif" type="submit">Enviar Calificación</button>
+      </form>
+    </div>
+    <!-- <div id="posts-container"></div>
       </div><br> -->
-      <!--Crear una calificación para cada producto-->
+    <!--Crear una calificación para cada producto-->
 
-      <!-- Contenedor de los productos relacionados -->
-      <div id="productosRelacionados" class="productos-relacionados container">
-        <h3 class="coment">Productos Relacionados</h3>
-        <hr class="linea" />
-        <div id="listaProductosRelacionados" class="row">
-          <!-- Aquí se mostrarán los productos relacionados en una cuadrícula -->
-        </div>
+    <!-- Contenedor de los productos relacionados -->
+    <div id="productosRelacionados" class="productos-relacionados container">
+      <h3 class="coment">Productos Relacionados</h3>
+      <hr class="linea" />
+      <div id="listaProductosRelacionados" class="row">
+        <!-- Aquí se mostrarán los productos relacionados en una cuadrícula -->
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer>
-      <div class="container">
-        <p class="float-end">
-          <a href="#">Volver arriba</a>
-        </p>
-        <p>
-          <span style="color: azure">Este sitio forma parte de</span>
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
-        </p>
-      </div>
-    </footer>
+  <footer>
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>
+        <span style="color: azure">Este sitio forma parte de</span>
+        <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
+    </div>
+  </footer>
 
-    <script src="js/authHandler.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/product-info.js"></script>
-  </body>
+  <script src="js/authHandler.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/product-info.js"></script>
+</body>
+
 </html>

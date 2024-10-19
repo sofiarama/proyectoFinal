@@ -17,9 +17,56 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    border-radius: 50%;
+    /* border-radius: 50%; */
+}
+
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+.dark-mode .card {
+  background-color: #444;
+  color: #fff;
 }
 
 .card {
     margin: 2rem;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+
+/* Estilos para hacer el dropdown más personalizado */
+.dropdown-menu {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.dropdown-menu .form-check {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* Reducir el tamaño de la fuente en el dropdown */
+.dropdown-menu p,
+.dropdown-menu h6 {
+  font-size: 12px; /* Ajusta el tamaño de la fuente */
+  margin-bottom: 0; /* Eliminar márgenes inferiores para más espacio */
 }
