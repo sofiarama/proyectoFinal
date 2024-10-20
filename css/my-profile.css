@@ -5,7 +5,16 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    justify-content: center;
   }
+
+  .mb-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
   @media (min-width: 768px) {
     .bd-placeholder-img-lg {
@@ -17,7 +26,7 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    /* border-radius: 50%; */
+    border-radius: 20%;
 }
 
 body.dark-mode {

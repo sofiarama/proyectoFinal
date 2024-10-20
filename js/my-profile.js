@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return; // Terminar la ejecución del resto del código
     }
 
+    //Cargar datos del perfil
     loadProfileData();
 
     //enviamos el formulario
@@ -18,23 +19,27 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         if (form.checkValidity()) {
             saveProfileData();
+            alert ('Perfil actualizado con éxito!');
         }
         else {
             form.reportValidity();
         }
     });
 
+    // Manejo de cambio de modo oscuro
     darkModeSwitch.addEventListener('change', function() {
         document.body.classList.toggle('dark-mode');
         localStorage.setItem('darkMode', darkModeSwitch.checked);
     });
 
+    // Manejar cierre de sesión
     logoutButton.addEventListener('click', function(event) {
         event.preventDefault();
         localStorage.removeItem('userEmail');
         window.location.href = 'login.html';
     });
 
+    // Manejar cambio de foto de perfil
     profilePicInput.addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
@@ -54,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
+// Funciones auxiliares
 function loadProfileData() {
     const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
     for (const [key, value] of Object.entries(profileData)) {
