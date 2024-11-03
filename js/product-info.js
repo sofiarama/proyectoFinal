@@ -1,4 +1,6 @@
+
 document.addEventListener("DOMContentLoaded", function () {
+    let productData;
     const productID = localStorage.getItem('productId'); // Recupera el valor asociado al productId
     const pictureId = localStorage.getItem('profilePic');
 
@@ -13,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(url)
             .then(response => response.json())
             .then(product => {
+                productData = product;
                 if (product) {
                     const productContainer = document.getElementById("contenedor");
                     productContainer.innerHTML = `
@@ -41,22 +44,32 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                     `;
-
                     // Funcionalidad del botón "Comprar"
-                    document.getElementById("buyButton").addEventListener("click", () => {
-                        const cantidad = parseInt(document.getElementById("cantidad").value);
-                        const subtotal = product.cost * cantidad;
+                    document.getElementById("buyButton").addEventListener("click", function() {
+                        //vemos si ya existe un cart
+                        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                        let cantidad = parseInt(document.getElementById("cantidad").value);
+                        let subtotal = productData.cost * cantidad;
 
-                        const productInfo = {
-                            name: product.name,
-                            cost: product.cost,
-                            currency: product.currency,
+                        let productInfo = {
+                            name: productData.name,
+                            cost: productData.cost,
+                            currency: productData.currency,
                             quantity: cantidad,
-                            image: product.images[0],
+                            image: productData.images[0],
                             subtotal: subtotal
                         };
-
-                        localStorage.setItem("productInCart", JSON.stringify(productInfo));
+                        //vemos si ya está en el cart
+                        const index = cart.findIndex(item => item.name === productData.name);
+                        if (index !== -1) {
+                            cart[index].quantity += cantidad;
+                            cart[index].subtotal = productData.cost * (cart[index].quantity);
+                        }
+                        else {
+                            cart.push(productInfo);
+                        }
+                        //agregamos el elemento
+                        localStorage.setItem("cart", JSON.stringify(cart));
                         window.location.href = "cart.html";
                     });
 
@@ -121,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('darkMode', darkModeSwitch.checked);
         });
     }
-
+    
 });
 
 function estrellas(puntos) {
