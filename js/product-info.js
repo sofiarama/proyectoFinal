@@ -1,19 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const productID = localStorage.getItem('productId'); //recuperamos el valor asociado al productId, desde el almacenamiento del navegador
+    const productID = localStorage.getItem('productId'); // Recupera el valor asociado al productId
     const pictureId = localStorage.getItem('profilePic');
 
     if (pictureId) {
-        document.getElementById("pictureID").src = pictureId;
+        const pictureElement = document.getElementById("pictureID");
+        if (pictureElement) pictureElement.src = pictureId;
     }
 
-    if (productID) { //si productId tiene un valor se ejecuta el fetch
-        const url = PRODUCT_INFO_URL + productID + EXT_TYPE; //creamos una url con la dire de info mas el id del producto elegido.
+    if (productID) {
+        const url = PRODUCT_INFO_URL + productID + EXT_TYPE;
 
         fetch(url)
             .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                const product = data;
+            .then(product => {
                 if (product) {
                     const productContainer = document.getElementById("contenedor");
                     productContainer.innerHTML = `
@@ -34,125 +33,123 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <p class="description">${product.description}</p>
                                 <p class="soldCount">Vendidos: ${product.soldCount}</p>
                                 <h6 class="category">${product.category}</h6>
+                                <p class="price">Precio: ${product.currency} ${product.cost}</p>
+                                <div class="d-flex align-items-center">
+                                    <input type="number" id="cantidad" class="form-control w-25 me-2" value="1" min="1">
+                                    <button id="buyButton" class="btn btn-primary">Comprar</button>
+                                </div>
                             </div>
-                        </div>`;
-                    // Cambiar la foto principal al hacer clic en las imágenes pequeñas
+                        </div>
+                    `;
+
+                    // Funcionalidad del botón "Comprar"
+                    document.getElementById("buyButton").addEventListener("click", () => {
+                        const cantidad = parseInt(document.getElementById("cantidad").value);
+                        const subtotal = product.cost * cantidad;
+
+                        const productInfo = {
+                            name: product.name,
+                            cost: product.cost,
+                            currency: product.currency,
+                            quantity: cantidad,
+                            image: product.images[0],
+                            subtotal: subtotal
+                        };
+
+                        localStorage.setItem("productInCart", JSON.stringify(productInfo));
+                        window.location.href = "cart.html";
+                    });
+
                     const fotoMain = document.getElementById('main-display');
                     const fotosSmall = document.getElementsByClassName('thumbnail');
-                    for (let i = 0; i < fotosSmall.length; i++) {
-                        fotosSmall[i].addEventListener('click', function () {
-                            let auxFoto = fotoMain.src;
-                            fotoMain.src = this.src; // Intercambia las fotos
-                            this.src = auxFoto; // En la imagen pequeña pone la main
+                    Array.from(fotosSmall).forEach(foto => {
+                        foto.addEventListener('click', function () {
+                            [fotoMain.src, this.src] = [this.src, fotoMain.src];
                         });
-                    }
-                    // Ahora cargar los productos relacionados
+                    });
+
                     cargarProductosRelacionados(product.category);
                 } else {
                     console.log("No se encontró el producto");
                 }
             })
-            .catch(error => {
-                console.error("Error al cargar los detalles del producto:", error);
-            });
+            .catch(error => console.error("Error al cargar los detalles del producto:", error));
     } else {
         console.log("No se encontró el productID");
     }
 
-    //Sección Comentarios
     fetch(`https://japceibal.github.io/emercado-api/products_comments/${productID}.json`)
         .then(response => response.json())
-        .then(comentarios => {
-            mostrarComentarios(comentarios);
-        })
-        .catch(error => {
-            console.error("Error al cargar los comentarios:", error);
-        });
+        .then(comentarios => mostrarComentarios(comentarios))
+        .catch(error => console.error("Error al cargar los comentarios:", error));
 
-
-    //agregar el comentario
     const btnMensaje = document.getElementById('btnCalif');
-    btnMensaje.addEventListener("click", function () { 
+    btnMensaje?.addEventListener("click", function () { 
         const comentario = document.getElementById('comentario');
-        if (comentario.value !== "") {
+        if (comentario?.value) {
             const puntuacion = document.getElementById('puntuacion');
             const nombre = sessionStorage.getItem('userEmail');
-            let fecha = new Date().toLocaleDateString();
-            let time = new Date().toLocaleTimeString();
+            const fecha = new Date().toLocaleDateString();
+            const time = new Date().toLocaleTimeString();
             const comentariosContainer = document.getElementById('comentarios-container');
             const comentarioHTML = `
-                    <div class="comentario">
-                        <p class="nombreUser">${nombre.slice(0, nombre.length - 10)}</p>  (${fecha} ${time}):
-                        <p>${comentario.value}</p>
-                        <p><strong>Puntuación:</strong> ${estrellas(puntuacion.value)}</p>
-                    </div>
-                    `;
+                <div class="comentario">
+                    <p class="nombreUser">${nombre.slice(0, nombre.length - 10)}</p>  (${fecha} ${time}):
+                    <p>${comentario.value}</p>
+                    <p><strong>Puntuación:</strong> ${estrellas(puntuacion.value)}</p>
+                </div>
+            `;
             comentariosContainer.innerHTML += comentarioHTML;
             comentario.value = "";
         }
-        });
+    });
 
     const logoutButton = document.getElementById('logout');
-    logoutButton.addEventListener('click', function(event) {
+    logoutButton?.addEventListener('click', function(event) {
         event.preventDefault();
         localStorage.removeItem('userEmail');
         window.location.href = 'login.html';
     });
-        
+
     const darkModeSwitch = document.getElementById('darkModeSwitch');
-    darkModeSwitch.checked = localStorage.getItem('darkMode') === 'true';
-    document.body.classList.toggle('dark-mode', darkModeSwitch.checked);
+    if (darkModeSwitch) {
+        darkModeSwitch.checked = localStorage.getItem('darkMode') === 'true';
+        document.body.classList.toggle('dark-mode', darkModeSwitch.checked);
         
-        
-    darkModeSwitch.addEventListener('change', function() {
-        document.body.classList.toggle('dark-mode');
-        localStorage.setItem('darkMode', darkModeSwitch.checked);
-    });
+        darkModeSwitch.addEventListener('change', function() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', darkModeSwitch.checked);
+        });
+    }
 
 });
 
-    function estrellas(puntos) {
-        let estrellasHtml = '';
-        for (let i = 0; i < 5; i++) {
-            if (i < puntos) {
-                estrellasHtml += '<span class="fa fa-star checked"></span>';
-            } else {
-                estrellasHtml += '<span class="fa fa-star"></span>';
-            }
-        }
-        return estrellasHtml;
-    }
+function estrellas(puntos) {
+    return Array(5).fill().map((_, i) =>
+        `<span class="fa fa-star${i < puntos ? ' checked' : ''}"></span>`
+    ).join('');
+}
 
-    function mostrarComentarios(comentarios) {
-        const comentariosContainer = document.getElementById('comentarios-container');
-        if (comentarios.length === 0) {
-            comentariosContainer.innerHTML = '<p>No hay comentarios para este producto.</p>';
-        } else {
-            comentariosContainer.innerHTML = "";
-            comentarios.forEach(comentario => {
-                const comentarioHTML = `
-                <div class="comentario">
-                    <span class="comentUser">${comentario.user}</span>  (${comentario.dateTime}):
-                    <p>${comentario.description}</p>
-                    <p><strong>Puntuación:</strong> ${estrellas(comentario.score)}</p>
-                </div>
-                `;
-                comentariosContainer.innerHTML += comentarioHTML;
-            });
-        }
-    }
+function mostrarComentarios(comentarios) {
+    const comentariosContainer = document.getElementById('comentarios-container');
+    comentariosContainer.innerHTML = comentarios.length
+        ? comentarios.map(comentario => `
+            <div class="comentario">
+                <span class="comentUser">${comentario.user}</span>  (${comentario.dateTime}):
+                <p>${comentario.description}</p>
+                <p><strong>Puntuación:</strong> ${estrellas(comentario.score)}</p>
+            </div>
+        `).join('')
+        : '<p>No hay comentarios para este producto.</p>';
+}
 
 function cargarProductosRelacionados(category) {
-    const categoryId = obtenerCategoryId(category); // Función para obtener el ID de la categoría, ajústalo según tu lógica
+    const categoryId = obtenerCategoryId(category);
 
-    fetch(`https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`) // Cargar productos de la misma categoría
+    fetch(`https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`)
         .then(response => response.json())
-        .then(data => {
-            mostrarProductosRelacionados(data.products);
-        })
-        .catch(error => {
-            console.error("Error al cargar productos relacionados:", error);
-        });
+        .then(data => mostrarProductosRelacionados(data.products))
+        .catch(error => console.error("Error al cargar productos relacionados:", error));
 }
 
 function mostrarProductosRelacionados(productos) {
@@ -161,7 +158,7 @@ function mostrarProductosRelacionados(productos) {
 
     productos.forEach(producto => {
         const div = document.createElement('div');
-        div.className = 'col-6 col-md-4 col-lg-3 mb-4'; // Clase de Bootstrap para hacer columnas responsivas
+        div.className = 'col-6 col-md-4 col-lg-3 mb-4';
 
         div.innerHTML = `
             <div class="card">
@@ -174,8 +171,8 @@ function mostrarProductosRelacionados(productos) {
         `;
 
         div.onclick = () => {
-            localStorage.setItem('productId', producto.id); // Guardar el nuevo productId en localStorage
-            window.location.href = 'product-info.html'; // Recargar la página para mostrar el nuevo producto
+            localStorage.setItem('productId', producto.id);
+            window.location.href = 'product-info.html';
         };
 
         contenedor.appendChild(div);
@@ -183,55 +180,19 @@ function mostrarProductosRelacionados(productos) {
 }
 
 function obtenerCategoryId(category) {
-  
     const categoryMap = {
         "Autos": 101,
         "Juguetes": 102,
         "Muebles": 103,
-
-       
     };
-    return categoryMap[category] || 101; // Devuelve 102 (Juguetes) por defecto si no se encuentra la categoría
+    return categoryMap[category] || 101;
 }
 
-// // Seleccionar el interruptor de modo oscuro
-// const darkModeSwitch = document.getElementById('darkModeSwitch');
+// Configuración de usuario y tema oscuro
+const userEmail = localStorage.getItem('userEmail') || 'ejemplo@correo.com';
 
-// // Comprobar el tema almacenado en localStorage al cargar la página
-// const storedTheme = localStorage.getItem('theme');
-// if (storedTheme === 'dark') {
-//   document.body.classList.add('bg-dark', 'text-light');
-//   darkModeSwitch.checked = true; // Marca el interruptor como activado
-// } else {
-//   document.body.classList.add('bg-light', 'text-dark');
-
-
-// // Alternar entre modo claro y oscuro cuando se cambia el interruptor
-// darkModeSwitch.addEventListener('change', () => {
-//   if (darkModeSwitch.checked) {
-//     // Cambiar a modo oscuro
-//     document.body.classList.remove('bg-light', 'text-dark');
-//     document.body.classList.add('bg-dark', 'text-light');
-//     localStorage.setItem('theme', 'dark'); // Guardar preferencia en localStorage
-//   } else {
-//     // Cambiar a modo claro
-//     document.body.classList.remove('bg-dark', 'text-light');
-//     document.body.classList.add('bg-light', 'text-dark');
-//     localStorage.setItem('theme', 'light'); // Guardar preferencia en localStorage
-//   }
-// });
-
-
-
-
-
-// Simulación de login para obtener el correo del usuario
-const userEmail = localStorage.getItem('userEmail') || 'ejemplo@correo.com'; // Usar sessionStorage o un correo por defecto
-
-// Mostrar las iniciales en el ícono del usuario
 const userDisplay = document.getElementById('userDisplay');
-userDisplay.textContent = userEmail[0] + userEmail[1]; // Mostrar las dos primeras letras del correo
+if (userDisplay) userDisplay.textContent = userEmail.slice(0, 2);
 
-// Mostrar el correo completo dentro del dropdown
 const userEmailElement = document.getElementById('userEmail');
-userEmailElement.textContent = userEmail;
+if (userEmailElement) userEmailElement.textContent = userEmail;
