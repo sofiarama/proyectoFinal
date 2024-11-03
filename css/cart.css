@@ -1,0 +1,80 @@
+h1 {
+    text-align: center;
+    font-weight: bolder;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#cart-items {
+    padding: 2rem;
+
+}
+
+.contenedorItem {
+    /* align-items: center; */
+    font-family:Arial, Helvetica, sans-serif;
+    border: 2px solid #ccc;
+    margin: 2rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    padding: 0;
+    background-color: #ccc;
+    box-shadow: 5px 5px 10px #888888;
+}
+
+h4 {
+    font-size: 18px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.imagen {
+    padding: 1rem;
+}
+
+.img {
+    width: 80%;
+}
+
+.descripcion {
+    position: relative;
+}
+
+h5 {
+    font-size: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 2rem;
+    font-weight: bold;
+}
+
+.cant {
+    margin-bottom: 2rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: right;
+}
+
+.precio {
+    position: relative;
+}
+
+.importe {
+    font-size: 20px;
+    margin: 2rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+}
+
+.subtotal {
+    font-size: 20px;
+    margin: 2rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    font-weight: bold;
+}
+
