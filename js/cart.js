@@ -14,15 +14,15 @@ document.addEventListener("DOMContentLoaded", function(){
         const productItem = `
         <h4>Articulo: ${index +1}</h4>
         <div class="contenedorItem row">
-            <div class="imagen col">
+            <div class="imagen col-12- col-lg-4">
                 <img src="${product.image}" alt="${product.name}" class="img-fluid">
             </div>
-            <div class="descripcion col">
+            <div class="descripcion col-12 col-lg-4">
                 <h5>${product.name}</h5>
                 <label for="quantity-${index}" class="cantidad">Cantidad:</label>
                 <input type="number" id="quantity-${index}" class="form-control cant" value="${product.quantity}" min="1" oninput="updateSubtotal(this, ${product.cost}, ${index})">
             </div>
-            <div class="precio col">
+            <div class="precio col-12 col-lg-4">
                 <div class="importe">
                     <p>${product.currency} ${product.cost.toFixed(2)}</p>
                 </div>
