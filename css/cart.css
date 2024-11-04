@@ -5,9 +5,6 @@ h1 {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-#cart-items {
-  padding: 2rem;
-}
 /* estilos */
 .contenedorItem {
   background-color: #d3d3d3;
@@ -15,9 +12,9 @@ h1 {
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
+  /* display: flex; */
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -40,20 +37,16 @@ h5 {
   height: auto;
 }
 
-.descripcion {
-  flex: 2 1 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
 .precio {
-  flex: 1 1 150px;
+  /* flex: 1 1 150px; */
   text-align: right;
 }
 
+.importe {
+    margin-bottom: 2rem;
+}
 .cantidad {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .cant {
@@ -61,85 +54,42 @@ h5 {
   width: 60px;
 }
 
+
 @media (max-width: 768px) {
     #cart-items {
         padding: 0;
-    
+        margin: 0;
     }
-    
+
     .contenedorItem {
-        /* align-items: center; */
         flex-direction: column;
-        font-family:Arial, Helvetica, sans-serif;
-        border: 2px solid #ccc;
-        margin: 0;
-        margin-top: 0;
-        margin-bottom: 2rem;
-        padding: 0;
-        background-color: #ccc;
-        box-shadow: 5px 5px 10px #888888;
+        padding: 1rem;
+        margin: 1rem;
     }
-    
-    h4 {
-        /* font-size: 18px; */
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    .imagen {
-        padding: 0;
-    }
-    
-    .img {
-        width: 100%;
-    }
-    
+
     .descripcion {
-        position: relative;
+        margin-bottom: 10px;
     }
-    
-    h5 {
-        font-size: 20px;
-        position: static;
-        margin-top: 20px;
-        font-weight: bold;
-    }
-    
-    .cantidad {
-        position: static;
-        bottom: 4rem;
-        margin-bottom: 5px;
-        left: 0;
-        text-align: none;
-    }
-    .cant {
-        width: 20%;
-        margin-bottom: 0;
-        position: static;
-        bottom: 0;
-        left: 0;
-        text-align: left;
-    }
-    
     .precio {
-        position: relative;
+        margin-bottom: 10px;
     }
-    
+
+    .imagen img {
+        width: 80%;
+        margin: auto;
+    }
+
     .importe {
-        /* font-size: auto; */
-        margin: 0;
-        position: static;
-        top: 0;
-        right: 0;
-        text-align: right;
+        margin-bottom: 10px;
     }
-    
+    .cantidad,
+    .cant {
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
     .subtotal {
-        /* font-size: 20px; */
-        margin: 0;
-        position: static;
-        bottom: 0;
-        right: 0;
-        text-align: right;
         font-weight: bold;
     }
 }
