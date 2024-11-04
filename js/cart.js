@@ -6,42 +6,47 @@ document.addEventListener("DOMContentLoaded", function(){
     const contenedor = document.getElementById('cart-items');
     contenedor.innerHTML = ''; // Vaciar el contenedor
 
-    if (cart.length == 0) { 
-        contenedor.innerHTML = '<p> No hay productos en el carrito </p>';
+    if (cart == []) { 
+        contenedor.innerHTML = '<span class="m-2"> No hay productos en el carrito </span>';
     } else  {
     // Mostrar los elementos del carrito
-    cart.forEach(producto => {
+    cart.forEach((product, index) => {
         const productItem = `
-        <div class="contenedor de item flex">
-            <div class="imagen">
-            <img src= ${product.image}" alt="${product.name}" class="img-fluid">
+        <h4>Articulo: ${index +1}</h4>
+        <div class="contenedorItem row">
+            <div class="imagen col">
+                <img src="${product.image}" alt="${product.name}" class="img-fluid">
             </div>
-
-            <div class="nombre y cantidad">
-            <h5>${product.name}</h5>
-                    <label for="quantity">Cantidad:</label>
-                    <input type="number" class="form-control" value="${product.quantity}" min="1" onchange="updateSubtotal(this, ${producto.cost})">
+            <div class="descripcion col">
+                <h5>${product.name}</h5>
+                <label for="quantity-${index}" class="cantidad">Cantidad:</label>
+                <input type="number" id="quantity-${index}" class="form-control cant" value="${product.quantity}" min="1" oninput="updateSubtotal(this, ${product.cost}, ${index})">
             </div>
-
-            <div class="total">
-                <div class="moneda y precio">
-                <p>${product.currency} ${product.cost.toFixed(2)}</p>
+            <div class="precio col">
+                <div class="importe">
+                    <p>${product.currency} ${product.cost.toFixed(2)}</p>
                 </div>
-
                 <div class="subtotal">
-                <p>Subtotal: <span class="subtotal-value">${(product.cost * product.quantity).toFixed(2)}</span></p>
+                    <p">Subtotal: <span id="total-${index}">${cart[index].currency} ${(product.cost * product.quantity).toFixed(2)}</span></p>
                 </div>
             </div>
         </div>
-        `
+                `
         contenedor.innerHTML += productItem;
+        });
+        }
     });
-}
-})
-
-// Subtotal cantidad
-function updateSubtotal(quantityInput, cost) {
-    const quantity = quantityInput.value;
-    const subtotalElement = quantityInput.closest('.item').querySelector('.subtotal-value');
-    subtotalElement.innerText = (cost * quantity).toFixed(2);
+    
+function updateSubtotal(quantityInput, cost, index) {
+    const quantity = parseInt(quantityInput.value);
+    //actualizo la cantidad
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart[index].quantity = quantity;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    //nuevo subtotal
+    const subtotal = quantity * cost;
+    const subtotalElement = document.getElementById(`total-${index}`);
+    if (subtotalElement) {
+        subtotalElement.innerText = `${cart[index].currency} ${subtotal.toFixed(2)}`;
+    }
 }
