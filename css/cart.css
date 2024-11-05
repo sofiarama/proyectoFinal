@@ -55,7 +55,7 @@ h5 {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 650px) {
     #cart-items {
         padding: 0;
         margin: 0;
