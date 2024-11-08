@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+
     // Función para mostrar productos del carrito
     function renderCartItems() {
         contenedor.innerHTML = ''; // Limpiar el contenedor
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <label for="quantity-${index}" class="cantidad me-2 mb-0">Cantidad:</label>
                                 <input type="number" id="quantity-${index}" class="form-control w-50 cant" value="${product.quantity}" min="1" oninput="updateQuantity(${index}, this.value)">
                             </div>
+
                         </div>
                         <div class="precio col-12 col-md-4 col-lg-4 mt-2 mt-md-0 text-md-end">
                             <div class="importe">
@@ -40,11 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                     </div>
+
                 `;
                 contenedor.innerHTML += productItem;
             });
         }
         calculateCosts(); // Recalcular costos al renderizar elementos
+
     }
 
     // Función para actualizar la cantidad de un producto
