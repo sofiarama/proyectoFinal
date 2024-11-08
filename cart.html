@@ -30,7 +30,7 @@
   </head>
 
   <body>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
       <div class="container position-relative">
         <!-- Botón de Menú Hamburguesa para pantallas pequeñas -->
         <button
@@ -150,73 +150,228 @@
             </div>
           </div>
 
-        <!-- Sección de Opciones de Compra (30%) -->
-<div class="col-lg-5 mt-4">
-  <div class="card p-3 shadow-sm">
-    <h3 class="mb-3">Opciones de Compra</h3>
+          <!-- Sección de Opciones de Compra (30%) -->
+          <div class="col-lg-5 mt-4">
+            <div class="card p-3 shadow-sm">
+              <h3 class="mb-3">Opciones de Compra</h3>
 
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" id="optionsTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab" aria-controls="shipping" aria-selected="true">Tipo de Envío</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false">Forma de Pago</button>
-      </li>
-    </ul>
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" id="optionsTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    id="shipping-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#shipping"
+                    type="button"
+                    role="tab"
+                    aria-controls="shipping"
+                    aria-selected="true"
+                  >
+                    Tipo de Envío
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="payment-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#payment"
+                    type="button"
+                    role="tab"
+                    aria-controls="payment"
+                    aria-selected="false"
+                  >
+                    Forma de Pago
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="address-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#address"
+                    type="button"
+                    role="tab"
+                    aria-controls="address"
+                    aria-selected="false"
+                  >
+                    Dirección de Envío
+                  </button>
+                </li>
+              </ul>
 
-    <!-- Tab panes -->
-    <div class="tab-content" id="optionsTabContent">
-      <!-- Tipo de Envío -->
-      <div class="tab-pane fade show active" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
-        <div class="mt-3">
-          <h4>Tipo de Envío</h4>
-          <div class="form-check">
-            <input type="radio" id="premium" name="shippingType" class="form-check-input" value="15" checked>
-            <label for="premium" class="form-check-label">Premium 2 a 5 días (15%)</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="express" name="shippingType" class="form-check-input" value="7">
-            <label for="express" class="form-check-label">Express 5 a 8 días (7%)</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="standard" name="shippingType" class="form-check-input" value="5">
-            <label for="standard" class="form-check-label">Standard 12 a 15 días (5%)</label>
+              <!-- Tab panes -->
+              <div class="tab-content" id="optionsTabContent">
+                <!-- Tipo de Envío -->
+                <div
+                  class="tab-pane fade show active"
+                  id="shipping"
+                  role="tabpanel"
+                  aria-labelledby="shipping-tab"
+                >
+                  <div class="mt-3">
+                    <h4>Tipo de Envío</h4>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        id="premium"
+                        name="shippingType"
+                        class="form-check-input"
+                        value="15"
+                        checked
+                      />
+                      <label for="premium" class="form-check-label"
+                        >Premium 2 a 5 días (15%)</label
+                      >
+                    </div>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        id="express"
+                        name="shippingType"
+                        class="form-check-input"
+                        value="7"
+                      />
+                      <label for="express" class="form-check-label"
+                        >Express 5 a 8 días (7%)</label
+                      >
+                    </div>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        id="standard"
+                        name="shippingType"
+                        class="form-check-input"
+                        value="5"
+                      />
+                      <label for="standard" class="form-check-label"
+                        >Standard 12 a 15 días (5%)</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Forma de Pago -->
+                <div
+                  class="tab-pane fade"
+                  id="payment"
+                  role="tabpanel"
+                  aria-labelledby="payment-tab"
+                >
+                  <div class="mt-3">
+                    <h4>Forma de Pago</h4>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        id="creditCard"
+                        name="paymentMethod"
+                        class="form-check-input"
+                        value="credit"
+                        checked
+                      />
+                      <label for="creditCard" class="form-check-label"
+                        >Tarjeta de Crédito</label
+                      >
+                    </div>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        id="bankTransfer"
+                        name="paymentMethod"
+                        class="form-check-input"
+                        value="bankTransfer"
+                      />
+                      <label for="bankTransfer" class="form-check-label"
+                        >Transferencia Bancaria</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dirección de Envío -->
+                <div
+                  class="tab-pane fade"
+                  id="address"
+                  role="tabpanel"
+                  aria-labelledby="address-tab"
+                >
+                  <div class="mt-3">
+                    <h4>Dirección de Envío</h4>
+                    <div class="mb-3">
+                      <label for="department" class="form-label"
+                        >Departamento</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="department"
+                        placeholder="Ingrese su departamento"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="locality" class="form-label">Localidad</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="locality"
+                        placeholder="Ingrese su localidad"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="street" class="form-label">Calle</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="street"
+                        placeholder="Ingrese su calle"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="number" class="form-label">Número</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="number"
+                        placeholder="Ingrese su número"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="corner" class="form-label">Esquina</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="corner"
+                        placeholder="Ingrese su esquina"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sección de Costos -->
+              <div class="mt-4">
+                <h3>Costos</h3>
+                <p>
+                  <strong>Subtotal:</strong> <span id="subtotal">0</span> USD
+                </p>
+                <p>
+                  <strong>Costo de Envío:</strong>
+                  <span id="shippingCost">0</span> USD
+                </p>
+                <p><strong>Total:</strong> <span id="totalCost">0</span> USD</p>
+              </div>
+
+              <!-- Botón Finalizar Compra -->
+              <div class="mt-4">
+                <button id="checkoutBtn" class="btn btn-primary">
+                  Finalizar Compra
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- Forma de Pago -->
-      <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
-        <div class="mt-3">
-          <h4>Forma de Pago</h4>
-          <div class="form-check">
-            <input type="radio" id="creditCard" name="paymentMethod" class="form-check-input" value="credit" checked>
-            <label for="creditCard" class="form-check-label">Tarjeta de Crédito</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" id="bankTransfer" name="paymentMethod" class="form-check-input" value="bankTransfer">
-            <label for="bankTransfer" class="form-check-label">Transferencia Bancaria</label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sección de Costos -->
-    <div class="mt-4">
-      <h3>Costos</h3>
-      <p><strong>Subtotal:</strong> <span id="subtotal">0</span> USD</p>
-      <p><strong>Costo de Envío:</strong> <span id="shippingCost">0</span> USD</p>
-      <p><strong>Total:</strong> <span id="totalCost">0</span> USD</p>
-    </div>
-
-    <!-- Botón Finalizar Compra -->
-    <div class="mt-4">
-      <button id="checkoutBtn" class="btn btn-primary">Finalizar Compra</button>
-    </div>
-  </div>
-</div>
-
     </main>
 
     <footer class="text-muted">
