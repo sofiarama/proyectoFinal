@@ -1,9 +1,9 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     let productData;
-    const productID = localStorage.getItem('productId'); // Recupera el valor asociado al productId
+    const productID = localStorage.getItem('productId');
     const pictureId = localStorage.getItem('profilePic');
 
+    // Mostrar imagen de perfil si existe
     if (pictureId) {
         const pictureElement = document.getElementById("pictureID");
         if (pictureElement) pictureElement.src = pictureId;
@@ -44,14 +44,17 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                     `;
+
                     // Funcionalidad del botón "Comprar"
                     document.getElementById("buyButton").addEventListener("click", function() {
-                        //vemos si ya existe un cart
+                        // Recuperar o crear el carrito en localStorage
                         let cart = JSON.parse(localStorage.getItem("cart")) || [];
                         let cantidad = parseInt(document.getElementById("cantidad").value);
                         let subtotal = productData.cost * cantidad;
 
+                        // Objeto con información del producto seleccionado
                         let productInfo = {
+                            id: productData.id,
                             name: productData.name,
                             cost: productData.cost,
                             currency: productData.currency,
@@ -59,20 +62,24 @@ document.addEventListener("DOMContentLoaded", function () {
                             image: productData.images[0],
                             subtotal: subtotal
                         };
-                        //vemos si ya está en el cart
-                        const index = cart.findIndex(item => item.name === productData.name);
+
+                        // Buscar si el producto ya está en el carrito
+                        const index = cart.findIndex(item => item.id === productData.id);
                         if (index !== -1) {
+                            // Actualizar cantidad y subtotal si ya está en el carrito
                             cart[index].quantity += cantidad;
-                            cart[index].subtotal = productData.cost * (cart[index].quantity);
-                        }
-                        else {
+                            cart[index].subtotal = cart[index].quantity * cart[index].cost;
+                        } else {
+                            // Agregar nuevo producto al carrito
                             cart.push(productInfo);
                         }
-                        //agregamos el elemento
+
+                        // Guardar el carrito actualizado en localStorage y redirigir al carrito
                         localStorage.setItem("cart", JSON.stringify(cart));
                         window.location.href = "cart.html";
                     });
 
+                    // Cambiar imagen principal al hacer clic en miniaturas
                     const fotoMain = document.getElementById('main-display');
                     const fotosSmall = document.getElementsByClassName('thumbnail');
                     Array.from(fotosSmall).forEach(foto => {
@@ -91,11 +98,13 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("No se encontró el productID");
     }
 
+    // Cargar comentarios
     fetch(`https://japceibal.github.io/emercado-api/products_comments/${productID}.json`)
         .then(response => response.json())
         .then(comentarios => mostrarComentarios(comentarios))
         .catch(error => console.error("Error al cargar los comentarios:", error));
 
+    // Configuración del botón de comentarios
     const btnMensaje = document.getElementById('btnCalif');
     btnMensaje?.addEventListener("click", function () { 
         const comentario = document.getElementById('comentario');
@@ -117,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Configuración para el botón de logout
     const logoutButton = document.getElementById('logout');
     logoutButton?.addEventListener('click', function(event) {
         event.preventDefault();
@@ -124,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = 'login.html';
     });
 
+    // Configuración del tema oscuro
     const darkModeSwitch = document.getElementById('darkModeSwitch');
     if (darkModeSwitch) {
         darkModeSwitch.checked = localStorage.getItem('darkMode') === 'true';
@@ -134,15 +145,16 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('darkMode', darkModeSwitch.checked);
         });
     }
-    
 });
 
+// Función para mostrar estrellas de puntuación
 function estrellas(puntos) {
     return Array(5).fill().map((_, i) =>
         `<span class="fa fa-star${i < puntos ? ' checked' : ''}"></span>`
     ).join('');
 }
 
+// Función para mostrar comentarios
 function mostrarComentarios(comentarios) {
     const comentariosContainer = document.getElementById('comentarios-container');
     comentariosContainer.innerHTML = comentarios.length
@@ -156,6 +168,7 @@ function mostrarComentarios(comentarios) {
         : '<p>No hay comentarios para este producto.</p>';
 }
 
+// Función para cargar productos relacionados
 function cargarProductosRelacionados(category) {
     const categoryId = obtenerCategoryId(category);
 
@@ -201,11 +214,3 @@ function obtenerCategoryId(category) {
     return categoryMap[category] || 101;
 }
 
-// Configuración de usuario y tema oscuro
-const userEmail = localStorage.getItem('userEmail') || 'ejemplo@correo.com';
-
-const userDisplay = document.getElementById('userDisplay');
-if (userDisplay) userDisplay.textContent = userEmail.slice(0, 2);
-
-const userEmailElement = document.getElementById('userEmail');
-if (userEmailElement) userEmailElement.textContent = userEmail;

@@ -1,44 +1,88 @@
 /* Personaliza el estilo del interruptor */
 .form-check-input {
-    width: 40px;
-    height: 20px;
-    background-color: #ddd;
+  width: 40px;
+  height: 20px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+/* Posiciona el ícono del usuario */
+.user-icon-container {
+  position: fixed;
+  top: 10px;
+  right: 15px;
+  z-index: 1050;
+}
+
+/* Estilos personalizados para el dropdown */
+.dropdown-menu {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.dropdown-menu img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.dropdown-menu p,
+.dropdown-menu h6 {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.dropdown-menu .form-check {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilos generales para el dropdown */
+.dropdown {
+  margin: 0 0 10px 0;
+}
+#userDropdown {
+  margin: 0 0 10px 0;
+}
+
+/* Estilos personalizados para las filas */
+.custom-row {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd; /* Opcional */
+  border-radius: 5px; /* Opcional */
+  background-color: #f9f9f9; /* Opcional */
+}
+.custom-image {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+}
+.custom-row div {
+  flex: 1;
+}
+
+/* Estilos de la navegación */
+.navbar-nav {
+  flex-direction: row; /* Asegura que los elementos estén en fila en pantallas grandes */
+  align-items: center;
+}
+
+.nav-item {
+  margin-right: 15px; /* Ajusta el margen para separación horizontal */
+}
+
+.navbar-collapse {
+  display: flex;
+  justify-content: flex-start; /* Alinea los elementos a la izquierda */
+}
+
+/* Media query para pantallas de 768px y menores */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    align-items: flex-start;
   }
-  
-  /* Estilos para hacer el dropdown más personalizado */
-  .dropdown-menu {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .nav-item {
+    margin-right: 0; /* Elimina el margen derecho */
+    margin-bottom: 10px; /* Agrega margen inferior para separación vertical */
   }
-  
-  .dropdown-menu img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-  }
-  
-  .dropdown-menu .form-check {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .form-check-input {
-    cursor: pointer;
-  }
-  
-  /* Reducir el tamaño de la fuente en el dropdown */
-  .dropdown-menu p,
-  .dropdown-menu h6 {
-    font-size: 12px; /* Ajusta el tamaño de la fuente */
-    margin-bottom: 0; /* Eliminar márgenes inferiores para más espacio */
-  }
-  
-  .dropdown {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  
-  #userDropdown {
-    margin-bottom: 10px;
-    margin-top: 0;
-  }
+}

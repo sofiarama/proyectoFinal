@@ -51,26 +51,29 @@ document.addEventListener("DOMContentLoaded", function () {
     titulo3.textContent = "MUEBLES JAP";
     barra.style.justifyContent = "center";
   }
+// Función para mostrar productos
+function mostrarProductos(listaProductos) {
+  productContainer.innerHTML = ''; // Limpiar el contenedor
+  listaProductos.forEach((producto) => {
+    const productItem = document.createElement('div');
+    productItem.className = 'row mb-4 p-3 border rounded shadow-sm bg-light';
+    productItem.innerHTML = `
+      <div class="col-12 d-flex align-items-center">
+        <img src="${producto.image}" alt="${producto.name}" class="img-fluid me-4" style="max-width: 200px; height: auto;">
+        <div>
+          <h5>${producto.name}</h5>
+          <p>${producto.description}</p>
+          <p><strong>Precio:</strong> ${producto.cost} ${producto.currency}</p>
+          <p><strong>Vendidos:</strong> ${producto.soldCount}</p>
+        </div>
+      </div>`;
+    productItem.addEventListener('click', () => saveProductId(producto.id)); // Asignar evento de clic
+    productContainer.appendChild(productItem);
+  });
+}
 
-  // Función para mostrar productos
-  function mostrarProductos(listaProductos) {
-    productContainer.innerHTML = ''; // Limpiar el contenedor
-    listaProductos.forEach((producto) => {
-      const productItem = `
-        <div class="colum col-lg-4 col-md-6 col-12">
-          <div class="card mb-4 shadow-sm" onclick="saveProductId(${producto.id})">
-            <img src="${producto.image}" alt="${producto.name}" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">${producto.name}</h5>
-              <p class="card-text">${producto.description}</p>
-              <p class="card-text"><strong>Precio:</strong> ${producto.cost} ${producto.currency}</p>
-              <p class="card-text"><strong>Vendidos:</strong> ${producto.soldCount}</p>
-            </div>
-          </div>
-        </div>`;
-      productContainer.innerHTML += productItem;
-    });
-  }
+
+
 
   // Cargar productos desde la API (para todas las categorías)
   function cargarProductos() {
