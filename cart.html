@@ -22,12 +22,15 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/styleUser.css"/>
+   
     <link href="css/cart.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/my-profile.css" />
+
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
       <div class="container position-relative">
         <!-- Botón de Menú Hamburguesa para pantallas pequeñas -->
         <button
@@ -42,10 +45,11 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Ícono carrito compras con badge -->
+        <!-- Contenedor para el carrito de compras e ícono de usuario -->
         <div
           class="d-flex position-absolute top-0 end-0 me-3 mt-2 align-items-center"
         >
+          <!-- Ícono carrito compras con badge -->
           <a class="nav-link position-relative me-3" href="cart.html">
             <i class="fas fa-shopping-cart"></i>
             <span
@@ -60,7 +64,7 @@
           <!-- Ícono de usuario con dropdown -->
           <div class="dropdown">
             <a
-              class="dropdown-toggle text-white"
+              class="dropdown-toggle user-icon"
               href="#"
               id="userDropdown"
               role="button"
@@ -104,9 +108,9 @@
                     type="checkbox"
                     id="darkModeSwitch"
                   />
-                  <label class="form-check-label" for="darkModeSwitch"
-                    >Modo Oscuro</label
-                  >
+                  <label class="form-check-label" for="darkModeSwitch">
+                    Modo Oscuro
+                  </label>
                 </div>
               </li>
               <li><hr class="dropdown-divider" /></li>
@@ -133,17 +137,88 @@
         </div>
       </div>
     </nav>
-
     <main>
       <div class="container">
-        <div class="title mt-4">
-          <h1>Tú Carrito de <br />Compras</h1>
-        </div>
-        <div id="cart-items">
-          <!-- aca van los items -->
+        <div class="row">
+          <!-- Sección de Items del Carrito (70%) -->
+          <div id="cart-items-container" class="col-lg-7">
+            <div class="title mt-4">
+              <h1>Tu Carrito de <br />Compras</h1>
+            </div>
+            <div id="cart-items">
+              <!-- Aquí se cargarán los productos dinámicamente -->
+            </div>
+          </div>
+
+        <!-- Sección de Opciones de Compra (30%) -->
+<div class="col-lg-5 mt-4">
+  <div class="card p-3 shadow-sm">
+    <h3 class="mb-3">Opciones de Compra</h3>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" id="optionsTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab" aria-controls="shipping" aria-selected="true">Tipo de Envío</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false">Forma de Pago</button>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" id="optionsTabContent">
+      <!-- Tipo de Envío -->
+      <div class="tab-pane fade show active" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
+        <div class="mt-3">
+          <h4>Tipo de Envío</h4>
+          <div class="form-check">
+            <input type="radio" id="premium" name="shippingType" class="form-check-input" value="15" checked>
+            <label for="premium" class="form-check-label">Premium 2 a 5 días (15%)</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" id="express" name="shippingType" class="form-check-input" value="7">
+            <label for="express" class="form-check-label">Express 5 a 8 días (7%)</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" id="standard" name="shippingType" class="form-check-input" value="5">
+            <label for="standard" class="form-check-label">Standard 12 a 15 días (5%)</label>
+          </div>
         </div>
       </div>
+
+      <!-- Forma de Pago -->
+      <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+        <div class="mt-3">
+          <h4>Forma de Pago</h4>
+          <div class="form-check">
+            <input type="radio" id="creditCard" name="paymentMethod" class="form-check-input" value="credit" checked>
+            <label for="creditCard" class="form-check-label">Tarjeta de Crédito</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" id="bankTransfer" name="paymentMethod" class="form-check-input" value="bankTransfer">
+            <label for="bankTransfer" class="form-check-label">Transferencia Bancaria</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Costos -->
+    <div class="mt-4">
+      <h3>Costos</h3>
+      <p><strong>Subtotal:</strong> <span id="subtotal">0</span> USD</p>
+      <p><strong>Costo de Envío:</strong> <span id="shippingCost">0</span> USD</p>
+      <p><strong>Total:</strong> <span id="totalCost">0</span> USD</p>
+    </div>
+
+    <!-- Botón Finalizar Compra -->
+    <div class="mt-4">
+      <button id="checkoutBtn" class="btn btn-primary">Finalizar Compra</button>
+    </div>
+  </div>
+</div>
+
     </main>
+
     <footer class="text-muted">
       <div class="container">
         <p class="float-end">
@@ -168,5 +243,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/authHandler.js"></script>
+    <script src="js/my-profile.js"></script>
   </body>
 </html>

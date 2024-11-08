@@ -1,40 +1,32 @@
+/* Botones y contenedores principales */
 .btn-ofertas {
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.852);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
-/* .user-info {
-  position: fixed; 
-  top: 1px; 
-  right: 10px; 
-  z-index: 1000; 
+.user-dropdown {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
 }
 
-#navbarNav {
-  padding: 10px;
-} */
-
+/* Estilos de navegación */
 #backArrow {
-  position: absolute; 
-  /* top: 10px;  */
-  left: 10px; 
-  font-size: 1.5rem; 
-  /* z-index: 1000;  */
+  position: absolute;
+  left: 10px;
+  font-size: 1.5rem;
   text-decoration: none;
 }
 
 #backArrow:hover {
-  color: #ccc; /* Cambiar color al hacer hover sobre la flecha */
+  color: #ccc;
 }
 
-.contenedor img {
-  max-width: 100%;
-  height: auto;
-}
-
+/* Contenedor de imágenes */
 .contenedor {
   background-image: url(../img/auto\ rojo.jpg);
   background-size: cover;
@@ -43,36 +35,47 @@
   display: flex;
 }
 
-h1 {
-  text-align: right;
-  font-weight: bold;
-  margin: 10px 10px 10px 10px;
+.contenedor img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Encabezados */
+h1,
+h2,
+h3 {
   color: white;
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
-    1px 1px 0 black;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-h2 {
-  /* margin-top: 5px; */
-  margin-left: 400px;
+h1 {
+  text-align: right;
+  font-weight: bold;
+  margin: 10px;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
+}
+
+h2,
+h3 {
+  margin-top: 25px;
+  margin-left: 20px;
   font-size: 30px;
-  color: white;
-  font-family: Arial Impact;
   word-spacing: 10px;
 }
 
+h2 {
+  margin-left: 400px;
+  font-family: "Arial Impact";
+}
+
 h3 {
-  margin-top: 25px;
   margin-right: 100px;
-  margin-left: 20px;
-  font-size: 30px;
   color: red;
-  font-family: Arial Impact;
-  word-spacing: 10px;
   letter-spacing: 1px;
 }
-/* estilos del buscador */
+
+/* Estilos del buscador */
 .search-container {
   display: flex;
   justify-content: center;
@@ -102,13 +105,14 @@ h3 {
 
 .search-box i {
   position: absolute;
-  left: 15px; /* Posicionar el ícono de la lupa a la izquierda */
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 20px; /* Tamaño del ícono */
-  color: #999; /* Color del ícono */
+  font-size: 20px;
+  color: #999;
 }
 
+/* Botones y tabs */
 #ofertasBtn,
 #productsBtn,
 #nuevosIngresosBtn {
@@ -129,12 +133,33 @@ h3 {
 .tabs {
   margin-left: 100px;
 }
+
 .border-left-custom {
   display: inline-block;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-right: 1.5px solid #6b6767; /* Define el grosor y color del borde */
-  margin-left: 10px; /* Espacio antes de la raya */
+  padding: 0 15px;
+  border-right: 1.5px solid #6b6767;
+  margin-left: 10px;
+}
+
+/* Estilos de los tabs */
+.tablink {
+  background-color: rgba(255, 255, 255, 0.93);
+  border: 2px solid red;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(8, 7, 7);
+  padding: 12px;
+  margin-top: 1px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.tablink:hover {
+  background-color: rgb(255, 0, 0);
 }
 
 .tablink.active {
@@ -153,78 +178,45 @@ h3 {
   display: block;
 }
 
-.tablink {
-  background-color: rgba(255, 255, 255, 0.93);
-  border: 2px solid red;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  color: rgb(8, 7, 7);
-  padding: 12px 12px;
-  margin-top: 1px;
-  text-align: center;
-  display: inline-block;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.tablink:hover {
-  background-color: rgb(255, 0, 0);
-}
-
+/* Contenedor de productos */
 #product-container {
   padding: auto;
-  margin-top: 20px;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin: 20px 150px;
 }
-/* Fija el botón y el filtro a la derecha */
+
+/* Estilo de filtro fijo */
 .filtro-fijo {
-  position: fixed; /* Fija el contenedor */
-  bottom: 20px; /* Posición desde la parte inferior */
-  right: 20px; /* Posicionar a la derecha */
-  z-index: 999; /* Asegura que esté por encima de otros elementos */
-  width: auto; /* Ajusta el ancho según sea necesario */
-}
-/* Estilo para el mensaje cuando no hay productos */
-.no-products-message {
-  margin-top: 50px;
-  font-size: 1.5rem;
-  color: #333;
-  text-align: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: auto;
 }
 
-.no-products-message i {
-  margin-top: 10px;
-  font-size: 2rem; /* Ajustar tamaño del icono */
-  color: gray; /* Color del icono */
-}
-/* Hacer la tarjeta del filtro transparente con efecto difuminado */
+/* Estilo de tarjeta de filtro */
 .filtro-fijo .card {
-  background-color: rgba(255, 255, 255, 0.3); /* Transparencia ligera */
-  backdrop-filter: blur(10px); /* Efecto de difuminado */
-  border: none; /* Quitar el borde */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agregar una sombra suave */
-  border-radius: 10px; /* Redondear los bordes */
-  padding: 15px; /* Espaciado interno */
-  max-height: 80vh; /* Limitar la altura al 80% de la ventana */
-  overflow-y: auto; /* Habilitar scroll si el contenido es muy largo */
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 15px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
-/* Botones de filtrado y limpiar alineados */
+/* Botones de filtrado */
 .filtro-fijo .btn-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px; /* Espacio entre los campos de precio y los botones */
+  margin-top: 10px;
 }
 
-/* Solo el botón exterior tendrá el efecto pulsante */
+/* Botón pulsante */
 .filtro-fijo > button {
-  animation: pulse 1.5s infinite; /* Aplica la animación solo al botón exterior */
+  animation: pulse 1.5s infinite;
 }
 
-/* Animación de pulsación (latido) */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -236,67 +228,22 @@ h3 {
     transform: scale(1);
   }
 }
-/* Ocultar la flecha en pantallas de 768px y menores */
-@media (max-width: 768px) {
-  #backArrow {
-    display: none;
-  }
-  .container {
-    padding: 1rem;
-  }
-}
-/* En pantallas más grandes, restaura el estilo */
-@media (min-width: 992px) {
-  .user-info {
-    position: static;
-    margin-left: auto; /*Deja espacio a la derecha del menú */
-    margin-right: 0;
-  }
-}
-/* para medidas moviles */
-@media only screen and (max-width: 568px) {
-  .contenedor {
-    height: 200px;
-  }
 
-  .btn-ofertas {
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
-  .user-info {
-    position: right;
-    right: 10px;
-  }
-
-  h1 {
-    text-align: left;
-  }
-
-  h2 {
-    display: none;
-  }
-
-  h3 {
-    display: none;
-  }
-
-  #product-container {
-    padding: 0;
-    margin-top: 20px;
-    margin-left: 15px;
-    margin-right: 15px;
-  }
+/* Mensaje cuando no hay productos */
+.no-products-message {
+  margin-top: 50px;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
 }
 
-/* Personaliza el estilo del interruptor */
-.form-check-input {
-  width: 40px;
-  height: 20px;
-  background-color: #ddd;
+.no-products-message i {
+  margin-top: 10px;
+  font-size: 2rem;
+  color: gray;
 }
 
-/* Estilos para hacer el dropdown más personalizado */
+/* Estilos personalizados de dropdown */
 .dropdown-menu {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -315,21 +262,68 @@ h3 {
 
 .form-check-input {
   cursor: pointer;
+  width: 40px;
+  height: 20px;
+  background-color: #ddd;
 }
 
-/* Reducir el tamaño de la fuente en el dropdown */
 .dropdown-menu p,
 .dropdown-menu h6 {
-  font-size: 12px; /* Ajusta el tamaño de la fuente */
-  margin-bottom: 0; /* Eliminar márgenes inferiores para más espacio */
+  font-size: 12px;
+  margin-bottom: 0;
 }
 
 .dropdown {
-  margin-top: 0;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
 }
 
 #userDropdown {
-  margin-bottom: 10px;
-  margin-top: 0;
+  margin: 10px 0;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  #backArrow {
+    display: none;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .user-info {
+    position: static;
+    margin-left: auto;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .contenedor {
+    height: 200px;
+  }
+
+  .btn-ofertas {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .user-info {
+    position: right;
+    right: 10px;
+  }
+
+  h1 {
+    text-align: left;
+  }
+
+  h2,
+  h3 {
+    display: none;
+  }
+
+  #product-container {
+    padding: 0;
+    margin: 20px 15px;
+  }
 }

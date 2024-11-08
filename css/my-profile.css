@@ -1,13 +1,31 @@
 .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    justify-content: center;
-    color: red;
-  }
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  justify-content: center;
+}
+.user-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #4caf50;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.d-flex .nav-link {
+  color: white;
+}
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -31,13 +49,13 @@
 /* .profile-pic {
   width: 150px;
   height: 150px; */
-  /* object-fit: cover; */
-  /* border-radius: 50%; */
-  .profile-pic {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 20%;
+/* object-fit: cover; */
+/* border-radius: 50%; */
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 20%;
 }
 
 body.dark-mode {
@@ -50,13 +68,12 @@ body.dark-mode {
 }
 
 .card {
-    margin: 2rem;
+  margin: 2rem;
 }
 
 .datos {
-  color: red;
   text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-weight: bolder;
 }
 
@@ -65,9 +82,8 @@ body.dark-mode {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 1rem;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-weight: bolder;
-  color: red;
 }
 
 .datos {
@@ -79,7 +95,7 @@ body.dark-mode {
 }
 
 .form-label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /* Estilos para hacer el dropdown más personalizado */
@@ -98,7 +114,6 @@ body.dark-mode {
   justify-content: space-between;
   align-items: center;
 }
-
 
 /* Reducir el tamaño de la fuente en el dropdown */
 .dropdown-menu p,
