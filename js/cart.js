@@ -93,16 +93,39 @@ document.addEventListener("DOMContentLoaded", function () {
     shippingInputs.forEach(input => {
         input.addEventListener('change', calculateCosts);
     });
+  
+   // Escuchar el evento de clic para el botón "Finalizar Compra"
+   const checkoutBtn = document.getElementById('checkoutBtn');
+   if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function (event) {
+        // Prevenir la acción predeterminada si hay campos vacíos
+        event.preventDefault();
 
-    // Escuchar el evento de clic para el botón "Finalizar Compra"
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function () {
-            alert('Gracias por tu compra!'); // Mensaje de confirmación
-            localStorage.removeItem('cart'); // Vaciar el carrito
-            window.location.href = 'index.html'; // Redirigir a la página de inicio o donde desees
-        });
-    }
+        // Obtener los campos de dirección de envío
+        const department = document.getElementById('department');
+        const locality = document.getElementById('locality');
+        const street = document.getElementById('street');
+        const number = document.getElementById('number');
+        const corner = document.getElementById('corner');
+
+        // Validar si los campos están vacíos
+        if (
+            !department.value.trim() ||
+            !locality.value.trim() ||
+            !street.value.trim() ||
+            !number.value.trim() ||
+            !corner.value.trim()
+        ) {
+            alert('Por favor, completa todos los campos requeridos antes de finalizar la compra.');
+            return;
+        }
+
+        // Si todos los campos están completos, muestra el mensaje de confirmación
+        alert ('Gracias por tu compra!'); // Mensaje de confirmación
+        localStorage.removeItem('cart'); // Vaciar el carrito
+        window.location.href = 'index.html'; // Redirigir a la página de inicio o donde desees
+    });
+   }
 
     // Inicializar
     updateCartBadge();
