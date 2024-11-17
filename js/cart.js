@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                             <div class="subtotal">
                                 <p>Subtotal: <span id="total-${index}">${product.currency} ${(product.cost * product.quantity).toFixed(2)}</span></p>
-                                <button class="btn btn-info btn-sm mt-2" onclick="removeItem(${index})">Eliminar</button>
+                                <button class="btn btn-sm mt-2" onclick="removeItem(${index})"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>
                     </div>
