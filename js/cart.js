@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                             <div class="subtotal">
                                 <p>Subtotal: <span id="total-${index}">${product.currency} ${(product.cost * product.quantity).toFixed(2)}</span></p>
+                                <button class="btn btn-info btn-sm mt-2" onclick="removeItem(${index})">Eliminar</button>
                             </div>
                         </div>
                     </div>
@@ -55,10 +56,21 @@ document.addEventListener("DOMContentLoaded", function () {
     window.updateQuantity = function (index, quantity) {
         quantity = parseInt(quantity) || 1;
         cart[index].quantity = quantity;
+        
         localStorage.setItem('cart', JSON.stringify(cart));
         renderCartItems(); // Volver a renderizar los elementos
-        updateCartBadge();
+        updateCartBadge(); // Actualizar badge
     }
+
+    // Función para eliminar un producto
+    window.removeItem = function (index) {
+    
+    cart.splice(index, 1);  // Eliminar el producto del carrito
+    localStorage.setItem('cart', JSON.stringify(cart));   // Guardar los cambios en localStorage
+    // Actualizar 
+    renderCartItems();
+    updateCartBadge();
+};
 
     // Función para calcular costos
     function calculateCosts() {
