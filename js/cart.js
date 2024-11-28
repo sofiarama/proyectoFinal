@@ -127,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
         input.addEventListener('change', calculateCosts);
     });
 
+    let MSG = "Por favor, completa todos los campos requeridos antes de finalizar la compra.";
     // Escuchar el evento de clic para el botón "Finalizar Compra"
     const checkoutBtn = document.getElementById('checkoutBtn');
     if (checkoutBtn) {
@@ -140,19 +141,29 @@ document.addEventListener("DOMContentLoaded", function () {
             const number = document.getElementById('number');
             const corner = document.getElementById('corner');
 
+            let msgToShowHTML = document.getElementById("resultSpan");
+            let msgToShow = "";
             // Validar si los campos están vacíos
-            if (
-                !department.value.trim() ||
+            if (!department.value.trim() ||
                 !locality.value.trim() ||
                 !street.value.trim() ||
                 !number.value.trim() ||
-                !corner.value.trim()
-            ) {
-                alert('Por favor, completa todos los campos requeridos antes de finalizar la compra.');
+                !corner.value.trim()) {
+                msgToShow = MSG;
+                document.getElementById("alertResult").classList.add('alert-primary');
+                msgToShowHTML.innerHTML = msgToShow;
+                document.getElementById("alertResult").classList.add("show");
+                setTimeout(() => document.getElementById("alertResult").classList.remove('show'), 3000);
                 return;
             }
+            getJSONData(CART_BUY_URL).then(function(resultObj){
+                msgToShow = resultObj.data.msg; //aca se cambia.
+                document.getElementById("alertResult").classList.add('alert-primary');
+                msgToShowHTML.innerHTML = msgToShow;
+            });
+            document.getElementById("alertResult").classList.add("show");
+            setTimeout(() => document.getElementById("alertResult").classList.remove('show'), 3000);
 
-            alert('Gracias por tu compra!');
             localStorage.removeItem('cart'); // Vaciar el carrito
             window.location.href = 'index.html'; // Redirigir a la página de inicio o donde desees
         });

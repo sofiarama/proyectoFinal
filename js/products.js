@@ -5,17 +5,14 @@ function saveProductId(productId) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Obtener los parámetros de la URL
-  const params = new URLSearchParams(window.location.search);
-  const categoria = params.get('categoria') || 'autos'; // Por defecto, "autos"
 
-  // Seleccionar los elementos que se cambian dependiendo de la categoría
-  const mainFoto = document.getElementsByClassName('contenedor')[0];
+  /* PASARLO AL HTML */
   const titulo = document.querySelector('h1');
   const boton1 = document.getElementById('ofertasBtn');
   const boton2 = document.getElementById('nuevosIngresosBtn');
   const titulo3 = document.querySelector('h3');
   const barra = document.getElementsByClassName('btn-ofertas')[0];
+  /* ------ */
   const productContainer = document.getElementById("product-container");
   const searchBox = document.getElementById('searchBox');
   const minPriceInput = document.getElementById("minPrice");
@@ -27,37 +24,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let productos = []; // Array global para almacenar los productos cargados
 
-  // Definir la URL correcta para cada categoría
-  let apiUrl;
-  if (categoria === 'autos') {
-    apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-    // Mostrar los botones "Ofertas" y "Nuevos Ingresos" solo para la categoría autos
-    boton1.style.display = "inline-block";
-    boton2.style.display = "inline-block";
-  } else if (categoria === 'juguetes') {
-    apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/102.json';
-    mainFoto.style.backgroundImage = "url('img/toys_index.jpg')";
-    titulo.innerHTML = "ENCONTRÁ LOS JUGUETES<br> DE TUS SUEÑOS";
-    boton1.style.display = "none";
-    boton2.style.display = "none";
-    titulo3.textContent = "JUGUETES JAP";
-    barra.style.justifyContent = "center";
-  } else if (categoria === 'muebles') {
-    apiUrl = 'https://japceibal.github.io/emercado-api/cats_products/103.json';
-    mainFoto.style.backgroundImage = "url('img/furniture_index.jpg')";
-    titulo.innerHTML = "ENCONTRÁ LOS MUEBLES<br> DE TUS SUEÑOS";
-    boton1.style.display = "none";
-    boton2.style.display = "none";
-    titulo3.textContent = "MUEBLES JAP";
-    barra.style.justifyContent = "center";
-  }
-// Función para mostrar productos
-function mostrarProductos(listaProductos) {
-  productContainer.innerHTML = ''; // Limpiar el contenedor
-  listaProductos.forEach((producto) => {
-    const productItem = document.createElement('div');
-    productItem.className = 'row mb-4 p-3 border rounded shadow-sm bg-light';
-    productItem.innerHTML = `
+  
+  titulo.innerHTML = "";
+  boton1.style.display = "none";
+  boton2.style.display = "none";
+  titulo3.textContent = "PRODUCTOS JAP";
+  barra.style.justifyContent = "center";
+
+
+  // Función para mostrar productos
+  function mostrarProductos(listaProductos) {
+    productContainer.innerHTML = ''; // Limpiar el contenedor
+    listaProductos.forEach((producto) => {
+      const productItem = document.createElement('div');
+      productItem.className = 'row mb-4 p-3 border rounded shadow-sm bg-light';
+      productItem.innerHTML = `
       <div class="col-12 d-flex align-items-center">
         <img src="${producto.image}" alt="${producto.name}" class="img-fluid me-4" style="max-width: 200px; height: auto;">
         <div>
@@ -67,29 +48,19 @@ function mostrarProductos(listaProductos) {
           <p><strong>Vendidos:</strong> ${producto.soldCount}</p>
         </div>
       </div>`;
-    productItem.addEventListener('click', () => saveProductId(producto.id)); // Asignar evento de clic
-    productContainer.appendChild(productItem);
-  });
-}
-
-
-
+      productItem.addEventListener('click', () => saveProductId(producto.id)); // Asignar evento de clic
+      productContainer.appendChild(productItem);
+    });
+  }
 
   // Cargar productos desde la API (para todas las categorías)
   function cargarProductos() {
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        productos = data.products; // Guardar los productos en el array global
-        mostrarProductos(productos); // Mostrar productos
-      })
-      .catch((error) => {
-        console.error("Error al cargar los productos:", error);
-        productContainer.innerHTML = `<p>Error al cargar los productos. Intenta nuevamente más tarde.</p>`;
-      });
+    getJSONProd(PRODUCTS_URL).then(function(resultObj){
+      mostrarProductos(resultObj);
+    });
   }
 
-    // Cargar productos de Ofertas (archivo JSON local)
+  // Cargar productos de Ofertas (archivo JSON local)
   function cargarOfertas() {
     fetch('https://sofiarama.github.io/proyectoFinal/data/ofertas.json') // Archivo local para ofertas de autos
       .then((response) => response.json())
@@ -116,8 +87,8 @@ function mostrarProductos(listaProductos) {
   }
 
 
-  
-    // Cargar productos de Nuevos Ingresos (archivo JSON local)
+
+  // Cargar productos de Nuevos Ingresos (archivo JSON local)
   function cargarNuevosIngresos() {
     fetch('https://sofiarama.github.io/proyectoFinal/data/nuevos-ingresos.json') // Archivo local para nuevos ingresos de autos
       .then((response) => response.json())
@@ -155,7 +126,7 @@ function mostrarProductos(listaProductos) {
     const searchTerm = searchBox.value.toLowerCase();
     const productosFiltrados = productos.filter(producto => {
       return producto.name.toLowerCase().includes(searchTerm) ||
-             producto.description.toLowerCase().includes(searchTerm);
+        producto.description.toLowerCase().includes(searchTerm);
     });
     mostrarProductos(productosFiltrados);
   }
@@ -246,15 +217,15 @@ function mostrarProductos(listaProductos) {
   const pictureId = localStorage.getItem('profilePic');
 
   if (pictureId) {
-      document.getElementById("pictureID").src = pictureId;
+    document.getElementById("pictureID").src = pictureId;
   }
 
   const logoutButton = document.getElementById('logout');
-    logoutButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        localStorage.removeItem('userEmail');
-        window.location.href = 'login.html';
-    });
+  logoutButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    localStorage.removeItem('userEmail');
+    window.location.href = 'login.html';
+  });
 
   // Simulación de login para obtener el correo del usuario
   const userEmail = localStorage.getItem('userEmail') || 'ejemplo@correo.com'; // Usar sessionStorage o un correo por defecto

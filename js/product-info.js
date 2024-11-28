@@ -10,33 +10,31 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (productID) {
-        const url = PRODUCT_INFO_URL + productID + EXT_TYPE;
+        const url = PRODUCT_INFO_URL; /* + productID *//*  + EXT_TYPE */
 
-        fetch(url)
-            .then(response => response.json())
-            .then(product => {
-                productData = product;
-                if (product) {
+        getJSONProd(url).then(function(resultObj) {
+                productData = resultObj;
+                if (productData) {
                     const productContainer = document.getElementById("contenedor");
                     productContainer.innerHTML = `
                         <div class="car row">
                             <div class="image-gallery col-sm-12">
                                 <div class="thumbnail-images d-flex justify-content-around mb-3">
-                                    <img src="${product.images[1]}" alt="small image" class="thumbnail img-fluid">
-                                    <img src="${product.images[2]}" alt="small image" class="thumbnail img-fluid">
-                                    <img src="${product.images[3]}" alt="small image" class="thumbnail img-fluid">
+                                    <img src="${productData.images[1]}" alt="small image" class="thumbnail img-fluid">
+                                    <img src="${productData.images[2]}" alt="small image" class="thumbnail img-fluid">
+                                    <img src="${productData.images[3]}" alt="small image" class="thumbnail img-fluid">
                                 </div>
                                 <div class="main-image">
-                                    <img src="${product.images[0]}" alt="Main image" id="main-display" class="img-fluid">
+                                    <img src="${productData.images[0]}" alt="Main image" id="main-display" class="img-fluid">
                                 </div>
                             </div>
                             <div class="descripcion col-md-6 col-sm-12">
-                                <h4 class="title">${product.name}</h4>
+                                <h4 class="title">${productData.name}</h4>
                                 <hr class="linea2">
-                                <p class="description">${product.description}</p>
-                                <p class="soldCount">Vendidos: ${product.soldCount}</p>
-                                <h6 class="category">${product.category}</h6>
-                                <p class="price">Precio: ${product.currency} ${product.cost}</p>
+                                <p class="description">${productData.description}</p>
+                                <p class="soldCount">Vendidos: ${productData.soldCount}</p>
+                                <h6 class="category">${productData.category}</h6>
+                                <p class="price">Precio: ${productData.currency} ${productData.cost}</p>
                                 <div class="d-flex align-items-center">
                                     <input type="number" id="cantidad" class="form-control w-25 me-2" value="1" min="1">
                                     <button id="buyButton" class="btn btn-primary">Comprar</button>
@@ -62,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             image: productData.images[0],
                             subtotal: subtotal
                         };
-
+                    
                         // Buscar si el producto ya está en el carrito
                         const index = cart.findIndex(item => item.id === productData.id);
                         if (index !== -1) {
@@ -88,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         });
                     });
 
-                    cargarProductosRelacionados(product.category);
+                    mostrarProductosRelacionados(productData.relatedProducts);
                 } else {
                     console.log("No se encontró el producto");
                 }
@@ -99,30 +97,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Cargar comentarios
-    fetch(`https://japceibal.github.io/emercado-api/products_comments/${productID}.json`)
-        .then(response => response.json())
-        .then(comentarios => mostrarComentarios(comentarios))
-        .catch(error => console.error("Error al cargar los comentarios:", error));
+    getJSONProd(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
+        mostrarComentarios(resultObj);
+    });
 
     // Configuración del botón de comentarios
     const btnMensaje = document.getElementById('btnCalif');
-    btnMensaje?.addEventListener("click", function () { 
-        const comentario = document.getElementById('comentario');
-        if (comentario?.value) {
-            const puntuacion = document.getElementById('puntuacion');
-            const nombre = sessionStorage.getItem('userEmail');
-            const fecha = new Date().toLocaleDateString();
-            const time = new Date().toLocaleTimeString();
-            const comentariosContainer = document.getElementById('comentarios-container');
-            const comentarioHTML = `
-                <div class="comentario">
-                    <p class="nombreUser">${nombre.slice(0, nombre.length - 10)}</p>  (${fecha} ${time}):
-                    <p>${comentario.value}</p>
-                    <p><strong>Puntuación:</strong> ${estrellas(puntuacion.value)}</p>
-                </div>
-            `;
-            comentariosContainer.innerHTML += comentarioHTML;
-            comentario.value = "";
+    btnMensaje.addEventListener("click", function () { 
+        event.preventDefault();
+        if (comentario.value) {
+            const nombre = "Sofia";
+            let fecha = new Date().toISOString();
+            const comment = {
+                name: nombre,
+                date: fecha.replace('T', ' ').substring(0, 19),
+                comentValue: document.getElementById('comentario').value,
+                punt: document.getElementById('puntuacion').value,
+            };
+            localStorage.setItem('comentario', JSON.stringify(comment));
+            console.log(localStorage.getItem('comentario'));
+            getJSONComent(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
+                mostrarComentarios(resultObj);
+            });
+            document.getElementById('comentario').value = "";
         }
     });
 
@@ -149,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Función para mostrar estrellas de puntuación
 function estrellas(puntos) {
-    return Array(5).fill().map((_, i) =>
-        `<span class="fa fa-star${i < puntos ? ' checked' : ''}"></span>`
+    return Array(5).fill('').map((_, i) =>
+        `<span class="fa fa-star ${i < puntos ? 'checked' : ''}"></span>`
     ).join('');
 }
 
@@ -168,21 +165,11 @@ function mostrarComentarios(comentarios) {
         : '<p>No hay comentarios para este producto.</p>';
 }
 
-// Función para cargar productos relacionados
-function cargarProductosRelacionados(category) {
-    const categoryId = obtenerCategoryId(category);
-
-    fetch(`https://japceibal.github.io/emercado-api/cats_products/${categoryId}.json`)
-        .then(response => response.json())
-        .then(data => mostrarProductosRelacionados(data.products))
-        .catch(error => console.error("Error al cargar productos relacionados:", error));
-}
-
-function mostrarProductosRelacionados(productos) {
+function mostrarProductosRelacionados(products) {
     const contenedor = document.getElementById('listaProductosRelacionados');
     contenedor.innerHTML = '';
 
-    productos.forEach(producto => {
+    products.forEach(producto => {
         const div = document.createElement('div');
         div.className = 'col-6 col-md-4 col-lg-3 mb-4';
 
@@ -191,26 +178,13 @@ function mostrarProductosRelacionados(productos) {
               <img src="${producto.image}" class="card-img-top" alt="${producto.name}">
               <div class="card-body">
                 <h5 class="card-title">${producto.name}</h5>
-                <p class="card-text">${producto.currency} ${producto.cost}</p>
               </div>
-            </div>
-        `;
-
+            </div>`;
         div.onclick = () => {
             localStorage.setItem('productId', producto.id);
             window.location.href = 'product-info.html';
         };
-
         contenedor.appendChild(div);
     });
-}
-
-function obtenerCategoryId(category) {
-    const categoryMap = {
-        "Autos": 101,
-        "Juguetes": 102,
-        "Muebles": 103,
-    };
-    return categoryMap[category] || 101;
 }
 
