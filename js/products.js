@@ -1,241 +1,101 @@
-// Guardar el id del elemento en el localStorage
-function saveProductId(productId) {
-  localStorage.setItem('productId', productId);
-  window.location.href = 'product-info.html';
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  /* PASARLO AL HTML */
-  const titulo = document.querySelector('h1');
-  const boton1 = document.getElementById('ofertasBtn');
-  const boton2 = document.getElementById('nuevosIngresosBtn');
-  const titulo3 = document.querySelector('h3');
-  const barra = document.getElementsByClassName('btn-ofertas')[0];
-  /* ------ */
+document.addEventListener("DOMContentLoaded", async function () {
   const productContainer = document.getElementById("product-container");
-  const searchBox = document.getElementById('searchBox');
+  const searchBox = document.getElementById("searchBox");
+  const currencySelect = document.getElementById("currencySelect");
   const minPriceInput = document.getElementById("minPrice");
   const maxPriceInput = document.getElementById("maxPrice");
-  const filterPriceBtn = document.getElementById("filterPriceBtn");
-  const clearFilterBtn = document.getElementById("clearFilterBtn");
-  const sortOptions = document.getElementById("sortOptions");
-  const currencySelect = document.getElementById("currencySelect");
 
-  let productos = []; // Array global para almacenar los productos cargados
+  const selectedCategory = localStorage.getItem("selectedCategory");
+  const categoryUrls = {
+    autos: "json/cats_products/101.json",
+    juguetes: "json/cats_products/102.json",
+    muebles: "json/cats_products/103.json",
+  };
 
-  
-  titulo.innerHTML = "";
-  boton1.style.display = "none";
-  boton2.style.display = "none";
-  titulo3.textContent = "PRODUCTOS JAP";
-  barra.style.justifyContent = "center";
+  let allProducts = []; // Variable para almacenar los productos originales
 
+  if (!selectedCategory || !categoryUrls[selectedCategory]) {
+    productContainer.innerHTML =
+      "<p>Error: No se seleccionó una categoría válida.</p>";
+    return;
+  }
 
-  // Función para mostrar productos
+  try {
+    const response = await fetch(categoryUrls[selectedCategory]);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    allProducts = data.products; // Guardar los productos originales
+    mostrarProductos(allProducts);
+  } catch (error) {
+    console.error("Error al cargar productos:", error);
+    productContainer.innerHTML =
+      "<p>Hubo un error al cargar los productos. Intenta más tarde.</p>";
+  }
+
   function mostrarProductos(listaProductos) {
-    productContainer.innerHTML = ''; // Limpiar el contenedor
+    productContainer.innerHTML = ""; // Limpiar contenedor
+
+    if (!listaProductos || listaProductos.length === 0) {
+      productContainer.innerHTML =
+        "<p>No hay productos disponibles para esta categoría.</p>";
+      return;
+    }
+
     listaProductos.forEach((producto) => {
-      const productItem = document.createElement('div');
-      productItem.className = 'row mb-4 p-3 border rounded shadow-sm bg-light';
+      const productItem = document.createElement("div");
+      productItem.className =
+        "col-12 col-sm-6 col-md-4 col-lg-3 mb-4 p-3 border rounded shadow-sm bg-light";
       productItem.innerHTML = `
-      <div class="col-12 d-flex align-items-center">
-        <img src="${producto.image}" alt="${producto.name}" class="img-fluid me-4" style="max-width: 200px; height: auto;">
-        <div>
+        <div class="product-card">
+          <img src="${producto.image}" alt="${producto.name}" class="img-fluid mb-2">
           <h5>${producto.name}</h5>
           <p>${producto.description}</p>
           <p><strong>Precio:</strong> ${producto.cost} ${producto.currency}</p>
           <p><strong>Vendidos:</strong> ${producto.soldCount}</p>
+          <button class="btn btn-primary btn-sm">Ver más</button>
         </div>
-      </div>`;
-      productItem.addEventListener('click', () => saveProductId(producto.id)); // Asignar evento de clic
+      `;
+
+      productItem.querySelector("button").addEventListener("click", () => {
+        localStorage.setItem("productId", producto.id);
+        localStorage.setItem(
+          "relatedProducts",
+          JSON.stringify(listaProductos.filter((p) => p.id !== producto.id))
+        );
+        window.location.href = "product-info.html";
+      });
+
       productContainer.appendChild(productItem);
     });
   }
 
-  // Cargar productos desde la API (para todas las categorías)
-  function cargarProductos() {
-    getJSONProd(PRODUCTS_URL).then(function(resultObj){
-      mostrarProductos(resultObj);
-    });
-  }
-
-  // Cargar productos de Ofertas (archivo JSON local)
-  function cargarOfertas() {
-    fetch('https://sofiarama.github.io/proyectoFinal/data/ofertas.json') // Archivo local para ofertas de autos
-      .then((response) => response.json())
-      .then((data) => {
-        const productosOfertas = data.products;
-        mostrarProductos(productosOfertas); // Mostrar solo productos de ofertas
-        // Cambiar el título
-        titulo.innerHTML = "Ofertas!!!";
-        // Cambiar el texto del botón de ofertas a "Todos"
-        boton1.textContent = "Todos";
-        boton1.removeEventListener('click', cargarOfertas);
-        boton1.addEventListener('click', function restaurarAutos() {
-          cargarProductos(); // Volver a mostrar todos los productos
-          titulo.innerHTML = `ENCUENTRA EL AUTO<br> DE TUS SUEÑOS`;
-          boton1.textContent = "Ofertas";
-          boton1.removeEventListener('click', restaurarAutos); // Restaurar función
-          boton1.addEventListener('click', cargarOfertas);
-        });
-      })
-      .catch((error) => {
-        console.error("Error al cargar las ofertas:", error);
-        productContainer.innerHTML = `<p>Error al cargar las ofertas. Intenta nuevamente más tarde.</p>`;
-      });
-  }
-
-
-
-  // Cargar productos de Nuevos Ingresos (archivo JSON local)
-  function cargarNuevosIngresos() {
-    fetch('https://sofiarama.github.io/proyectoFinal/data/nuevos-ingresos.json') // Archivo local para nuevos ingresos de autos
-      .then((response) => response.json())
-      .then((data) => {
-        const productosNuevos = data.products;
-        mostrarProductos(productosNuevos); // Mostrar solo productos de nuevos ingresos
-        // Cambiar el título
-        titulo.innerHTML = "Últimos Ingresos!!!";
-        // Cambiar el texto del botón de nuevos ingresos a "Todos"
-        boton2.textContent = "Todos";
-        boton2.removeEventListener('click', cargarNuevosIngresos);
-        boton2.addEventListener('click', function restaurarAutos() {
-          cargarProductos(); // Volver a mostrar todos los productos
-          titulo.innerHTML = `ENCUENTRA EL AUTO<br> DE TUS SUEÑOS`;
-          boton2.textContent = "Nuevos Ingresos";
-          boton2.removeEventListener('click', restaurarAutos); // Restaurar función
-          boton2.addEventListener('click', cargarNuevosIngresos);
-        });
-      })
-      .catch((error) => {
-        console.error("Error al cargar los nuevos ingresos:", error);
-        productContainer.innerHTML = `<p>Error al cargar los nuevos ingresos. Intenta nuevamente más tarde.</p>`;
-      });
-  }
-
-
-  // Eventos para los botones de ofertas y nuevos ingresos (solo para autos)
-  if (categoria === 'autos') {
-    boton1.addEventListener('click', cargarOfertas);
-    boton2.addEventListener('click', cargarNuevosIngresos);
-  }
-
-  // Funciones de filtrado de productos (ya existentes)
   function filtrarProductos() {
-    const searchTerm = searchBox.value.toLowerCase();
-    const productosFiltrados = productos.filter(producto => {
-      return producto.name.toLowerCase().includes(searchTerm) ||
-        producto.description.toLowerCase().includes(searchTerm);
-    });
-    mostrarProductos(productosFiltrados);
-  }
-
-  searchBox.addEventListener('input', filtrarProductos);
-
-  // Función para convertir precios a UYU (si es necesario)
-  function convertirAPesos(cost, currency) {
-    const conversionRate = 40; // 1 USD = 40 UYU
-    return currency === 'USD' ? cost * conversionRate : cost;
-  }
-
-  // Función para convertir precios a USD (si es necesario)
-  function convertirADolares(cost, currency) {
-    const conversionRate = 40; // 1 USD = 40 UYU
-    return currency === 'UYU' ? cost / conversionRate : cost;
-  }
-
-  // Función para filtrar productos por precio según la moneda seleccionada
-  function filtrarPorPrecio() {
+    const searchQuery = searchBox.value.toLowerCase();
+    const selectedCurrency = currencySelect.value;
     const minPrice = parseFloat(minPriceInput.value) || 0;
     const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
-    const selectedCurrency = currencySelect.value;
 
-    if (minPrice > maxPrice) {
-      alert("El precio mínimo no puede ser mayor que el precio máximo");
-      return;
-    }
+    const filteredProducts = allProducts.filter((producto) => {
+      const matchesSearch =
+        producto.name.toLowerCase().includes(searchQuery) ||
+        producto.description.toLowerCase().includes(searchQuery);
+      const matchesCurrency = producto.currency === selectedCurrency;
+      const matchesPrice =
+        producto.cost >= minPrice && producto.cost <= maxPrice;
 
-    const productosFiltrados = productos.filter(producto => {
-      let precioConvertido;
-      if (selectedCurrency === 'UYU') {
-        precioConvertido = convertirAPesos(producto.cost, producto.currency);
-      } else {
-        precioConvertido = convertirADolares(producto.cost, producto.currency);
-      }
-      return precioConvertido >= minPrice && precioConvertido <= maxPrice;
+      return matchesSearch && matchesCurrency && matchesPrice;
     });
 
-    mostrarProductos(productosFiltrados);
+    mostrarProductos(filteredProducts);
   }
 
-  // Función para ordenar los productos
-  function ordenarProductos() {
-    const opcionSeleccionada = sortOptions.value;
-    const selectedCurrency = currencySelect.value;
-
-    let productosOrdenados = [...productos];
-
-    if (opcionSeleccionada === 'precioAsc') {
-      productosOrdenados.sort((a, b) => {
-        if (selectedCurrency === 'UYU') {
-          return convertirAPesos(a.cost, a.currency) - convertirAPesos(b.cost, b.currency);
-        } else {
-          return convertirADolares(a.cost, a.currency) - convertirADolares(b.cost, b.currency);
-        }
-      });
-    } else if (opcionSeleccionada === 'precioDesc') {
-      productosOrdenados.sort((a, b) => {
-        if (selectedCurrency === 'UYU') {
-          return convertirAPesos(b.cost, b.currency) - convertirAPesos(a.cost, a.currency);
-        } else {
-          return convertirADolares(b.cost, b.currency) - convertirADolares(a.cost, a.currency);
-        }
-      });
-    } else if (opcionSeleccionada === 'relevancia') {
-      productosOrdenados.sort((a, b) => b.soldCount - a.soldCount);
-    }
-
-    mostrarProductos(productosOrdenados);
-  }
-
-  // Función para limpiar los filtros
-  function limpiarFiltro() {
-    minPriceInput.value = '';
-    maxPriceInput.value = '';
-    mostrarProductos(productos); // Mostrar todos los productos sin filtrar
-  }
-
-  // Eventos para los botones de filtro, limpiar y ordenar
-  filterPriceBtn.addEventListener('click', filtrarPorPrecio);
-  clearFilterBtn.addEventListener('click', limpiarFiltro);
-  sortOptions.addEventListener('change', ordenarProductos);
-
-  // Cargar los productos al inicio
-  cargarProductos();
-
-  const pictureId = localStorage.getItem('profilePic');
-
-  if (pictureId) {
-    document.getElementById("pictureID").src = pictureId;
-  }
-
-  const logoutButton = document.getElementById('logout');
-  logoutButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    localStorage.removeItem('userEmail');
-    window.location.href = 'login.html';
-  });
-
-  // Simulación de login para obtener el correo del usuario
-  const userEmail = localStorage.getItem('userEmail') || 'ejemplo@correo.com'; // Usar sessionStorage o un correo por defecto
-
-  // Mostrar las iniciales en el ícono del usuario
-  const userDisplay = document.getElementById('userDisplay');
-  userDisplay.textContent = userEmail[0] + userEmail[1]; // Mostrar las dos primeras letras del correo
-
-  // Mostrar el correo completo dentro del dropdown
-  const userEmailElement = document.getElementById('userEmail');
-  userEmailElement.textContent = userEmail;
-
+  // Event listeners
+  searchBox.addEventListener("input", filtrarProductos);
+  currencySelect.addEventListener("change", filtrarProductos);
+  minPriceInput.addEventListener("input", filtrarProductos);
+  maxPriceInput.addEventListener("input", filtrarProductos);
 });
