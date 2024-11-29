@@ -1,52 +1,96 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const loginForm = document.getElementById('loginForm');
-    
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const registerFormContainer = document.getElementById("registerFormContainer");
+  const loginFormContainer = document.getElementById("loginFormContainer");
+  const showRegisterForm = document.getElementById("showRegisterForm");
+  const showLoginForm = document.getElementById("showLoginForm");
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+  // Alternar entre formularios
+  showRegisterForm.addEventListener("click", (e) => {
+    e.preventDefault();
+    loginFormContainer.style.display = "none";
+    registerFormContainer.style.display = "block";
+  });
 
-            // Verificación de que los campos no estén vacíos
-            if (username === "" || password === "") {
-                alert("Por favor, complete ambos campos.");
-                return;
-            }
+  showLoginForm.addEventListener("click", (e) => {
+    e.preventDefault();
+    registerFormContainer.style.display = "none";
+    loginFormContainer.style.display = "block";
+  });
 
-            // Verificación de que el campo de correo tenga un formato válido
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(username)) {
-                alert("Por favor, ingrese un correo electrónico válido.");
-                return;
-            }
+  // Manejo de inicio de sesión
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-            // Simulación de autenticación exitosa (autenticación ficticia)
-            sessionStorage.setItem("loggedIn", "true");
-            localStorage.setItem("userEmail", username); // Guardar el email como userEmail
+    const email = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-            // Redirigir a la página principal (index.html)
-            window.location.href = "index.html";
-        });
+    if (!email || !password) {
+      alert("Por favor, complete ambos campos.");
+      return;
     }
 
-    /* Funcionalidad para mostrar ícono del ojito dependiendo si se están mostrando u ocultando la contraseña */
-    const togglePassword = document.getElementById('togglePassword');
-    if (togglePassword) {
-        togglePassword.addEventListener('click', function(event) {
-            const passwordField = document.getElementById('password');
-            const icon = event.target;
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-            // Alternar el tipo de input entre password y text
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye'); // Cambiar a ojo abierto
-            } else {
-                passwordField.type = 'password';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash'); // Cambiar a ojo cerrado
-            }
-        });
+      const result = await response.json();
+
+      if (response.status === 200) {
+        alert(result.message);
+        sessionStorage.setItem("token", result.token);
+        localStorage.setItem("userEmail", email);
+        window.location.href = "index.html";
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Hubo un problema con el inicio de sesión.");
     }
+  });
+
+  // Manejo de registro
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
+
+    if (!email || !password) {
+      alert("Por favor, complete ambos campos.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 201) {
+        alert(result.message);
+        registerFormContainer.style.display = "none";
+        loginFormContainer.style.display = "block";
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Hubo un problema con el registro.");
+    }
+  });
 });
+
+
+
+
+
+

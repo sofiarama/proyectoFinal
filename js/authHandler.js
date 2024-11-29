@@ -1,23 +1,37 @@
-document.addEventListener("DOMContentLoaded", function() { 
-    // Verificar si el usuario ha iniciado sesión
-    if (!sessionStorage.getItem("loggedIn")) {
-        // Si el usuario no ha iniciado sesión, redirigir a login.html
-        window.location.href = "login.html";
-        return; // Terminar la ejecución del resto del código
+document.addEventListener("DOMContentLoaded", async function () {
+  const userDisplay = document.getElementById("userDisplay");
+  const userEmail = localStorage.getItem("userEmail");
+
+  if (userEmail && userDisplay) {
+    const initials = userEmail.slice(0, 2).toUpperCase();
+    userDisplay.textContent = initials;
+    userDisplay.classList.add("user-icon");
+  }
+
+  try {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      throw new Error("Token no encontrado.");
     }
 
-    // Si el usuario ha iniciado sesión, mostramos las iniciales en el círculo
-    const userDisplay = document.getElementById('userDisplay');
-    const userEmail = localStorage.getItem('userEmail');
+    const response = await fetch("http://localhost:3000/validateToken", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    if (userEmail && userDisplay) {
-        // Obtener las dos primeras iniciales del email en mayúsculas
-        const initials = userEmail.slice(0, 2).toUpperCase();
-        userDisplay.textContent = initials;
-
-        // Añadir la clase CSS para que el texto se muestre en un círculo
-        userDisplay.classList.add('user-icon');
+    const result = await response.json();
+    if (!result.valid) {
+      alert("Token inválido. Por favor, inicie sesión nuevamente.");
+      sessionStorage.removeItem("token");
+      window.location.href = "login.html";
     }
+  } catch (error) {
+    console.error("Error al validar el token:", error.message);
+    alert("Su sesión ha expirado. Redirigiendo a login...");
+    sessionStorage.removeItem("token");
+    window.location.href = "login.html";
+  }
 });
-
-

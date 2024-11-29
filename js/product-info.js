@@ -1,190 +1,203 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let productData;
-    const productID = localStorage.getItem('productId');
-    const pictureId = localStorage.getItem('profilePic');
+  const productID = localStorage.getItem("productId");
+  const productContainer = document.getElementById("contenedor");
+  const relatedProductsContainer = document.getElementById(
+    "listaProductosRelacionados"
+  );
+  const comentariosContainer = document.getElementById("comentarios-container");
+  const btnCalif = document.getElementById("btnCalif");
+  const comentarioInput = document.getElementById("comentario");
+  const puntuacionInput = document.getElementById("puntuacion");
 
-    // Mostrar imagen de perfil si existe
-    if (pictureId) {
-        const pictureElement = document.getElementById("pictureID");
-        if (pictureElement) pictureElement.src = pictureId;
-    }
+  if (!productID) {
+    productContainer.innerHTML = "<p>Error: No se seleccionó un producto.</p>";
+    return;
+  }
 
-    if (productID) {
-        const url = PRODUCT_INFO_URL; /* + productID *//*  + EXT_TYPE */
+  // Cargar detalles del producto
+  fetch(`json/products/${productID}.json`)
+    .then((response) => response.json())
+    .then((productData) => {
+      mostrarProductoPrincipal(productData);
 
-        getJSONProd(url).then(function(resultObj) {
-                productData = resultObj;
-                if (productData) {
-                    const productContainer = document.getElementById("contenedor");
-                    productContainer.innerHTML = `
-                        <div class="car row">
-                            <div class="image-gallery col-sm-12">
-                                <div class="thumbnail-images d-flex justify-content-around mb-3">
-                                    <img src="${productData.images[1]}" alt="small image" class="thumbnail img-fluid">
-                                    <img src="${productData.images[2]}" alt="small image" class="thumbnail img-fluid">
-                                    <img src="${productData.images[3]}" alt="small image" class="thumbnail img-fluid">
-                                </div>
-                                <div class="main-image">
-                                    <img src="${productData.images[0]}" alt="Main image" id="main-display" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="descripcion col-md-6 col-sm-12">
-                                <h4 class="title">${productData.name}</h4>
-                                <hr class="linea2">
-                                <p class="description">${productData.description}</p>
-                                <p class="soldCount">Vendidos: ${productData.soldCount}</p>
-                                <h6 class="category">${productData.category}</h6>
-                                <p class="price">Precio: ${productData.currency} ${productData.cost}</p>
-                                <div class="d-flex align-items-center">
-                                    <input type="number" id="cantidad" class="form-control w-25 me-2" value="1" min="1">
-                                    <button id="buyButton" class="btn btn-primary">Comprar</button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-
-                    // Funcionalidad del botón "Comprar"
-                    document.getElementById("buyButton").addEventListener("click", function() {
-                        // Recuperar o crear el carrito en localStorage
-                        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-                        let cantidad = parseInt(document.getElementById("cantidad").value);
-                        let subtotal = productData.cost * cantidad;
-
-                        // Objeto con información del producto seleccionado
-                        let productInfo = {
-                            id: productData.id,
-                            name: productData.name,
-                            cost: productData.cost,
-                            currency: productData.currency,
-                            quantity: cantidad,
-                            image: productData.images[0],
-                            subtotal: subtotal
-                        };
-                    
-                        // Buscar si el producto ya está en el carrito
-                        const index = cart.findIndex(item => item.id === productData.id);
-                        if (index !== -1) {
-                            // Actualizar cantidad y subtotal si ya está en el carrito
-                            cart[index].quantity += cantidad;
-                            cart[index].subtotal = cart[index].quantity * cart[index].cost;
-                        } else {
-                            // Agregar nuevo producto al carrito
-                            cart.push(productInfo);
-                        }
-
-                        // Guardar el carrito actualizado en localStorage y redirigir al carrito
-                        localStorage.setItem("cart", JSON.stringify(cart));
-                        window.location.href = "cart.html";
-                    });
-
-                    // Cambiar imagen principal al hacer clic en miniaturas
-                    const fotoMain = document.getElementById('main-display');
-                    const fotosSmall = document.getElementsByClassName('thumbnail');
-                    Array.from(fotosSmall).forEach(foto => {
-                        foto.addEventListener('click', function () {
-                            [fotoMain.src, this.src] = [this.src, fotoMain.src];
-                        });
-                    });
-
-                    mostrarProductosRelacionados(productData.relatedProducts);
-                } else {
-                    console.log("No se encontró el producto");
-                }
-            })
-            .catch(error => console.error("Error al cargar los detalles del producto:", error));
-    } else {
-        console.log("No se encontró el productID");
-    }
-
-    // Cargar comentarios
-    getJSONProd(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
-        mostrarComentarios(resultObj);
+      if (productData.relatedProducts) {
+        mostrarProductosRelacionados(productData.relatedProducts);
+      } else {
+        relatedProductsContainer.innerHTML =
+          "<p>No hay productos relacionados disponibles.</p>";
+      }
     });
 
-    // Configuración del botón de comentarios
-    const btnMensaje = document.getElementById('btnCalif');
-    btnMensaje.addEventListener("click", function () { 
-        event.preventDefault();
-        if (comentario.value) {
-            const nombre = "Sofia";
-            let fecha = new Date().toISOString();
-            const comment = {
-                name: nombre,
-                date: fecha.replace('T', ' ').substring(0, 19),
-                comentValue: document.getElementById('comentario').value,
-                punt: document.getElementById('puntuacion').value,
-            };
-            localStorage.setItem('comentario', JSON.stringify(comment));
-            console.log(localStorage.getItem('comentario'));
-            getJSONComent(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
-                mostrarComentarios(resultObj);
-            });
-            document.getElementById('comentario').value = "";
-        }
+  // Cargar comentarios
+  fetch(`json/comments/${productID}.json`)
+    .then((response) => response.json())
+    .then((commentsData) => {
+      mostrarComentarios(commentsData);
+    })
+    .catch((error) => {
+      console.error("Error al cargar comentarios:", error);
+      comentariosContainer.innerHTML =
+        "<p>No se pudieron cargar los comentarios.</p>";
     });
 
-    // Configuración para el botón de logout
-    const logoutButton = document.getElementById('logout');
-    logoutButton?.addEventListener('click', function(event) {
-        event.preventDefault();
-        localStorage.removeItem('userEmail');
-        window.location.href = 'login.html';
-    });
+  // Mostrar el producto principal
+  function mostrarProductoPrincipal(productData) {
+    productContainer.innerHTML = `
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail-images d-flex flex-column">
+            ${productData.images
+              .map(
+                (img) =>
+                  `<img src="${img}" alt="Imagen secundaria" class="thumbnail img-fluid mb-2">`
+              )
+              .join("")}
+          </div>
+        </div>
+        <div class="col-md-8">
+          <img
+            src="${productData.images[0]}"
+            alt="Imagen principal del producto"
+            id="main-display"
+            class="img-fluid mb-4"
+          />
+          <h2>${productData.name}</h2>
+          <p>${productData.description}</p>
+          <p><strong>Precio:</strong> ${productData.currency} ${
+      productData.cost
+    }</p>
+          <p><strong>Vendidos:</strong> ${productData.soldCount}</p>
+          <div class="d-flex align-items-center mt-3">
+            <input
+              type="number"
+              id="cantidad"
+              class="form-control w-25 me-2"
+              value="1"
+              min="1"
+            />
+            <button id="addToCart" class="btn btn-primary">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+    `;
 
-    // Configuración del tema oscuro
-    const darkModeSwitch = document.getElementById('darkModeSwitch');
-    if (darkModeSwitch) {
-        darkModeSwitch.checked = localStorage.getItem('darkMode') === 'true';
-        document.body.classList.toggle('dark-mode', darkModeSwitch.checked);
-        
-        darkModeSwitch.addEventListener('change', function() {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', darkModeSwitch.checked);
+    // Agregar al carrito
+    const addToCartBtn = document.getElementById("addToCart");
+    addToCartBtn.addEventListener("click", function () {
+      const cantidad = parseInt(document.getElementById("cantidad").value);
+      const subtotal = cantidad * productData.cost;
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const productInCart = cart.find((item) => item.id === productData.id);
+      if (productInCart) {
+        productInCart.quantity += cantidad;
+        productInCart.subtotal = productInCart.quantity * productData.cost;
+      } else {
+        cart.push({
+          id: productData.id,
+          name: productData.name,
+          cost: productData.cost,
+          currency: productData.currency,
+          quantity: cantidad,
+          subtotal: subtotal,
+          image: productData.images[0],
         });
-    }
-});
+      }
 
-// Función para mostrar estrellas de puntuación
-function estrellas(puntos) {
-    return Array(5).fill('').map((_, i) =>
-        `<span class="fa fa-star ${i < puntos ? 'checked' : ''}"></span>`
-    ).join('');
-}
-
-// Función para mostrar comentarios
-function mostrarComentarios(comentarios) {
-    const comentariosContainer = document.getElementById('comentarios-container');
-    comentariosContainer.innerHTML = comentarios.length
-        ? comentarios.map(comentario => `
-            <div class="comentario">
-                <span class="comentUser">${comentario.user}</span>  (${comentario.dateTime}):
-                <p>${comentario.description}</p>
-                <p><strong>Puntuación:</strong> ${estrellas(comentario.score)}</p>
-            </div>
-        `).join('')
-        : '<p>No hay comentarios para este producto.</p>';
-}
-
-function mostrarProductosRelacionados(products) {
-    const contenedor = document.getElementById('listaProductosRelacionados');
-    contenedor.innerHTML = '';
-
-    products.forEach(producto => {
-        const div = document.createElement('div');
-        div.className = 'col-6 col-md-4 col-lg-3 mb-4';
-
-        div.innerHTML = `
-            <div class="card">
-              <img src="${producto.image}" class="card-img-top" alt="${producto.name}">
-              <div class="card-body">
-                <h5 class="card-title">${producto.name}</h5>
-              </div>
-            </div>`;
-        div.onclick = () => {
-            localStorage.setItem('productId', producto.id);
-            window.location.href = 'product-info.html';
-        };
-        contenedor.appendChild(div);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Producto agregado al carrito.");
+      window.location.href = "cart.html";
     });
-}
 
+    // Cambiar imagen principal al hacer clic en miniaturas
+    const thumbnails = document.querySelectorAll(".thumbnail");
+    const mainImage = document.getElementById("main-display");
+    thumbnails.forEach((thumb) => {
+      thumb.addEventListener("click", function () {
+        mainImage.src = this.src;
+      });
+    });
+  }
+
+  // Mostrar productos relacionados
+  function mostrarProductosRelacionados(products) {
+    relatedProductsContainer.innerHTML = ""; // Limpiar contenedor
+
+    products.forEach((producto) => {
+      const productCard = document.createElement("div");
+      productCard.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
+
+      productCard.innerHTML = `
+        <div class="card h-100">
+          <img src="${producto.image}" class="card-img-top" alt="${producto.name}" />
+          <div class="card-body">
+            <h5 class="card-title">${producto.name}</h5>
+            <button class="btn btn-primary w-100">Ver Producto</button>
+          </div>
+        </div>
+      `;
+
+      productCard.querySelector("button").addEventListener("click", () => {
+        localStorage.setItem("productId", producto.id);
+        location.reload();
+      });
+
+      relatedProductsContainer.appendChild(productCard);
+    });
+  }
+
+  // Mostrar comentarios
+  function mostrarComentarios(comments) {
+    comentariosContainer.innerHTML = "";
+
+    if (!comments || comments.length === 0) {
+      comentariosContainer.innerHTML =
+        "<p>No hay comentarios para este producto.</p>";
+      return;
+    }
+
+    comments.forEach((comment) => {
+      const commentDiv = document.createElement("div");
+      commentDiv.className = "comentario mb-4";
+
+      commentDiv.innerHTML = `
+        <p><strong>${comment.user}</strong> (${comment.dateTime})</p>
+        <p>${comment.description}</p>
+        <p>${generarEstrellas(comment.score)}</p>
+        <hr />
+      `;
+
+      comentariosContainer.appendChild(commentDiv);
+    });
+  }
+
+  // Publicar un nuevo comentario
+  btnCalif.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const nuevoComentario = {
+      user: "Usuario Actual",
+      dateTime: new Date().toLocaleString(),
+      description: comentarioInput.value,
+      score: parseInt(puntuacionInput.value),
+    };
+
+    mostrarComentarios([
+      nuevoComentario,
+      ...JSON.parse(localStorage.getItem("comments") || "[]"),
+    ]);
+    comentarioInput.value = "";
+    puntuacionInput.value = "5";
+  });
+
+  // Generar estrellas para la puntuación
+  function generarEstrellas(score) {
+    let estrellas = "";
+    for (let i = 1; i <= 5; i++) {
+      estrellas += `<span class="fa fa-star${
+        i <= score ? " checked" : ""
+      }"></span>`;
+    }
+    return estrellas;
+  }
+});
