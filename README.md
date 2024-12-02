@@ -4,17 +4,23 @@
 1- Clona el repositorio desde GitHub o descarga el archivo .zip:
 
 git clone <URL_DEL_REPOSITORIO>
+
 2- Navega a la carpeta principal del proyecto. Dentro de esta, accede a la subcarpeta backend:
 
 cd proyectoFinal/backend
+
 3- Instalación de dependencias
+
 Ejecuta el siguiente comando en la terminal desde la carpeta backend:
 
 npm install
+
 4- Ejecución del servidor
+
 Una vez que las dependencias estén instaladas, ejecuta el servidor con el siguiente comando:
 
 node app.js
+
 5- Si todo está configurado correctamente, deberías ver en la terminal un mensaje como este:
 
 Servidor corriendo en http://localhost:3000
